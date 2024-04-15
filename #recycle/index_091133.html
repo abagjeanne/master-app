@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Information</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Server Information</h1>
+    <div id="server-info">
+        <!-- Server information will be displayed here -->
+    </div>
+
+    <script>
+        // Function to fetch and update server information
+        function updateServerInfo() {
+            $.getJSON('fetch_data.php', function(data) {
+                // Build HTML content with fetched data
+                var html = '<p><strong>Physical Network Info:</strong> ' + data.physicalNetworkInfo + '</p>';
+                html += '<p><strong>Synology Info:</strong> ' + JSON.stringify(data.synologyInfo) + '</p>';
+                html += '<p><strong>SNMP Info:</strong> ' + JSON.stringify(data.snmpInfo) + '</p>';
+
+                // Update server info container with the new HTML
+                $('#server-info').html(html);
+            });
+        }
+
+        // Call updateServerInfo function initially
+        updateServerInfo();
+
+        // Call updateServerInfo function every second
+        setInterval(updateServerInfo, 1000);
+    </script>
+</body>
+</html>
