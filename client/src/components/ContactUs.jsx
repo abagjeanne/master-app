@@ -1,4 +1,8 @@
 import React from 'react';
+import ContactCard from './ContactCard'; 
+
+import QR from '../assets/qrsample.png';
+import Profile from '../assets/profile.jpg';
 
 const Contact = () => {
   return (
@@ -10,41 +14,12 @@ const Contact = () => {
             <p className="w-lg-50" style={{ fontSize: '15px' }}>Please contact our IT Team with their given contact numbers and/or Social Media QR Codes presented here.</p>
           </div>
         </div>
-        <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-          <div className="col">
-              <div className="text-center"><img className="rounded-circle" src="assets/img/prof%20pic.jpg" width="120px" height="120px" alt="Profile" /></div>
-              <p style={{ fontWeight: 'bold', fontSize: '20px', marginBottom: '1px', textAlign: 'center' }}>Jan Wilbert P. See</p>
-              <p style={{ textAlign: 'center' }}>IT Head</p>
-              <p style={{ marginBottom: '0px', textAlign: 'center' }}><strong>Contact Number/s:</strong></p>
-              <p style={{ textAlign: 'center' }}>0917 541 9891 / 0995 251 1442</p>
-              <div>
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead>
-                      <tr></tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="text-center" style={{ width: '180.703px', fontWeight: 'bold' }}>Telegram</td>
-                        <td className="text-center" style={{ fontWeight: 'bold' }}>WeChat</td>
-                      </tr>
-                      <tr>
-                        <td className="text-center" style={{ width: '180.703px' }}><img src="assets/img/qr%20code%20sample.png" style={{ width: '150px', height: '150px' }} alt="Telegram QR Code" /></td>
-                        <td className="text-center"><img src="assets/img/qr%20code%20sample.png" style={{ width: '150px', height: '150px' }} alt="WeChat QR Code" /></td>
-                      </tr>
-                      <tr>
-                        <td className="text-center" style={{ width: '180.703px', fontWeight: 'bold' }}>Messenger</td>
-                        <td className="text-center" style={{ fontWeight: 'bold' }}>Viber</td>
-                      </tr>
-                      <tr>
-                        <td className="text-center" style={{ width: '180.703px' }}><img src="assets/img/qr%20code%20sample.png" style={{ width: '150px', height: '150px' }} alt="Messenger QR Code" /></td>
-                        <td className="text-center"><img src="assets/img/qr%20code%20sample.png" style={{ width: '150px', height: '150px' }} alt="Viber QR Code" /></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-          </div>
+        <div className="row justify-content-center gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+        <ContactCard Name="Jan Wilbert See" Position="IT Head" Number="0917 541 9891 / 0995 251 1442" profile={Profile}  telegramQR={QR} wechatQR={QR} messengerQR={QR} viberQR={QR} altText="Jan Wilbert See" />
+        <ContactCard Name="Prinze Joshua M. Valloso" Position="IT Specialist" Number="0920 667 2004 / 0995 507 1063" profile={Profile}  telegramQR={QR} wechatQR={QR} messengerQR={QR} viberQR={QR} altText="Prinze Joshua M. Valloso" />
+        <ContactCard Name="Jeanne Mari S. Abag" Position="IT Specialist - Intern" Number="0966 481 0660" profile={Profile}  telegramQR={QR} wechatQR={QR} messengerQR={QR} viberQR={QR} altText="Jeanne Mari S. Abag" />
+        <ContactCard Name="Ellane Lee O. Boniol" Position="IT Specialist - Intern" Number="0991 902 9017" profile={Profile}  telegramQR={QR} wechatQR={QR} messengerQR={QR} viberQR={QR} altText="" />
+        <ContactCard Name="James Leonard M. De Sena" Position="IT Specialist - Intern" Number="0966 235 5141" profile={Profile}  telegramQR={QR} wechatQR={QR} messengerQR={QR} viberQR={QR} altText="James Leonard M. Desena" />
           {/* Repeat the above structure for other IT team members */}
         </div>
       </div>

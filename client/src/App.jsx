@@ -10,7 +10,7 @@ import Links from './components/Links.jsx';
 import Information from './components/Information.jsx';
 import About from './components/AboutUs.jsx';
 import Contact from './components/ContactUs.jsx';
-
+import AdminLogin from './admin/AdminLogin.jsx'
 function App() {
   return (
     <div>
@@ -82,6 +82,15 @@ function App() {
               <Header/>
               <Contact/>
               <Footer/>
+            </>
+          }
+        />
+        <Route
+          exact
+          path='/admin'
+          element={
+            <>
+              <AdminLogin/>
             </>
           }
         />
