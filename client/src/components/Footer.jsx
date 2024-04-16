@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import GDSLogo from '../assets/3.png'
-import Synology from '../assets/synology.png'
+import GDSLogo from '../assets/3.png';
+import Synology from '../assets/synology.png';
 
 const Footer = () => {
-
-  return(
+  return (
     <footer className="text-center bg-dark">
       <div className="container-fluid">
         <div className="row">
@@ -57,7 +56,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

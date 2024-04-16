@@ -1,42 +1,38 @@
-import React from 'react'
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
-
-  return(
-    <div>
-      <nav className="navbar navbar-expand-md bg-dark py-3" data-bs-theme="dark">
-        <div className="container">
-          <a className="navbar-brand d-flex align-items-center" href="#" style={{ marginLeft: "0px" }}>
-            <span style={{ fontSize: "22px" }}>GDS Group - Work From Home Site</span>
-          </a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcol-1">
-            <span className="visually-hidden">Toggle navigation</span>
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navcol-1" style={{ marginLeft: "6px", marginRight: "-17px", fontSize: "14px" }}>
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item" style={{ fontSize: "18px" }}>
-                <a className="nav-link active" href="index.php">Home</a>
-              </li>
-              <li className="nav-item" style={{ fontSize: "18px" }}>
-                <a className="nav-link" href="companies.php">Companies</a>
-              </li>
-              <li className="nav-item" style={{ fontSize: "18px" }}>
-                <a className="nav-link" href="links.php">Links</a>
-              </li>
-              <li className="nav-item" style={{ fontSize: "18px" }}>
-                <a className="nav-link" href="info.php">Information</a>
-              </li>
-              <li className="nav-item" style={{ fontSize: "18px" }}>
-                <a className="nav-link" href="about-us.php">About Us</a>
-              </li>
-            </ul>
-            <a className="btn btn-primary ms-md-2" href="contact-us.php" role="button" style={{ fontSize: "18px" }}>Contact Us</a>
-          </div>
+  return (
+    <nav className="navbar navbar-expand-md bg-dark py-3" data-bs-theme="dark">
+      <div className="container-fluid">
+          <Link to={"/"} className='navbar-brand d-flex align-items-center'>GDS Group - Work From Home Site</Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcol-1">
+          <span className="visually-hidden">Toggle navigation</span>
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse justify-content-end" id="navcol-1">
+          <ul className="navbar-nav">
+            <li className="nav-item" style={{ fontSize: "18px" }}>
+              <NavLink to={"/"} className='nav-link'>Home</NavLink>
+            </li>
+            <li className="nav-item" style={{ fontSize: "18px" }}>
+              <NavLink to={"/companies"} className='nav-link'>Company</NavLink>
+            </li>
+            <li className="nav-item" style={{ fontSize: "18px" }}>
+              <NavLink to={"/links"} className='nav-link'>Links</NavLink>
+            </li>
+            <li className="nav-item" style={{ fontSize: "18px" }}>
+              <NavLink to={"/information"} className='nav-link'>Information</NavLink>
+            </li>
+            <li className="nav-item" style={{ fontSize: "18px" }}>
+              <NavLink to={"/about-us"} className='nav-link'>About Us</NavLink>
+            </li>
+          </ul>
+          <Link to={"/contact-us"} className='btn btn-primary ms-md-2' role="button" style={{ fontSize: "18px" }}>Contact Us</Link>
         </div>
-      </nav>
-    </div>
-  )
-}
+      </div>
+    </nav>
+  );
+};
 
 export default Header;
