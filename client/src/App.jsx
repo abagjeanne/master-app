@@ -11,6 +11,7 @@ import Information from './components/Information.jsx';
 import About from './components/AboutUs.jsx';
 import Contact from './components/ContactUs.jsx';
 import AdminLogin from './admin/AdminLogin.jsx'
+import AdminDashboard from './admin/AdminDashboard.jsx'
 //import GDSPhoto from './application/GDS/GDSPhoto.jsx'
 function App() {
   return (
@@ -95,6 +96,15 @@ function App() {
             </>
           }
         />
+        <Route
+          exact
+          path='/admin/dashboard'
+          element={
+            <>
+              <AdminDashboard/>
+            </>
+          }
+        />                
          {/* 
           <Route exact path='application/GDS'
           element={

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   // State variables for username, password, and error message
   const [userName, setUsername] = useState('');
   const [passWord, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -20,7 +22,8 @@ const LoginPage = () => {
 
       // If the login is successful (status code 200), redirect to the dashboard or perform any other action
       if (response.status === 200) {
-        alert('Login successful!');
+        // alert('Login successful!');
+        navigate('/admin/dashboard')
         // Redirect or perform any other action here
       } else {
         // If the login fails, show an error message
