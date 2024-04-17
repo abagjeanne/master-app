@@ -11,6 +11,7 @@ import Information from './components/Information.jsx';
 import About from './components/AboutUs.jsx';
 import Contact from './components/ContactUs.jsx';
 import AdminLogin from './admin/AdminLogin.jsx'
+//import GDSPhoto from './GDS/GDSPhoto.jsx'
 function App() {
   return (
     <div>
@@ -94,6 +95,15 @@ function App() {
             </>
           }
         />
+         {/* 
+          <Route exact path='/GDS'
+          element={
+            <>
+              <GDSPhoto/>
+            </>
+          }
+         
+         */}
       </Routes>
     </div>
   )
