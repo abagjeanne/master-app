@@ -7,9 +7,7 @@ const CompanyCard = ({ companyName, imgSrc }) => {
         <span className="badge rounded-pill bg-primary mb-2">Companies</span>
         <div className="row" style={{ textAlign: "center" }}>
           <div className="col" style={{ marginTop: "5px", marginBottom: "5px" }}>
-            <a href="#">
               <img src={imgSrc} style={{ height:"100px", width: "280px", textAlign: "left", objectFit: "contain" }} alt={companyName}/>
-            </a>
           </div>
         </div>
         <p style={{ textAlign: "center", fontWeight: "bold", fontSize: "18px" }}>{companyName}</p>

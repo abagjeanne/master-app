@@ -10,16 +10,20 @@ import Links from './components/Links.jsx';
 import Information from './components/Information.jsx';
 import About from './components/AboutUs.jsx';
 import Contact from './components/ContactUs.jsx';
-import AdminLogin from './admin/AdminLogin.jsx'
-//import GDSPhoto from './application/GDS/GDSPhoto.jsx'
+import AdminLogin from './admin/AdminLogin.jsx';
+import GDS from './companies/GDS.jsx';
+import GDSInternational from './companies/GDSInt.jsx';
+import PDMN from './companies/PDMN.jsx';
+import STARLIGHT from './companies/STRLGT.jsx'
+import SUPERNOVA from './companies/SUPERNOVA.jsx';
+import VOLTION from './companies/VLTN.jsx';
+
 function App() {
   return (
     <div>
       <ToastContainer/>
       <Routes>
-        <Route 
-          exact
-          path='/'
+        <Route exact path='/'
           element={
             <>
               <Header/>
@@ -31,9 +35,7 @@ function App() {
             </>
           }
         />
-        <Route
-          exact
-          path='/companies'
+        <Route exact path='/companies'
           element={
             <>
               <Header/>
@@ -42,9 +44,7 @@ function App() {
             </>
           }
         />
-        <Route
-          exact
-          path='/links'
+        <Route exact path='/links'
           element={
             <>
               <Header/>
@@ -53,9 +53,7 @@ function App() {
             </>
           }
         />
-        <Route
-          exact
-          path='/information'
+        <Route exact path='/information'
           element={
             <>
               <Header/>
@@ -64,9 +62,7 @@ function App() {
             </>
           }
         />
-        <Route
-          exact
-          path='/about-us'
+        <Route exact path='/about-us'
           element={
             <>
               <Header/>
@@ -75,9 +71,7 @@ function App() {
             </>
           }
         />
-        <Route
-          exact
-          path='/contact-us'
+        <Route exact path='/contact-us'
           element={
             <>
               <Header/>
@@ -86,24 +80,55 @@ function App() {
             </>
           }
         />
-        <Route
-          exact
-          path='/admin'
+        <Route exact path='/admin'
           element={
             <>
               <AdminLogin/>
             </>
           }
         />
-         {/* 
-          <Route exact path='application/GDS'
+        <Route exact path='/gds'
           element={
             <>
-              <GDSPhoto/>
+              <GDS/>
             </>
           }
-         
-         */}
+        />
+        <Route exact path = '/gdsintl'
+        element = {
+          <>
+            <GDSInternational/>
+          </>
+        }
+        />
+        <Route exact path = '/pdmn'
+        element = {
+          <>
+            <PDMN/>
+          </>
+        }
+        />
+        <Route exact path = '/starlight'
+        element = {
+          <>
+            <STARLIGHT/>
+          </>
+        }
+        />
+        <Route exact path = '/supernova'
+        element = {
+          <>
+            <SUPERNOVA/>
+          </>
+        }
+        />
+        <Route exact path = '/voltion'
+        element = {
+          <>
+            <VOLTION/>
+          </>
+        }
+        />
       </Routes>
     </div>
   )
