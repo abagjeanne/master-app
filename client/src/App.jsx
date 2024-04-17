@@ -10,7 +10,6 @@ import Links from './components/Links.jsx';
 import Information from './components/Information.jsx';
 import About from './components/AboutUs.jsx';
 import Contact from './components/ContactUs.jsx';
-import AdminLogin from './admin/AdminLogin.jsx';
 import GDS from './companies/GDS.jsx';
 import GDSInternational from './companies/GDSInt.jsx';
 import PDMN from './companies/PDMN.jsx';
@@ -18,6 +17,9 @@ import STARLIGHT from './companies/STRLGT.jsx'
 import SUPERNOVA from './companies/SUPERNOVA.jsx';
 import VOLTION from './companies/VLTN.jsx';
 
+import AdminLogin from './admin/AdminLogin.jsx'
+import AdminDashboard from './admin/AdminDashboard.jsx'
+//import GDSPhoto from './application/GDS/GDSPhoto.jsx'
 function App() {
   return (
     <div>
@@ -87,6 +89,15 @@ function App() {
             </>
           }
         />
+        <Route
+          exact
+          path='/admin/dashboard'
+          element={
+            <>
+              <AdminDashboard/>
+            </>
+          }
+        />                
         <Route exact path='/gds'
           element={
             <>
@@ -122,7 +133,7 @@ function App() {
           </>
         }
         />
-        <Route exact path = '/voltion'
+        <Route exact path = '/companies-VOLTION'
         element = {
           <>
             <VOLTION/>
