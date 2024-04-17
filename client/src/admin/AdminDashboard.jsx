@@ -30,32 +30,64 @@ function Dashboard() {
         <div className="container-fluid">
             <div className="row">
                 <nav className={`col-md-2 bg-white sidebar shadow d-flex flex-column ${isSidebarOpen ? 'open' : ''}`}>
-                    <div className="justify-content-center" style={{ marginTop: '20px' }}> {/* Added margin top */}
-                        <img src={GDSLogo} alt="Logo" className="img-fluid" style={{ maxHeight: '80px', paddingTop: '10px', paddingBottom: '10px' }} /> {/* Added padding top and bottom */}
+                    <div className="justify-content-center" style={{ marginTop: '20px' }}>
+                        <img src={GDSLogo} alt="Logo" className="img-fluid" style={{ maxHeight: '80px', paddingTop: '10px', paddingBottom: '10px' }} />
                     </div>
                     <div className={`nav flex-column flex-grow-1 ${isSidebarOpen ? 'show' : ''}`}>
                         <TabButton label="Blog" onClick={() => handleTabChange('blog')} isActive={activeTab === 'blog'} />
-                        <TabButton label="Forms" onClick={() => handleTabChange('forms')} isActive={activeTab === 'forms'} />
-                        {/* <TabButton label="Editor" onClick={() => handleTabChange('editor')} isActive={activeTab === 'editor'} />
-                        <TabButton label="Tables" onClick={() => handleTabChange('tables')} isActive={activeTab === 'tables'} />
-                        <TabButton label="Profile" onClick={() => handleTabChange('profile')} isActive={activeTab === 'profile'} />
-                        <TabButton label="Errors" onClick={() => handleTabChange('errors')} isActive={activeTab === 'errors'} /> */}
+                        <TabButton label="Add New Links" onClick={() => handleTabChange('Add New Links')} isActive={activeTab === 'Add New Links'} />
                     </div>
-                    <div className="mt-auto"></div>
+                    <div className="mt-auto">
+                        <button onClick={toggleSidebar} className="btn btn-sm btn-secondary">
+                            {isSidebarOpen ? 'Hide Sidebar' : 'Show Sidebar'}
+                        </button>
+                    </div>
                 </nav>
 
                 <main role="main" className="col-md-10 ml-sm-auto col-lg-10 px-4">
                     <header className="text-center mb-4">
-                        <h1 className="dashboard-title" style={{ color: 'blue' }}>Dashboard</h1>
+                        <h1 className="dashboard-title" style={{ color: 'blue', paddingTop: '20px' }}>Dashboard</h1>
                     </header>
                     
                     <section className={`p-4 border rounded shadow-sm mt-4 ${isSidebarOpen ? 'sidebar-open' : ''}`} style={{ backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
-                        {activeTab === 'blog' && <h2>Blog Posts</h2>}
-                        {activeTab === 'forms' && <h2>Forms </h2>}
-                        {/* {activeTab === 'editor' && <h2>Content Editor</h2>}
-                        {activeTab === 'tables' && <h2>Tables</h2>}
-                        {activeTab === 'profile' && <h2>User Profile</h2>}
-                        {activeTab === 'errors' && <h2>Errors</h2>} */}
+                        {activeTab === 'blog' && (
+                            <div>
+                            <h2>Blog Posts</h2>
+                            <ul>
+                                <li>Blog Post 1</li>
+                                <li>Blog Post 2</li>
+                                <li>Blog Post 3</li>
+                                {/* Add more blog post items as needed */}
+                            </ul>
+                        </div>
+                        )}
+                    {activeTab === 'Add New Links' && (
+                        <div className="container">
+                            <div className="mb-3">
+                                <h2>Add New Link</h2> {/* Moved the <h2> inside the container */}
+                                <form className="needs-validation" noValidate>
+                                    <div className="mb-3">
+                                        <label htmlFor="title" className="form-label">Title:</label>
+                                        <input type="text" className="form-control" id="title" name="title" required />
+                                        <div className="invalid-feedback">
+                                            Please provide a title.
+                                        </div>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="content" className="form-label">Content:</label>
+                                        <textarea className="form-control" id="content" name="content" required></textarea>
+                                        <div className="invalid-feedback">
+                                            Please provide content.
+                                        </div>
+                                    </div>
+                                    {/* Add more fields as needed, such as author, tags, etc. */}
+                                    <button type="submit" className="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    )}
+
+
                     </section>
                 </main>
             </div>
