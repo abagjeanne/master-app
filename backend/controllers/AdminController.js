@@ -55,21 +55,12 @@ const UpdateAdmin = async (req, res) => {
       return res.status(400).json({ message: "Invalid ID" });
     }
 
-    const result = await UserModel.findByIdAndUpdate(
-      freelancer._id,
+    const result = await AdminModel.findByIdAndUpdate(
+      admin._id,
       {
         $set: {
-          firstName: freelancer.firstName,
-          surName: freelancer.surName,
-          userName: freelancer.userName,
-          eMail: freelancer.eMail,
-          passWord: freelancer.passWord,
-          contactNum: freelancer.contactNum,
-          region: freelancer.region,
-          province: freelancer.province,
-          city: freelancer.city,
-          profilePic: freelancerProfile.hasOwnProperty("id") ? freelancerProfile : freelancer.profilePic,
-          userInfo: freelancer.userInfo,
+         userName: admin.userName,
+         passWord: admin.passWord
         },
       }, 
     {new: true}
