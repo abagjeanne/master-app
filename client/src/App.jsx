@@ -19,7 +19,7 @@ import VOLTION from './companies/VLTN.jsx';
 
 import AdminLogin from './admin/AdminLogin.jsx'
 import AdminDashboard from './admin/AdminDashboard.jsx'
-//import GDSPhoto from './application/GDS/GDSPhoto.jsx'
+
 function App() {
   return (
     <div>
