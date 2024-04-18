@@ -1,7 +1,8 @@
-  import React from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GDSLogo from '../assets/GDS Travel.png';
+
 
 const GDS = () => {
   return (
@@ -19,11 +20,12 @@ const GDS = () => {
           </div>
         </div>
       </div>
-      <div className='container bg-primary' >
-        <div className='row'>
-          <div className='col'> Select an Application:
-          
-          </div>
+      <div className='container-fluid mb-5' style = {{backgroundColor: '#D9D9D9'}}>
+        <h3 style = {{marginLeft: 50, paddingTop: 20}}>Select an Application:</h3>
+        <div className='parent_container'>
+          <div className='child_containers'></div>
+          <div className='child_containers'></div>
+          <div className='child_containers'></div>
         </div>
       </div>
       <Footer />
