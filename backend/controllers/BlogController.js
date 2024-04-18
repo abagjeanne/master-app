@@ -48,7 +48,7 @@ const CreateBlog = async (req, res) => {
     }
 
     const result = await BlogModel.create({
-      profilePic: blogThumbnail,
+      thumbnail: blogThumbnail,
       title: blog.title,
       body: blog.body,
       author: blog.author,
@@ -77,8 +77,7 @@ const EditBlog = async (req, res) => {
     if (file) {
       const { id: fileID, name: fileName } = await DriveService.UploadFiles(
         file,
-        process.env.FOLDER_ID_PROFILE
-      );
+        process.env.FOLDER_ID_THUMBNAIL      );
       Object.assign(blogThumbnail, {
         id: fileID,
         name: fileName,

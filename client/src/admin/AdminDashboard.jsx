@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
 import GDSLogo from '../assets/3.png';
@@ -25,9 +25,7 @@ function LinkCard({ id, title, content, image, author, dateTimeCreated, onDelete
 
     return (
         <div className="card mb-3 position-relative">
-            {image && image.trim() !== '' && (
-                <img src={image} className="card-img-top img-thumbnail" alt="Blog Post" style={{ objectFit: 'cover', width: '100%', height: '200px' }} />
-            )}
+            <img src={image} className="card-img-top img-thumbnail" alt="Blog Post" style={{ objectFit: 'cover', width: '100%', height: '200px' }} />
             <div className="card-body">
                 <h4 className="card-title" style={{ fontWeight:'bold'}}>{title}</h4>
                 <p className="card-text" style={{ fontStyle:'italic'}}>{author}</p>
@@ -40,6 +38,7 @@ function LinkCard({ id, title, content, image, author, dateTimeCreated, onDelete
         </div>
     );
 }
+
 
 function FAQCard({ id, question, answer, dateTimeCreated, onDelete }) {
     const handleDelete = () => {
@@ -60,49 +59,26 @@ function FAQCard({ id, question, answer, dateTimeCreated, onDelete }) {
     );
 }
 
-function Dashboard() {
+const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('Links');
     const [blogPosts, setBlogPosts] = useState([]);
-    const [faqs, setFaqs] = useState([]);
-    const [newFAQQuestion, setNewFAQQuestion] = useState('');
-    const [newFAQAnswer, setNewFAQAnswer] = useState('');
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
     };
 
-    const addBlogPost = (newPost) => {
-        const currentDate = new Date();
-        const dateTimeCreated = currentDate.toLocaleString();
+    useEffect(() => {
+        axios.get('http://localhost:8008/api/blog')
+            .then(response => {
+                setBlogPosts(response.data);
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.error('Error fetching blog data:', error);
+            });
+    }, []);
 
-        // Add the date and time to the new blog post object
-        const postWithDateTime = { ...newPost, dateTimeCreated };
-
-        // Update the state with the new blog post
-        setBlogPosts([...blogPosts, postWithDateTime]);
-    };
-
-    const addFAQ = () => {
-        setFaqs([...faqs, { id: faqs.length + 1, question: newFAQQuestion, answer: newFAQAnswer }]);
-        setNewFAQQuestion('');
-        setNewFAQAnswer('');
-    
-    const currentDate = new Date();
-    const dateTimeCreated = currentDate.toLocaleString();
-        setFaqs([...faqs, { id: faqs.length + 1, question: newFAQQuestion, answer: newFAQAnswer, dateTimeCreated }]);
-        setNewFAQQuestion('');
-        setNewFAQAnswer('');
-    };
-
-    const deleteBlogPost = (id) => {
-        const updatedBlogPosts = blogPosts.filter(post => post.id !== id);
-        setBlogPosts(updatedBlogPosts);
-    };
-
-    const deleteFAQ = (id) => {
-        const updatedFaqs = faqs.filter(faq => faq.id !== id);
-        setFaqs(updatedFaqs);
-    };
+    // console.log(blogPosts.thumbnail.link)
 
     return (
         <div className="container-fluid gray-bg">
@@ -130,13 +106,12 @@ function Dashboard() {
                                 {blogPosts.map((post, index) => (
                                     <div key={index} className="col">
                                         <LinkCard 
-                                            id={post.id} 
+                                            id={post._id} 
                                             title={post.title} 
                                             author={post.author}  
-                                            content={post.content} 
-                                            image={post.image} 
-                                            dateTimeCreated={post.dateTimeCreated} 
-                                            onDelete={deleteBlogPost} 
+                                            content={post.body} 
+                                            image={post.thumbnail.link}
+                                            dateTimeCreated={post.dateCreated}  
                                         />
                                     </div>
                                 ))}
@@ -151,7 +126,6 @@ function Dashboard() {
                                             question={faq.question} 
                                             answer={faq.answer} 
                                             dateTimeCreated={faq.dateTimeCreated} 
-                                            onDelete={deleteFAQ} 
                                         />
                                     </div>
                                 ))}
@@ -196,7 +170,7 @@ function Dashboard() {
     );
 }
 
-function NewLinkForm({ addBlogPost }) {
+const NewLinkForm = () => {
 
     const formRef = useRef(null);
     
@@ -204,7 +178,7 @@ function NewLinkForm({ addBlogPost }) {
         title: '',
         body: '',
         author: '',
-        dateCreated: Date.now
+        dateCreated: new Date().toLocaleDateString()
     });
 
     const [thumbnail, setThumbnail] = useState()
@@ -238,7 +212,7 @@ function NewLinkForm({ addBlogPost }) {
                 title: '',
                 body: '',
                 author: '',
-                dateCreated: Date.now
+                dateCreated: formatDate(new Date())
             });
             formRef.current.reset();
             
@@ -266,7 +240,7 @@ function NewLinkForm({ addBlogPost }) {
                 </div>
             </div>
             <div className="mb-3">
-                <label htmlFor="image" className="form-label">Image URL:</label>
+                <label htmlFor="thumbnail" className="form-label">Image URL:</label>
                 <input 
                     type="file" 
                     className="form-control" 
@@ -290,10 +264,10 @@ function NewLinkForm({ addBlogPost }) {
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="content" className="form-label">Content:</label>
+                <label htmlFor="body" className="form-label">Content:</label>
                 <textarea 
                     className="form-control" 
-                    id="content" name="content" 
+                    id="body" name="body" 
                     value={formData.body} 
                     onChange={handleChange}
                     required>
@@ -301,6 +275,18 @@ function NewLinkForm({ addBlogPost }) {
                 <div className="invalid-feedback">
                     Please provide content.
                 </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="dateCreated" className="form-label">Date Published:</label>
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    id="dateCreated" 
+                    name="dateCreated" 
+                    value={formData.dateCreated} 
+                    onChange={handleChange}
+                    disabled
+                />
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
         </form>
