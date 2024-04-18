@@ -90,8 +90,7 @@ function App() {
           }
         />
         <Route
-          exact
-          path='/admin/dashboard'
+          exact path='/admin/dashboard'
           element={
             <>
               <AdminDashboard/>
