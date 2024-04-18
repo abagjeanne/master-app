@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import axios from 'axios';
+
 import GDSLogo from '../assets/3.png';
 
 function TabButton({ label, onClick, isActive }) {
@@ -33,7 +35,7 @@ function BlogCard({ title, content, image, author, dateTimeCreated, category }) 
     );
 }
 
-function Dashboard() {
+const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('blog');
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [blogPosts, setBlogPosts] = useState([]);
@@ -120,53 +122,110 @@ function Dashboard() {
 }
 
 function NewLinkForm({ addBlogPost }) {
-    const [title, setTitle] = useState('');
-    const [image, setImage] = useState('');
-    const [author, setAuthor] = useState('');
-    const [content, setContent] = useState('');
-    const [category, setCategory] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addBlogPost({ title, content, image, author, category });
-        setTitle('');
-        setImage('');
-        setAuthor('');
-        setContent('');
-        setCategory('');
+    const formRef = useRef(null);
+    
+    const [formData, setFormData] = useState({
+        title: '',
+        body: '',
+        author: '',
+        dateCreated: Date.now
+    });
+
+    const [thumbnail, setThumbnail] = useState()
+    const handleImage = (e) => {
+        setThumbnail(e.target.files[0]);
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        try {
+            console.log(formData);
+        
+            // Create a FormData object
+            var formObject = new FormData();
+            formObject.append('file', thumbnail); // Append profile picture
+            formObject.append('blog', JSON.stringify(formData)); // Append form data
+        
+            // Send POST request to the appropriate endpoint
+            const response = await axios.post(`http://localhost:8008/api/blog/create`, formObject, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            });
+            console.log(response.data);
+      
+            setFormData({
+                title: '',
+                body: '',
+                author: '',
+                dateCreated: Date.now
+            });
+            formRef.current.reset();
+            
+            toast.success('Registration successful!');
+          } catch (error) {
+            console.error('Error during registration: ', error.message);
+          }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+        <form ref={formRef} onSubmit={handleSubmit} className="needs-validation" noValidate>
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">Title:</label>
-                <input type="text" className="form-control" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    id="title" 
+                    name="title" 
+                    value={formData.title} 
+                    onChange={handleChange} 
+                    required 
+                />
                 <div className="invalid-feedback">
                     Please provide a title.
                 </div>
             </div>
             <div className="mb-3">
                 <label htmlFor="image" className="form-label">Image URL:</label>
-                <input type="text" className="form-control" id="image" name="image" value={image} onChange={(e) => setImage(e.target.value)} />
+                <input 
+                    type="file" 
+                    className="form-control" 
+                    id="thumbnail" 
+                    name="thumbnail" 
+                    value={formData.thumbnail} 
+                    onChange={handleImage}
+                    required
+                />
             </div>
             <div className="mb-3">
                 <label htmlFor="author" className="form-label">Author:</label>
-                <input type="text" className="form-control" id="author" name="author" value={author} onChange={(e) => setAuthor(e.target.value)} />
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    id="author" 
+                    name="author" 
+                    value={formData.author} 
+                    onChange={handleChange}
+                    required
+                />
             </div>
             <div className="mb-3">
                 <label htmlFor="content" className="form-label">Content:</label>
-                <textarea className="form-control" id="content" name="content" value={content} onChange={(e) => setContent(e.target.value)} required></textarea>
+                <textarea 
+                    className="form-control" 
+                    id="content" name="content" 
+                    value={formData.body} 
+                    onChange={handleChange}
+                    required>
+                </textarea>
                 <div className="invalid-feedback">
                     Please provide content.
                 </div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="category" className="form-label">Category:</label>
-                <select className="form-select" id="category" name="category" value={category} onChange={(e) => setCategory(e.target.value)}>
-                    <option value="">Select a category</option>
-                    <option value="Link">Link</option>
-                    <option value="Information">Information</option>
-                </select>
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
         </form>
