@@ -132,7 +132,7 @@ function App() {
           </>
         }
         />
-        <Route exact path = '/companies-VOLTION'
+        <Route exact path = '/voltion'
         element = {
           <>
             <VOLTION/>
