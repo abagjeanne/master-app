@@ -18,9 +18,17 @@ function TabButton({ label, onClick, isActive }) {
     );
 }
 
-function LinkCard({ id, title, content, image, author, dateTimeCreated, onDelete }) {
-    const handleDelete = () => {
-        onDelete(id);
+function LinkCard({ id, title, content, image, author, dateTimeCreated, }) {
+    
+    const deleteUser = async () => {
+        try {
+          const response = await axios.delete(`http://localhost:8008/api/blog/delete/${id}`);
+          if (response.status === 200) {
+            console.log("User deleted successfully");
+          }
+        } catch (error) {
+          console.error("Error deleting user:", error);
+        }
     };
 
     return (
@@ -31,7 +39,7 @@ function LinkCard({ id, title, content, image, author, dateTimeCreated, onDelete
                 <p className="card-text" style={{ fontStyle:'italic'}}>{author}</p>
                 <p className="card-text">{content}</p>
                 <p className="card-text" style={{ fontWeight:'bold', color:'lightgray'}}>{dateTimeCreated}</p>
-                <button className="btn btn-danger position-absolute bottom-0 end-0 m-3" onClick={handleDelete}>
+                <button className="btn btn-danger position-absolute bottom-0 end-0 m-3" onClick={deleteUser}>
                     <FontAwesomeIcon icon={faTrash} />
                 </button>
             </div>
@@ -62,6 +70,7 @@ function FAQCard({ id, question, answer, dateTimeCreated, onDelete }) {
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('Links');
     const [blogPosts, setBlogPosts] = useState([]);
+    const [faqs, setFaqs] = useState([]);
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -77,8 +86,6 @@ const Dashboard = () => {
                 console.error('Error fetching blog data:', error);
             });
     }, []);
-
-    // console.log(blogPosts.thumbnail.link)
 
     return (
         <div className="container-fluid gray-bg">
@@ -135,7 +142,7 @@ const Dashboard = () => {
                             <div className="container">
                                 <div className="mb-3">
                                     <h2>Add New Link</h2>
-                                    <NewLinkForm addBlogPost={addBlogPost} />
+                                    <NewLinkForm/>
                                 </div>
                             </div>
                         )}
@@ -143,13 +150,7 @@ const Dashboard = () => {
                             <div className="container">
                                 <div className="mb-3">
                                     <h2>Add New FAQ</h2>
-                                    <NewFAQForm 
-                                        newFAQQuestion={newFAQQuestion} 
-                                        newFAQAnswer={newFAQAnswer} 
-                                        setNewFAQQuestion={setNewFAQQuestion} 
-                                        setNewFAQAnswer={setNewFAQAnswer} 
-                                        addFAQ={addFAQ} 
-                                    />
+                                    <NewFAQForm/>
                                 </div>
                             </div>
                         )}
