@@ -50,7 +50,7 @@ const CreateBlog = async (req, res) => {
     const result = await BlogModel.create({
       thumbnail: blogThumbnail,
       title: blog.title,
-      body: blog.body,
+      content: blog.content,
       author: blog.author,
       dateCreated: new Date(),
       dateUpdated: null,
@@ -93,7 +93,7 @@ const EditBlog = async (req, res) => {
       $set: {
         thumbnail: blogThumbnail,
         title: blog.title,
-        body: blog.body,
+        content: blog.content,
         dateCreated: new Date(),
         dateUpdated: null,
       }

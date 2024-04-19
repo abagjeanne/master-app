@@ -57,7 +57,7 @@ const Dashboard = () => {
                                             id={post._id} 
                                             title={post.title} 
                                             author={post.author}  
-                                            content={post.body} 
+                                            content={post.content} 
                                             image={post.thumbnail.link}
                                             dateTimeCreated={post.dateCreated}  
                                         />
