@@ -39,7 +39,7 @@ const Main = () => {
                 <img src={link.thumbnail.link} className="card-img-top" alt="Blog Post" style={{ objectFit: 'cover', height: '200px' }} />
                 <div className="card-body">
                   <h5 className="card-title">{link.title}</h5>
-                  <p className="card-text">{link.body.substring(0, 100)}...</p>
+                  <p className="card-text">{link.content ? link.content.substring(0, 100) : ''}...</p>
                 </div>
                 <div className="card-footer bg-transparent border-0">
                   <small className="text-muted">Author: {link.author}</small>

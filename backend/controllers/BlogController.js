@@ -120,12 +120,12 @@ const DeleteBlog = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    if (blog.profilePic && blog.profilePic.id) {
-      await DriveService.DeleteFiles(blog.profilePic.id);
+    if (blog.thumbnail && blog.thumbnail.id) {
+      await DriveService.DeleteFiles(blog.thumbnail.id);
     }
 
-    if (blog.taskPicture && Array.isArray(blog.taskPicture)) {
-      for (const image of blog.taskPicture) {
+    if (blog.thumbnail && Array.isArray(blog.thumbnail)) {
+      for (const image of blog.thumbnail) {
         if (image.id) { // Ensure there's an id to work with
           await DriveService.DeleteFiles(image.id);
         }
