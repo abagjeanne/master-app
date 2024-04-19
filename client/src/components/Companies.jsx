@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import GDSLogo from '../assets/3.png';
 import StarlightLogo from '../assets/Starlight.png';
 import PDMNLogo from '../assets/PDMN.png';
-import SupernovaLogo from '../assets/SUPERNOVA - 10.12.23.png';
+import SupernovaLogo from '../assets/Supernova.png';
 import TravelLogo from '../assets/GDS Travel.png';
 import VoltionLogo from '../assets/Voltion.png';
 

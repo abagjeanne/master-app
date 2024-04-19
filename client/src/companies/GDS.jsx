@@ -1,37 +1,32 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import GDSLogo from '../assets/GDS Travel.png';
+import GDSLogo from '../assets/3.png';
+import { Link } from 'react-router-dom';
 
-
-const GDS = () => {
-  return (
+const GDS = () =>{
+  return(
     <div>
-      <Header />
-      <div className='container text-center mt-5'>
-        <div className='row'>
-          <div className='col'>
-            <img src={GDSLogo} style={{ width: 400, height: 100 }} alt="GDS Logo" />
+      <Header/>
+      <div className='cons_pflex m-5'>
+        <div className='cons_cflex' style={{padding: 50}}> 
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src={GDSLogo} style={{ width: 350 , height: 110 }} alt="Supernova Logo" />
           </div>
+          <h5 style={{ textAlign: 'center', marginTop:20 }}>GDS CAPITAL INCORPORATED</h5>
         </div>
-        <div className='row'>
-          <div className='col mt-3'>
-            <h4>GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED</h4>
-          </div>
-        </div>
+      <div className='cons_cflex'>
+        <h1 style = {{textAlign: 'center'}}>ON PROGRESS...</h1>
       </div>
-      <div className='container-fluid mb-5' style = {{backgroundColor: '#D9D9D9'}}>
-        <h3 style = {{marginLeft: 50, paddingTop: 20}}>Select an Application:</h3>
-        <div className='parent_container'>
-          <div className='child_containers'></div>
-          <div className='child_containers'></div>
-          <div className='child_containers'></div>
-        </div>
       </div>
-      <Footer />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Link to = '/'>
+        <button style={{paddingInline: 60, marginBottom: 50}}>Return To Home</button>
+        </Link>
+      </div>
+      <Footer/>
     </div>
   );
 };
-
 
 export default GDS;

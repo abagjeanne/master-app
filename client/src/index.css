@@ -60,11 +60,12 @@ button:focus-visible {
 .parent_container {
   display: flex;
   flex-wrap: nowrap;
-  gap: 30px;
+  gap: 60px;
   justify-content: center;
 }
 
 .child_containers {
+    flex: 0 50 auto;
     margin: 50px 0px;
     background-color: black;
     width: 400px;
@@ -74,6 +75,18 @@ button:focus-visible {
     
 }
 
+.cons_pflex{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+}
+.cons_cflex{
+
+
+
+}
 
 @media (prefers-color-scheme: light) {
   :root {
