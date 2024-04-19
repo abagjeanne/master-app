@@ -16,7 +16,7 @@ import PDMN from './companies/PDMN.jsx';
 import STARLIGHT from './companies/STRLGT.jsx'
 import SUPERNOVA from './companies/SUPERNOVA.jsx';
 import VOLTION from './companies/VLTN.jsx';
-
+import LinkPost from './components/LinkPost.jsx';
 import AdminLogin from './admin/AdminLogin.jsx'
 import AdminDashboard from './admin/AdminDashboard.jsx'
 import LinkCard from './admin/AdminComponents/LinkCard.jsx'
@@ -140,6 +140,16 @@ function App() {
             <VOLTION/>
           </>
         }
+        />
+        <Route
+          path="/blog/:id"
+          element={
+            <>
+              <Header />
+              <LinkPost />
+              <Footer />
+            </>
+          }
         />
       </Routes>
     </div>
