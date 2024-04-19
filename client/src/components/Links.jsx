@@ -1,33 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Main = () => {
+  const [blogData, setBlog] = useState([]);
+
+  useEffect(() => {
+    const fetchLink = async () => {
+      try {
+        const response = await axios.get('http://localhost:8008/api/blog/');
+
+        if (response.status === 200) {
+          setBlog(response.data.reverse());
+        } else {
+          console.error("Did not get data", response.status);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchLink();
+  }, []);
+
+  console.log(blogData);
+
   return (
-    <div>
-  
-      <div className="container py-4 py-xl-5">
-        <div className="row mb-5">
-          <div className="col-md-8 col-xl-6 text-center mx-auto">
-            <h2 style={{ fontSize: "27px" }}>LINKS</h2>
-          </div>
+    <div className="container py-4 py-xl-5">
+      <div className="row mb-5">
+        <div className="col-md-8 col-xl-6 text-center mx-auto">
+          <h2 className="display-6" style={{fontWeight:'bold'}}>Links</h2>
         </div>
-        <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-          <div className="col">
-            <div className="p-4"><span className="badge rounded-pill bg-primary mb-2">Links</span><a href="#">
-                <h4>Synology Servers Access Links</h4>
-              </a>
-              <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-              <div className="d-flex"><img className="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Placeholder" />
-                <div>
-                  <p className="fw-bold mb-0">Jan Wilbert See</p>
-                  <p className="text-muted mb-0">04/01/2024</p>
-                </div>
+      </div>
+      <div className="row gy-4">
+        {blogData.slice(0, 3).map(link => (
+          <div key={link._id} className="col-md-4">
+            <div className="card h-100 border-0 shadow">
+              <img src={link.thumbnail.link} className="card-img-top" alt="Blog Post" style={{ objectFit: 'cover', height: '200px' }} />
+              <div className="card-body">
+                <h5 className="card-title">{link.title}</h5>
+                <p className="card-text">{link.body.substring(0, 100)}...</p>
+              </div>
+              <div className="card-footer bg-transparent border-0">
+                <small className="text-muted">Author: {link.author}</small>
+                <br />
+                <small className="text-muted">Date: {new Date(link.dateCreated).toLocaleDateString()}</small>
               </div>
             </div>
           </div>
-          {/* Repeat similar structure for other links */}
-        </div>
+        ))}
       </div>
-
     </div>
   );
 };
