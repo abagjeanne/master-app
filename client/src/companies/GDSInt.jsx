@@ -23,22 +23,26 @@ const GDS = () => {
           </div>
         </div>
       </div>
+
+      {/*Content */}
       <div className='container-fluid ' style = {{paddingBottom:35 ,backgroundColor: '#D9D9D9'}}>
         <h3 style = {{marginLeft: 50, paddingTop: 20}}>Select an Application:</h3>
         <div className='parent_container'>
           <Link to = '/gdsintl-Resize'>
             <div className='child_containers'>
-            <img src = {Enhance} style={{ marginRight:20,marginBottom: 30,height:180}}></img>
+            <img src = {Enhance} style={{ marginRight:20,marginBottom: 30,height:50}}></img>
             <div style={{textAlign: 'center'}}>IMAGE CROPPING <br/>AND RESIZING</div>
             </div>
           </Link>
           <Link to = '/gdsintl-Enhance'>
             <div className='child_containers'>
-              <img src = {Resize} style={{height:150}}></img>
-              <div style={{textAlign: 'center'}}>IMAGE ENHANCING AND BACKGROUND REMOVER</div>
+              <img src = {Resize} style={{height:50}}></img>
+              <div style={{textAlign: 'center', marginLeft: 15}}>IMAGE ENHANCING AND BACKGROUND REMOVER</div>
             </div>
           </Link>
-        <div className='child_containers' style={{ backgroundColor:'gray' }}></div>
+        <div className='child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
+        <div className='child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
+        
         </div>
       </div>
       <Footer />
