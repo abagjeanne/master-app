@@ -18,9 +18,11 @@ import SUPERNOVA from './companies/SUPERNOVA.jsx';
 import VOLTION from './companies/VLTN.jsx';
 import Resize from './application/Resize.jsx';
 import Enhance from './application/Enhance.jsx';
-
+import LinkPost from './components/LinkPost.jsx';
 import AdminLogin from './admin/AdminLogin.jsx'
 import AdminDashboard from './admin/AdminDashboard.jsx'
+import LinkCard from './admin/AdminComponents/LinkCard.jsx'
+import FAQCard from './admin/AdminComponents/FAQCard.jsx'
 
 function App() {
   return (
@@ -52,7 +54,7 @@ function App() {
           element={
             <>
               <Header/>
-              <Links/>
+              <LinkCard/>
               <Footer/>
             </>
           }
@@ -61,7 +63,7 @@ function App() {
           element={
             <>
               <Header/>
-              <Information/>
+              <FAQCard/>
               <Footer/>
             </>
           }
@@ -140,6 +142,16 @@ function App() {
             <VOLTION/>
           </>
         }
+        />
+        <Route
+          path="/blog/:id"
+          element={
+            <>
+              <Header />
+              <LinkPost />
+              <Footer />
+            </>
+          }
         />
         <Route exact path = '/gdsintl-Resize'
         element = {
