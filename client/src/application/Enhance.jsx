@@ -26,26 +26,26 @@ const Enhance = () => {
       {/*Content */}
       <div className='container-fluid ' style = {{paddingBottom:35}}>
         <div className='parent_container'>
-          <div className='neu_box' style={{padding: 50}}>
-            <div className='row'>
-            <div className='col'style={{ textAlign: 'center' }}>
-            <img src={Upload} style={{width:100}}></img>
-            <h6 style= {{textAlign: 'center', marginTop:20}}>Upload Image</h6>
+          <div className='neu_box mb-5' >
+            <div className='row'style={{padding:50, paddingInline:80}}>
+              <div className='col'style={{ textAlign: 'center' }}>
+              <img src={Upload} style={{width:100}}></img>
+              <h6 style= {{textAlign: 'center', marginTop:20}}>Upload Image</h6>
             </div>
               <div className='col' style ={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <button style={{borderRadius: 15, paddingInline:50}}>Select File</button>
+                <button style={{borderRadius: 15, width:200, marginLeft:10, marginTop:10}}>Select File</button>
               </div>
             </div>
             
           </div>
-          <div className='neu_box'>
+          <div className='neu_box mb-5' style={{paddingInline:50}}>
             <div className='row'>
-                <h3 style={{textAlign: 'center',fontWeight: 'bold'}}>Image Option:</h3> 
+                <h3 style={{textAlign: 'center',fontWeight: 'bold', marginBottom:30, marginTop:30}}>Image Option:</h3> 
             </div>
-            <div className='row'>
+            <div className='row mb-4'>
               <div className='col'>
                 <div className='dropdown'>
-                  <button onclick="myFunction()" class="dropbtn">Select Size</button>
+                  <button onclick="myFunction()" class="dropbtn" style={{width:200}}>Select Size -➤</button>
                   <div id="myDropdown" class="dropdown-content">
                     <a href="#">Link 1</a>
                     <a href="#">Link 2</a>
@@ -54,12 +54,12 @@ const Enhance = () => {
                 </div>
               </div>
               <div className='col'>
-                <button>Select</button>
+                <button className='select' style={{padding: 16}}>Select</button>
               </div>
             </div>
             <div className='row'>
               <div className='col'style={{ textAlign: 'center' }}>
-                <button>Download</button>
+                <button class='mb-5'>Download</button>
               </div>
             </div>
 
