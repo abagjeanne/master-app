@@ -11,17 +11,17 @@ const PDMN = () =>{
       <div className='cons_pflex m-5'>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={PDMNLogo} style={{ width: 600, height: 200 }} alt="Supernova Logo" />
+            <img src={PDMNLogo} style={{ width: 350, height: 110 }} alt="Supernova Logo" />
           </div>
-          <h3 style={{ textAlign: 'center', marginTop:20 }}>PHILLIPINE DRAGON MEDIA NETWORK<br/> CORPORATION</h3>
+          <h5 style={{ textAlign: 'center', marginTop:20 }}>PHILLIPINE DRAGON MEDIA NETWORK<br/> CORPORATION</h5>
         </div>
       <div className='cons_cflex'>
-        <h1>ON PROGRESS...</h1>
+        <h1 style = {{textAlign: 'center'}}>ON PROGRESS...</h1>
       </div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Link to = '/'>
-        <button style={{paddingInline: 60, marginBottom: 20}}>Return To Home</button>
+        <button style={{paddingInline: 60, marginBottom: 50}}>Return To Home</button>
         </Link>
       </div>
 
