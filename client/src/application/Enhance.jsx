@@ -37,11 +37,32 @@ const Enhance = () => {
               </div>
             </div>
             
-            
-            
           </div>
           <div className='neu_box'>
-            2
+            <div className='row'>
+                <h3 style={{textAlign: 'center',fontWeight: 'bold'}}>Image Option:</h3> 
+            </div>
+            <div className='row'>
+              <div className='col'>
+                <div className='dropdown'>
+                  <button onclick="myFunction()" class="dropbtn">Select Size</button>
+                  <div id="myDropdown" class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                  </div>
+                </div>
+              </div>
+              <div className='col'>
+                <button>Select</button>
+              </div>
+            </div>
+            <div className='row'>
+              <div className='col'style={{ textAlign: 'center' }}>
+                <button>Download</button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
