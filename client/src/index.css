@@ -78,11 +78,14 @@ button:focus-visible {
 .cons_pflex{
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 100px;
   justify-content: center;
+  align-items: center;
 }
 .cons_cflex{
-  background-color: #1a1a1a;
+
+
+
 }
 
 @media (prefers-color-scheme: light) {
