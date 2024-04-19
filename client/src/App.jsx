@@ -16,6 +16,8 @@ import PDMN from './companies/PDMN.jsx';
 import STARLIGHT from './companies/STRLGT.jsx'
 import SUPERNOVA from './companies/SUPERNOVA.jsx';
 import VOLTION from './companies/VLTN.jsx';
+import Resize from './application/Resize.jsx';
+import Enhance from './application/Enhance.jsx';
 import LinkPost from './components/LinkPost.jsx';
 import AdminLogin from './admin/AdminLogin.jsx'
 import AdminDashboard from './admin/AdminDashboard.jsx'
@@ -150,6 +152,20 @@ function App() {
               <Footer />
             </>
           }
+        />
+        <Route exact path = '/gdsintl-Resize'
+        element = {
+          <>
+            <Resize/>
+          </>
+        }
+        />
+        <Route exact path = '/gdsintl-Enhance'
+        element = {
+          <>
+            <Enhance/>
+          </>
+        }
         />
       </Routes>
     </div>

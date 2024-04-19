@@ -57,37 +57,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.parent_container {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 60px;
-  justify-content: center;
-}
-
-.child_containers {
-    flex: 0 50 auto;
-    margin: 50px 0px;
-    background-color: black;
-    width: 400px;
-    height: 250px;
-    border-radius: 30px;
-    color: blue;
-    
-}
-
-.cons_pflex{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 100px;
-  justify-content: center;
-  align-items: center;
-}
-.cons_cflex{
-
-
-
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -99,4 +68,55 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.parent_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  justify-content: center;
+}
+
+.child_containers {
+    padding: 15px; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    color: white;
+    flex: 0 50 auto;
+    margin: 50px 0px;
+    background-color: black;
+    width: 250px;
+    height: 150px;
+    border-radius: 30px;
+    
+}
+
+.child_containers:hover{
+  filter: drop-shadow(0px 10px 10px gray);  
+}
+
+.cons_pflex{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 500px) {
+  .parent_container{
+    flex-wrap: wrap;
+    gap: 0px;
+  }
+  .child_containers{
+    margin: 10px 20px;
+  }
+}
+
+.neu_box{
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow:  20px 20px 34px #bebebe,
+               -20px -20px 34px #ffffff;
 }
