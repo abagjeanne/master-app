@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import GDSLogo from '../assets/GDS Travel.png';
 import Upload from '../assets/upload.png';
 
 const Enhancer = () => {
+  const [removeBackground, setRemoveBackground] = useState(false);
+  const [enhancePhoto, setEnhancePhoto] = useState(false);
+
   const handleFileSelect = (event) => {
     // You can access the selected file using event.target.files[0]
     const selectedFile = event.target.files[0];
@@ -42,20 +45,34 @@ const Enhancer = () => {
             </div>           
           </div>
           
-            <div className='neu_box'style={{padding:50, paddingInline:80}}>
-                <div className='row'>
-                  <h3 style={{textAlign: 'center',fontWeight: 'bold', marginBottom:30, marginTop:30}}>Image Option:</h3> 
+          <div className='neu_box' style={{ paddingInline: 100 }}>
+            <div className='row'>
+              <h3 style={{ textAlign: 'center', fontWeight: 'bold', marginBottom: 30, marginTop: 30, paddingInline: 20 }}>Image Option:</h3>
+            </div>
+            <div className='row' style={{ marginBottom: 40 }}>
+              <div className='col'>
+                <div className='row mt-3 align-items-center'>
+                  <div className='col-auto'>
+                    <input style={{ width: 30, height: 40 }} type="checkbox" checked={removeBackground} onChange={() => setRemoveBackground(!removeBackground)} />
+                  </div>
+                  <div className='col'>
+                    <h4>Remove Background</h4>
+                  </div>
                 </div>
-                <div className='row'>
-                  <h5 style={{ marginBottom:30, marginTop:30}}>Remove Background</h5> 
-                  <h5 style={{ marginBottom:30, marginTop:30}}>Enhance Photo</h5> 
+                <div className='row mt-5 align-items-center'>
+                  <div className='col-auto'>
+                    <input style={{ width: 30, height: 40 }} type="checkbox" checked={enhancePhoto} onChange={() => setEnhancePhoto(!enhancePhoto)} />
+                  </div>
+                  <div className='col'>
+                    <h4>Enhance Photo</h4>
+                  </div>
                 </div>
-                <div className='row'>
-                  <div className='col'style={{ paddingInline:100, textAlign: 'center' }}>
-                  <button style={{ borderRadius: 15,paddingInline:100}}>Download</button>
               </div>
             </div>
+            <div className='row'>
+              <button style={{ paddingInline: 50, marginBottom: 45 }}>Download</button>
             </div>
+          </div>
           </div>
         </div>
       <Footer/>
