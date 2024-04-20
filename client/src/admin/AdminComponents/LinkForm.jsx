@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 
 const NewLinkForm = () => {
     const formRef = useRef(null);
@@ -18,6 +20,10 @@ const NewLinkForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+    };
+
+    const handleContentChange = (content) => {
+        setFormData({ ...formData, content });
     };
 
     const handleSubmit = async (e) => {
@@ -90,14 +96,22 @@ const NewLinkForm = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="content" className="form-label">Content:</label>
-                <textarea
-                    className="form-control"
-                    id="content"
-                    name="content"
+                <ReactQuill
+                    theme="snow"
                     value={formData.content}
-                    onChange={handleChange}
-                    required
-                ></textarea>
+                    onChange={handleContentChange}
+                    modules={{
+                        toolbar: [
+                            [{ 'header': '1'}, {'header': '2'}],
+                            [{size: []}],
+                            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                            [{'list': 'ordered'}, {'list': 'bullet'}, 
+                             {'indent': '-1'}, {'indent': '+1'}],
+                            ['link', 'image', 'video'],
+                            ['clean']
+                        ],
+                    }}
+                />
                 <div className="invalid-feedback">Please provide content.</div>
             </div>
             <div className="mb-3">
@@ -115,5 +129,5 @@ const NewLinkForm = () => {
         </form>
     );
 };
-export default NewLinkForm;
 
+export default NewLinkForm;
