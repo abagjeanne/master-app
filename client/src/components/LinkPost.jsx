@@ -39,7 +39,7 @@ const BlogPost = () => {
                 <p className="mb-3"><strong>Author:</strong> {blogPost.author}</p>
                 <p className="mb-3"><strong>Date:</strong> {new Date(blogPost.dateCreated).toLocaleDateString()}</p>
               </div>
-              <p className="card-text m-5 text-center">{blogPost.content}</p>
+              <div className="card-text m-5" dangerouslySetInnerHTML={{ __html: blogPost.content }} />
             </div>
           </div>
         </div>
