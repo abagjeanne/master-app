@@ -28,13 +28,13 @@ const GDS = () => {
       <div className='container-fluid ' style = {{paddingBottom:35 ,backgroundColor: '#D9D9D9'}}>
         <h3 style = {{marginLeft: 50, paddingTop: 20}}>Select an Application:</h3>
         <div className='parent_container'>
-          <Link to = '/gdsintl-Resize'>
+          <Link to = '/gdsintl-Resizer'>
             <div className='child_containers'>
             <img src = {Enhance} style={{ marginRight:20,marginBottom: 30,height:50}}></img>
             <div style={{textAlign: 'center'}}>IMAGE CROPPING <br/>AND RESIZING</div>
             </div>
           </Link>
-          <Link to = '/gdsintl-Enhance'>
+          <Link to = '/gdsintl-Enhancer'>
             <div className='child_containers'>
               <img src = {Resize} style={{height:50}}></img>
               <div style={{textAlign: 'center', marginLeft: 15}}>IMAGE ENHANCING AND BACKGROUND REMOVER</div>

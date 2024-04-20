@@ -20,13 +20,12 @@ import Resize from "./application/Resize.jsx";
 import Enhance from "./application/Enhance.jsx";
 import LinkPost from "./components/LinkPost.jsx";
 
-
 import AdminLogin from "./admin/AdminLogin.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 import LinkCard from "./admin/AdminComponents/LinkCard.jsx";
 import FAQCard from "./admin/AdminComponents/FAQCard.jsx";
 import ViewLink from "./admin/AdminComponents/ViewLink.jsx";
-import EditLink from "./admin/AdminComponents/EditLinkForm.jsx"
+import EditLink from "./admin/AdminComponents/EditLinkForm.jsx";
 
 function App() {
   return (
@@ -128,7 +127,7 @@ function App() {
               <ViewLink />
             </>
           }
-        />   
+        />
         <Route
           exact
           path="/admin/editlink/:id"
@@ -204,7 +203,7 @@ function App() {
         />
         <Route
           exact
-          path="/gdsintl-Resize"
+          path="/gdsintl-Resizer"
           element={
             <>
               <Resize />
@@ -213,7 +212,7 @@ function App() {
         />
         <Route
           exact
-          path="/gdsintl-Enhance"
+          path="/gdsintl-Enhancer"
           element={
             <>
               <Enhance />
@@ -222,7 +221,6 @@ function App() {
         />
       </Routes>
     </div>
-    
   );
 }
 
