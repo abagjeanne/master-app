@@ -14,7 +14,7 @@ const {
 router.get("/", GetAllBlog);
 router.get("/:id", GetSpecificBlog);
 router.post("/create", upload.single("file"), CreateBlog);
-router.patch("/edit/:id", EditBlog);
+router.patch("/edit/:id", upload.single("file"), EditBlog);
 router.delete("/delete/:id", DeleteBlog);
 
 module.exports = router;

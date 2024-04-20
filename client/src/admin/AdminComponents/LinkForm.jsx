@@ -33,6 +33,7 @@ const NewLinkForm = () => {
             const formObject = new FormData();
             formObject.append('file', thumbnail);
             formObject.append('blog', JSON.stringify(formData));
+            formObject.append('dateUpdated', null)
 
             const response = await axios.post('http://localhost:8008/api/blog/create', formObject, {
                 headers: {
@@ -45,7 +46,7 @@ const NewLinkForm = () => {
                 title: '',
                 content: '',
                 author: '',
-                dateCreated: new Date().toLocaleDateString()
+                dateCreated: new Date().toLocaleDateString(),
             });
             formRef.current.reset();
         } catch (error) {
@@ -71,7 +72,7 @@ const NewLinkForm = () => {
                 <div className="invalid-feedback">Please provide a title.</div>
             </div>
             <div className="mb-3">
-                <label htmlFor="thumbnail" className="form-label">Image URL:</label>
+                <label htmlFor="thumbnail" className="form-label">Thumbnail</label>
                 <input
                     type="file"
                     className="form-control"

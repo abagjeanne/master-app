@@ -26,7 +26,7 @@ const ViewLink = () => {
   }, [id]);
 
   const handleEdit = () => {
-    // Implement edit functionality
+    navigate(`/admin/editlink/${id}`);
   };
 
   const deleteUser = async () => {
@@ -67,10 +67,11 @@ const ViewLink = () => {
           <div className="card shadow-lg">
             <div className="card-body">
               <h1 className="card-title text-uppercase mb-4 font-weight-bolder text-center">{viewLink.title}</h1>
-              <img src={viewLink.thumbnail.link} className="card-img-top mb-4 rounded" alt={viewLink.title} style={{ objectFit: 'cover', height: '500px' }} />
+              <img src={viewLink?.thumbnail?.link} className="card-img-top mb-4 rounded" alt={viewLink.title} style={{ objectFit: 'cover', height: '500px' }} />
               <div className="card-text">
                 <p className="mb-3"><strong>Author:</strong> {viewLink.author}</p>
-                <p className="mb-3"><strong>Date:</strong> {new Date(viewLink.dateCreated).toLocaleDateString()}</p>
+                <p className="mb-3"><strong>Date Published:</strong> {new Date(viewLink.dateCreated).toLocaleString()}</p>
+                <p className="mb-3"><strong>Date Updated:</strong> {viewLink?.dateUpdated ? new Date(viewLink.dateUpdated).toLocaleString() : ''}</p>
               </div>
               <div className="card-text text-center m-5" dangerouslySetInnerHTML={{ __html: viewLink.content }} />
             </div>

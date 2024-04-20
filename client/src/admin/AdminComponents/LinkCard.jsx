@@ -17,7 +17,7 @@ const LinkCard = ({ id, title, content, image, author, dateTimeCreated }) => {
     };
 
     return (
-        <Link to={`/viewlink/${id}`} className="link-card">
+        <Link to={`/admin/viewlink/${id}`} className="link-card">
         <div className="card mb-3 position-relative border-0 shadow">
             <img src={image} className="card-img-top img-thumbnail" alt="Blog Post" style={{ objectFit: 'cover', width: '100%', height: '200px' }} />
             <div className="card-body">

@@ -77,29 +77,33 @@ const EditBlog = async (req, res) => {
     if (file) {
       const { id: fileID, name: fileName } = await DriveService.UploadFiles(
         file,
-        process.env.FOLDER_ID_THUMBNAIL      );
+        process.env.FOLDER_ID_THUMBNAIL      
+      );
       Object.assign(blogThumbnail, {
         id: fileID,
         name: fileName,
         link: `https://drive.google.com/thumbnail?id=${fileID}&sz=w1000`,
       });
 
-      if(blog.profilePic && blog.profilePic.id) {
-        await DriveService.DeleteFiles(blog.profilePic.id);
+      if(blog.thumbnail && blog.thumbnail.id) {
+        await DriveService.DeleteFiles(blog.thumbnail.id);
       }
     }
 
-    let update = {
-      $set: {
-        thumbnail: blogThumbnail,
-        title: blog.title,
-        content: blog.content,
-        dateCreated: new Date(),
-        dateUpdated: null,
-      }
-    };
-
-    const result = await BlogModel.findByIdAndUpdate(id, update, { new: true });
+    const result = await BlogModel.findByIdAndUpdate(
+      blog._id,
+      {
+        $set: {
+          thumbnail: blogThumbnail.hasOwnProperty("id")
+            ? blogThumbnail
+            : blog.thumbnail,
+          title: blog.title,
+          content: blog.content,
+          dateUpdated: new Date(),
+        }
+      },
+      { new: true }
+    );
     res.status(201).json(result);
   } catch (err) {
     res.status(404).json({ message: err.message });
