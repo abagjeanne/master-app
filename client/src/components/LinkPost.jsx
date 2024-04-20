@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -23,22 +23,23 @@ const BlogPost = () => {
   }, [id]);
 
   if (!blogPost) {
-    return <div className="container">Loading...</div>;
+    return <div className="container text-center mt-5">Loading...</div>;
   }
 
   return (
     <div className="container my-5">
+      <Link to="/links" className="btn btn-outline-primary mb-3">Back to Links</Link>
       <div className="row justify-content-center">
-        <div className="col-md-8">
-          <div className="card">
-            <img src={blogPost.thumbnail.link} className="card-img-top" alt={blogPost.title} />
+        <div className="col-md-15"> 
+          <div className="card shadow-lg">
             <div className="card-body">
-              <h2 className="card-title">{blogPost.title}</h2>
-              <p className="card-text">{blogPost.body}</p>
+              <h1 className="card-title text-uppercase mb-4 font-weight-bolder text-center">{blogPost.title}</h1>
+              <img src={blogPost.thumbnail.link} className="card-img-top mb-4 rounded" alt={blogPost.title} style={{ objectFit: 'cover', height: '500px' }} />
               <div className="card-text">
-                <p className="mb-1"><strong>Author:</strong> {blogPost.author}</p>
-                <p className="mb-0"><strong>Date:</strong> {new Date(blogPost.dateCreated).toLocaleDateString()}</p>
+                <p className="mb-3"><strong>Author:</strong> {blogPost.author}</p>
+                <p className="mb-3"><strong>Date:</strong> {new Date(blogPost.dateCreated).toLocaleDateString()}</p>
               </div>
+              <p className="card-text m-5 text-center">{blogPost.content}</p>
             </div>
           </div>
         </div>

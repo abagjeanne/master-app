@@ -21,7 +21,7 @@ const LinkCard = ({ id, title, content, image, author, dateTimeCreated }) => {
             <div className="card-body">
                 <h4 className="card-title" style={{ fontWeight: 'bold' }}>{title}</h4>
                 <p className="card-text" style={{ fontStyle: 'italic' }}>{author}</p>
-                <p className="card-text">{content}</p>
+                <p className="card-text">{content ? content.substring(0, 80) : ''}...</p>
                 <p className="card-text" style={{ fontWeight: 'bold', color: 'lightgray' }}>{dateTimeCreated}</p>
                 <button className="btn btn-danger position-absolute bottom-0 end-0 m-3" onClick={deleteUser}>
                     <FontAwesomeIcon icon={faTrash} />
