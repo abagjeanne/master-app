@@ -23,6 +23,7 @@ import AdminLogin from './admin/AdminLogin.jsx'
 import AdminDashboard from './admin/AdminDashboard.jsx'
 import LinkCard from './admin/AdminComponents/LinkCard.jsx'
 import FAQCard from './admin/AdminComponents/FAQCard.jsx'
+import ViewLink from './admin/AdminComponents/ViewLink.jsx'
 
 function App() {
   return (
@@ -54,7 +55,7 @@ function App() {
           element={
             <>
               <Header/>
-              <LinkCard/>
+              <Links/>
               <Footer/>
             </>
           }
@@ -167,6 +168,13 @@ function App() {
           </>
         }
         />
+        <Route exact path = '/viewlink/:id'
+        element = {
+          <>
+            <ViewLink/>
+          </>
+        }
+        />        
       </Routes>
     </div>
   )
