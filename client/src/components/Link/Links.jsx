@@ -25,8 +25,8 @@ const Main = () => {
   console.log(blogData);
 
   return (
-    <div className="container py-4 py-xl-5">
-      <div className="row mb-5">
+    <div className="container py-4 py-xl-5 ">
+      <div className="row mb-5 ">
         <div className="col-md-8 col-xl-6 text-center mx-auto">
           <h2 className="display-6" style={{ fontWeight: 'bold' }}>Links</h2>
         </div>
@@ -42,7 +42,7 @@ const Main = () => {
           {blogData.map(link => (
             <div key={link._id} className="col-md-4">
               <Link to={`/blog/${link._id}`} style={{ textDecoration: 'none', color: 'inherit' }}> {/* Use Link component with the path to your blog post */}
-                <div className="card h-100 border-0 shadow">
+                <div className="card h-100 border-0 shadow hover-effect">
                   <img src={link.thumbnail.link} className="card-img-top" alt="Blog Post" style={{ objectFit: 'cover', height: '200px' }} />
                   <div className="card-body">
                     <h5 className="card-title">{link.title}</h5>

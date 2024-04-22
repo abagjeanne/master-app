@@ -3,7 +3,7 @@ import React from 'react';
 const CompanyCard = ({ companyName, imgSrc }) => {
   return (
     <div className="col">
-      <div className="p-4">
+      <div className="p-4 company-card">
         <span className="badge rounded-pill bg-primary mb-2">Companies</span>
         <div className="row" style={{ textAlign: "center" }}>
           <div className="col" style={{ marginTop: "5px", marginBottom: "5px" }}>

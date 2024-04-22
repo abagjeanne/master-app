@@ -6,7 +6,7 @@ import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import Main from "./components/Main.jsx";
 import Company from "./components/Companies.jsx";
-import Links from "./components/Links.jsx";
+import Links from "./components/Link/Links.jsx";
 import Information from "./components/Information.jsx";
 import About from "./components/AboutUs.jsx";
 import Contact from "./components/ContactUs.jsx";
@@ -18,15 +18,15 @@ import SUPERNOVA from "./companies/SUPERNOVA.jsx";
 import VOLTION from "./companies/VLTN.jsx";
 import Resize from "./application/Resizer.jsx";
 import Enhance from "./application/Enhancer.jsx";
-import LinkPost from "./components/LinkPost.jsx";
+import LinkPost from "./components/Link/LinkPost.jsx";
 
 import AdminLogin from "./admin/AdminLogin.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
-import LinkCard from "./admin/AdminComponents/LinkCard.jsx";
-import FAQCard from "./admin/AdminComponents/FAQCard.jsx";
-import ViewLink from "./admin/AdminComponents/ViewLink.jsx";
-import EditLink from "./admin/AdminComponents/EditLinkForm.jsx";
-import LinkPrev from "./components/LinkPreview.jsx";
+import LinkCard from "./admin/AdminComponents/Link/LinkCard.jsx";
+import FAQCard from "./admin/AdminComponents/FAQ/FAQCard.jsx";
+import ViewLink from "./admin/AdminComponents/Link/ViewLink.jsx";
+import EditLink from "./admin/AdminComponents/Link/EditLinkForm.jsx";
+import LinkPrev from "./components/Link/LinkPreview.jsx";
 
 function App() {
   return (

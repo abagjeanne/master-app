@@ -73,7 +73,7 @@ const ViewLink = () => {
                 <p className="mb-3"><strong>Date Published:</strong> {new Date(viewLink.dateCreated).toLocaleString()}</p>
                 <p className="mb-3"><strong>Date Updated:</strong> {viewLink?.dateUpdated ? new Date(viewLink.dateUpdated).toLocaleString() : ''}</p>
               </div>
-              <div className="card-text text-center m-5" dangerouslySetInnerHTML={{ __html: viewLink.content }} />
+              <div className="card-text m-5" dangerouslySetInnerHTML={{ __html: viewLink.content }} />
             </div>
           </div>
         </div>

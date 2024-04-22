@@ -6,7 +6,7 @@ import React from 'react';
 
 const ContactCard = ({ Name, Position, Number, profile, altText, telegramQR, wechatQR, messengerQR, viberQR}) => {
   return (
-    <div className="col">
+    <div className="col hover-effect">
       <div className="text-center">
         <img className="rounded-circle" src={profile} width="120px" height="120px" alt={altText} />
       </div>

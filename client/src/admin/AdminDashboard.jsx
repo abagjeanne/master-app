@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import GDSLogo from '../assets/3.png';
 import TabButton from "./AdminComponents/TabButton"
-import LinkCard from "./AdminComponents/LinkCard"
-import FAQCard from "./AdminComponents/FAQCard"
-import NewLinkForm from "./AdminComponents/LinkForm"
-import NewFAQForm from "./AdminComponents/FAQForm"
+import LinkCard from "./AdminComponents/Link/LinkCard"
+import FAQCard from "./AdminComponents/FAQ/FAQCard"
+import NewLinkForm from "./AdminComponents/Link/LinkForm"
+import NewFAQForm from "./AdminComponents/FAQ/FAQForm"
 
 
 const Dashboard = () => {

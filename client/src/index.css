@@ -171,3 +171,17 @@ button:focus-visible {
   
  }
 }
+
+.hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smoother animation */
+}
+
+.hover-effect:hover {
+  transform: translateY(-8px); /* Lift the card more on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.705); /* Adjust box-shadow for a more pronounced effect */
+}
+
+.company-card:hover {
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
