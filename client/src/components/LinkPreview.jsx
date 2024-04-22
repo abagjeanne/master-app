@@ -39,7 +39,7 @@ const Main = () => {
         </div>
       ) : (
         <div className="row gy-4">
-          {blogData.map(link => (
+          {blogData.slice(0, 3).map(link => (
             <div key={link._id} className="col-md-4">
               <Link to={`/blog/${link._id}`} style={{ textDecoration: 'none', color: 'inherit' }}> {/* Use Link component with the path to your blog post */}
                 <div className="card h-100 border-0 shadow">

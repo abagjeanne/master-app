@@ -26,6 +26,7 @@ import LinkCard from "./admin/AdminComponents/LinkCard.jsx";
 import FAQCard from "./admin/AdminComponents/FAQCard.jsx";
 import ViewLink from "./admin/AdminComponents/ViewLink.jsx";
 import EditLink from "./admin/AdminComponents/EditLinkForm.jsx";
+import LinkPrev from "./components/LinkPreview.jsx";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
               <Header />
               <Main />
               <Company />
-              <Links />
+              <LinkPrev />
               <Information />
               <Footer />
             </>
