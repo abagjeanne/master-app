@@ -185,3 +185,65 @@ button:focus-visible {
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   transform: translateY(-5px);
 }
+
+
+.nav-link.btn {
+  color: #6C7293; 
+  margin-right: 0.5rem;
+  
+}
+
+.nav-link.btn.active {
+  color: #ffff; /* Background color when active */
+  background-color: #0F1015;
+}
+
+.nav-link.btn:hover {
+  background-color: #0F1015; /* Background color on hover */
+  color: #ffffff; /* Text color on hover */
+}
+
+.icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem; /* Adjust size as needed */
+  height: 2rem; /* Adjust size as needed */
+  border-radius: 50%;
+  background-color: #2A2D3A; /* Your custom background color */
+}
+
+.confirmation-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #0F1015;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.confirmation-modal h2 {
+  margin-bottom: 10px;
+}
+
+.confirmation-modal button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f44336;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.confirmation-modal button:hover {
+  background-color: #d32f2f;
+}

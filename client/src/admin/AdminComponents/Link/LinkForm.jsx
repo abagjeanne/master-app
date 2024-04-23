@@ -59,7 +59,7 @@ const NewLinkForm = () => {
     return (
         <form ref={formRef} onSubmit={handleSubmit} className="needs-validation" noValidate>
             <div className="mb-3">
-                <label htmlFor="title" className="form-label">Title:</label>
+                <label htmlFor="title" className="form-label text-white">Title:</label>
                 <input
                     type="text"
                     className="form-control"
@@ -72,7 +72,7 @@ const NewLinkForm = () => {
                 <div className="invalid-feedback">Please provide a title.</div>
             </div>
             <div className="mb-3">
-                <label htmlFor="thumbnail" className="form-label">Thumbnail</label>
+                <label htmlFor="thumbnail" className="form-label text-white">Thumbnail</label>
                 <input
                     type="file"
                     className="form-control"
@@ -84,7 +84,7 @@ const NewLinkForm = () => {
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="author" className="form-label">Author:</label>
+                <label htmlFor="author" className="form-label text-white">Author:</label>
                 <input
                     type="text"
                     className="form-control"
@@ -96,7 +96,7 @@ const NewLinkForm = () => {
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="content" className="form-label">Content:</label>
+                <label htmlFor="content" className="form-label text-white">Content:</label>
                 <ReactQuill
                     theme="snow"
                     value={formData.content}
@@ -107,7 +107,7 @@ const NewLinkForm = () => {
                             [{size: []}],
                             ['bold', 'italic', 'underline', 'strike', 'blockquote'],
                             [{'list': 'ordered'}, {'list': 'bullet'}, 
-                             {'indent': '-1'}, {'indent': '+1'}],
+                            {'indent': '-1'}, {'indent': '+1'}],
                             ['link', 'image', 'video'],
                             ['clean']
                         ],
@@ -116,7 +116,7 @@ const NewLinkForm = () => {
                 <div className="invalid-feedback">Please provide content.</div>
             </div>
             <div className="mb-3">
-                <label htmlFor="dateCreated" className="form-label">Date Published:</label>
+                <label htmlFor="dateCreated" className="form-label text-white">Date Published:</label>
                 <input
                     type="text"
                     className="form-control"
@@ -126,6 +126,7 @@ const NewLinkForm = () => {
                     disabled
                 />
             </div>
+
             <button type="submit" className="btn btn-primary">Submit</button>
         </form>
     );
