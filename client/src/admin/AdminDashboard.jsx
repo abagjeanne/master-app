@@ -8,13 +8,11 @@ import LinkCard from "./AdminComponents/Link/LinkCard"
 import FAQCard from "./AdminComponents/FAQ/FAQCard"
 import NewLinkForm from "./AdminComponents/Link/LinkForm"
 import NewFAQForm from "./AdminComponents/FAQ/FAQForm"
-import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('Links');
     const [blogPosts, setBlogPosts] = useState([]);
     const [faqPosts, setFaqPosts] = useState([]);
-    const [faqs, setFaqs] = useState([]);
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -34,14 +32,6 @@ const Dashboard = () => {
         axios.get('http://localhost:8008/api/info')
             .then(response => {
                 setFaqPosts(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching blog data:', error);
-            });
-
-        axios.get('http://localhost:8008/api/faqs')
-            .then(response => {
-                setFaqs(response.data);
             })
             .catch(error => {
                 console.error('Error fetching FAQs:', error);
@@ -82,54 +72,38 @@ const Dashboard = () => {
                 </div>
             </nav>
 
-                {/* Main Content */}
-                <main role="main" className="col-md-10 ml-sm-auto col-lg-10 px-4">
-                    <header className="text-center mb-4">
-                        <h1 className="dashboard-title" style={{ color: 'blue', paddingTop: '20px' }}>Dashboard</h1>
-                    </header>
-                    
-                    <section className="p-4 border rounded shadow-sm mt-4" style={{ backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
-                        {activeTab === 'Links' && (
-                            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                                {blogPosts.map((post, index) => (
-                                    <div key={index} className="col">
-                                        <LinkCard 
-                                            id={post._id} 
-                                            title={post.title} 
-                                            author={post.author}  
-                                            content={post.content} 
-                                            image={post.thumbnail.link}
-                                            dateTimeCreated={post.dateCreated}  
+            <main role="main" className="col-md-10 ml-sm-auto col-lg-10 px-4" style={{ overflowY: 'auto', maxHeight: '100vh' }}>
+                <header className="text-center mb-4">
+                    <h1 className="dashboard-title" style={{ color: 'white', paddingTop: '20px' }}>{renderHeader()}</h1>
+                </header>
+                <section className="p-4 rounded shadow-sm mt-4 text-white" style={{ border: '1px solid #313452', backgroundColor: '#131633' }}>
+                    {activeTab === 'Links' && (
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                            {blogPosts.map((post, index) => (
+                                <div key={post._id} className="col">
+                                    <LinkCard
+                                        id={post._id}
+                                        title={post.title}
+                                        author={post.author}
+                                        content={post.content}
+                                        image={post.thumbnail.link}
+                                        dateTimeCreated={post.dateCreated}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                    {activeTab === 'FAQs' && (
+                        <div className="container">
+                            {faqPosts.map((faq, index) => (
+                                <div key={index} className="row mb-4">
+                                    <div className="col-12">
+                                        <FAQCard
+                                            id={faq._id} 
+                                            question={faq.question} 
+                                            answer={faq.answer} 
                                         />
                                     </div>
-                                ))}
-                            </div>
-                        )}
-                        {activeTab === 'FAQs' && (
-                            <div className="container">
-                                {faqPosts.map((faq, index) => (
-                                    <div key={index} className="row mb-4">
-                                        <div className="col-12">
-                                            <FAQCard
-                                                id={faq._id} 
-                                                question={faq.question} 
-                                                answer={faq.answer} 
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    {activeTab === 'FAQs' && (
-                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                            {faqs.map((faq, index) => (
-                                <div key={faq.id} className="col">
-                                    <FAQCard
-                                        id={faq.id}
-                                        question={faq.question}
-                                        answer={faq.answer}
-                                        dateTimeCreated={faq.dateTimeCreated}
-                                    />
                                 </div>
                             ))}
                         </div>
