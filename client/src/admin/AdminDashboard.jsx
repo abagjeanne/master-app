@@ -8,6 +8,7 @@ import LinkCard from "./AdminComponents/Link/LinkCard"
 import FAQCard from "./AdminComponents/FAQ/FAQCard"
 import NewLinkForm from "./AdminComponents/Link/LinkForm"
 import NewFAQForm from "./AdminComponents/FAQ/FAQForm"
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('Links');
@@ -56,9 +57,11 @@ const Dashboard = () => {
     return (
         <div className='row bg p-0 m-0' style={{ height: '100vh', backgroundColor: '#222840'}}>
             <nav className="col-md-2 shadow-lg d-flex flex-column px-3" style={{ paddingTop: '20px', backgroundColor: '#131633', borderRight: '1px solid #313452', position: 'sticky', margin: '0' }}>
-                <div className="navbar-brand d-flex justify-content-center mb-auto">
-                    <img src={GDSLogo} alt="GDS Logo" width="200px" className="align-top" />
-                </div>
+                <Link to="/"> {/* Link to the root route */}
+                    <div className="navbar-brand d-flex justify-content-center mb-auto">
+                        <img src={GDSLogo} alt="GDS Logo" width="200px" className="align-top" />
+                    </div>
+                </Link>
                 <div className="nav flex-column flex-grow-1 pt-5">
                     <TabButton label="Links" icon={faLink} onClick={() => handleTabChange('Links')} isActive={activeTab === 'Links'} />
                     <TabButton label="FAQs" icon={faQuestionCircle} onClick={() => handleTabChange('FAQs')} isActive={activeTab === 'FAQs'} />
