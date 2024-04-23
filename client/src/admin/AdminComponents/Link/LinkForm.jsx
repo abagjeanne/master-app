@@ -35,15 +35,15 @@ const NewLinkForm = () => {
         const errors = {};
         if (formData.title.length === 0) {
             toast.error('Please input your title');
-            errors.serviceName = "Please input your title";
+            errors.title = "Please input your title";
           }
         if (formData.content.length === 0) {
             toast.error('Please input your content');
-            errors.serviceType = "Please input your content";
+            errors.content = "Please input your content";
         }
         if (formData.author.length === 0) {
             toast.error('Please input your name');
-            errors.serviceType = "Please input your name";
+            errors.author = "Please input your name";
         }
 
         setInvalidFields(errors);

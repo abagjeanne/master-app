@@ -79,11 +79,11 @@ const UpdateLinkForm = () => {
     }
     if (formData.title.length === 0) {
       toast.error('Please input your title');
-      errors.serviceName = "Please input your title";
+      errors.title = "Please input your title";
     }
     if (formData.content.length === 0) {
       toast.error('Please input your content');
-      errors.serviceType = "Please input your content";
+      errors.content = "Please input your content";
     }
 
     setInvalidFields(errors);

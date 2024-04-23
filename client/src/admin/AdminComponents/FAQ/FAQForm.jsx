@@ -23,11 +23,11 @@ const NewFAQForm = () => {
         const errors = {};
         if (formData.question.length === 0) {
             toast.error('Please input your question');
-            errors.serviceName = "Please input your question";
+            errors.question = "Please input your question";
           }
         if (formData.answer.length === 0) {
             toast.error('Please input your answer');
-            errors.serviceType = "Please input your answer";
+            errors.answer = "Please input your answer";
         }
 
         setInvalidFields(errors);
