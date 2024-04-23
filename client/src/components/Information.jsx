@@ -1,34 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
-const Main = () => {
+const FAQCard = () => {
+  const [infoData, setInfo] = useState([]);
+
+  useEffect(() => {
+    const fetchFAQs = async () => {
+      try {
+        const response = await axios.get('http://localhost:8008/api/info/');
+        if (response.status === 200) {
+          // Initialize the showAnswer property for each FAQ object
+          const faqs = response.data.reverse().map(faq => ({ ...faq, showAnswer: false }));
+          setInfo(faqs);
+        } else {
+          console.error("Did not get data", response.status);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchFAQs();
+  }, []);
+
+  const toggleAnswer = (index) => {
+    setInfo(prevState => {
+      return prevState.map((faq, i) => {
+        if (i === index) {
+          return { ...faq, showAnswer: !faq.showAnswer };
+        } else {
+          return { ...faq, showAnswer: false }; // Close other answers
+        }
+      });
+    });
+  };
+
   return (
     <div>
-
       <div className="container py-4 py-xl-5">
         <div className="row mb-5">
           <div className="col-md-8 col-xl-6 text-center mx-auto">
-          <h2 className="display-6" style={{fontWeight:'bold'}}>Information</h2>
+            <h2 className="display-6" style={{fontWeight:'bold'}}>Information</h2>
           </div>
         </div>
-        <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-          <div className="col">
-            <div className="p-4"><span className="badge rounded-pill bg-primary mb-2">Information</span><a href="#">
-                <h4>How to Link Shared Network Files via RaiDrive (Windows)</h4>
-              </a>
-              <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-              <div className="d-flex"><img className="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Placeholder" />
-                <div>
-                  <p className="fw-bold mb-0">Prinze Joshua Valloso</p>
-                  <p className="text-muted mb-0">04/01/2024</p>
+        <div className="accordion-solid-header card mb-3">
+          {infoData.map((faq, index) => (
+            <div key={index}>
+              <div className="card-header" onClick={() => toggleAnswer(index)}>
+                <div className="d-flex justify-content-between align-items-center">
+                  <h4 className="mb-0">{faq.question}</h4>
+                  <div>
+                    {faq.showAnswer ? <FontAwesomeIcon icon={faMinus} /> : <FontAwesomeIcon icon={faPlus} />}
+                  </div>
                 </div>
               </div>
+              {faq.showAnswer && (
+                <div className="card-body">
+                  <p>{faq.answer}</p>
+                </div>
+              )}
             </div>
-          </div>
-          {/* Repeat similar structure for other information */}
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default Main;
+export default FAQCard;

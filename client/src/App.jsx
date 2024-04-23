@@ -75,7 +75,7 @@ function App() {
           element={
             <>
               <Header />
-              <FAQCard />
+              <Information />
               <Footer />
             </>
           }
