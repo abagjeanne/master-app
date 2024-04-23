@@ -126,119 +126,121 @@ const UpdateLinkForm = () => {
   };
 
   return (
-    <div className="container py-5">
-      <ToastContainer/>
-      <div className="row justify-content-center">
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="needs-validation"
-          noValidate
-        >
-          <div className="mb-3">
-            <label htmlFor="title" className="form-label">
-              Title:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              required
-            />
-            <div className="invalid-feedback">Please provide a title.</div>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="thumbnail" className="form-label">
-              Thumbnail
-            </label>
-            <div className="flex justify-center p-2">
-              {viewLink && viewLink.thumbnail && (<img src={viewLink.thumbnail.link} alt="" className='w-[200px]' style={{ objectFit: 'cover', height: '500px' }}/>)}
+    <div style={{ backgroundColor: "#222840", color: "white" }}>
+      <div className="container py-5">
+        <ToastContainer/>
+        <div className="row justify-content-center">
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="needs-validation"
+            noValidate
+          >
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label">
+                Title:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                required
+              />
+              <div className="invalid-feedback">Please provide a title.</div>
             </div>
-            <input
-              type="file"
-              className="form-control"
-              id="thumbnail"
-              name="thumbnail"
-              onChange={handleImage}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="author" className="form-label">
-              Author:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="author"
-              name="author"
-              value={viewLink.author || ''}
-              readOnly
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="content" className="form-label">
-              Content:
-            </label>
-            <ReactQuill
-              theme="snow"
-              value={formData.content}
-              onChange={handleContentChange}
-              modules={{
-                toolbar: [
-                  [{ header: "1" }, { header: "2" }],
-                  [{ size: [] }],
-                  ["bold", "italic", "underline", "strike", "blockquote"],
-                  [
-                    { list: "ordered" },
-                    { list: "bullet" },
-                    { indent: "-1" },
-                    { indent: "+1" },
+            <div className="mb-3">
+              <label htmlFor="thumbnail" className="form-label">
+                Thumbnail
+              </label>
+              <div className="flex justify-center p-2">
+                {viewLink && viewLink.thumbnail && (<img src={viewLink.thumbnail.link} alt="" className='w-[200px]' style={{ objectFit: 'contain', width: '800px' }}/>)}
+              </div>
+              <input
+                type="file"
+                className="form-control"
+                id="thumbnail"
+                name="thumbnail"
+                onChange={handleImage}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="author" className="form-label">
+                Author:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="author"
+                name="author"
+                value={viewLink.author || ''}
+                readOnly
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="content" className="form-label">
+                Content:
+              </label>
+              <ReactQuill
+                theme="snow"
+                value={formData.content}
+                onChange={handleContentChange}
+                modules={{
+                  toolbar: [
+                    [{ header: "1" }, { header: "2" }],
+                    [{ size: [] }],
+                    ["bold", "italic", "underline", "strike", "blockquote"],
+                    [
+                      { list: "ordered" },
+                      { list: "bullet" },
+                      { indent: "-1" },
+                      { indent: "+1" },
+                    ],
+                    ["link", "image", "video"],
+                    ["clean"],
                   ],
-                  ["link", "image", "video"],
-                  ["clean"],
-                ],
-              }}
-            />
-            <div className="invalid-feedback">Please provide content.</div>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="dateCreated" className="form-label">
-              Date Published:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="dateCreated"
-              name="dateCreated"
-              value={viewLink.dateCreated ? new Date(viewLink.dateCreated).toLocaleString() : ''}
-              disabled
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="dateUpdated" className="form-label">
-              Date Updated:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="dateUpdated"
-              name="dateUpdated"
-              value={new Date(formData.dateUpdated).toLocaleString()}
-              disabled
-            />
-          </div>
-          <button className="btn btn-danger m-1 mr-2" onClick={handleCancel}>
-            <FontAwesomeIcon icon={faXmark} /> Cancel
-          </button>
-          <button type="submit" className="btn btn-primary m-1 mr-2" onClick={handleEdit}>
-            <FontAwesomeIcon icon={faCheck} /> Save
-          </button>       
-        </form>
+                }}
+              />
+              <div className="invalid-feedback">Please provide content.</div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="dateCreated" className="form-label">
+                Date Published:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="dateCreated"
+                name="dateCreated"
+                value={viewLink.dateCreated ? new Date(viewLink.dateCreated).toLocaleString() : ''}
+                disabled
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="dateUpdated" className="form-label">
+                Date Updated:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="dateUpdated"
+                name="dateUpdated"
+                value={new Date(formData.dateUpdated).toLocaleString()}
+                disabled
+              />
+            </div>
+            <button className="btn btn-danger m-1 mr-2" onClick={handleCancel}>
+              <FontAwesomeIcon icon={faXmark} /> Cancel
+            </button>
+            <button type="submit" className="btn btn-primary m-1 mr-2" onClick={handleEdit}>
+              <FontAwesomeIcon icon={faCheck} /> Save
+            </button>       
+          </form>
+        </div>
       </div>
     </div>
   );

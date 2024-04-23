@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink, faQuestionCircle, faPlus, faComment, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import GDSLogo from '../assets/3.png';
 import TabButton from "./AdminComponents/TabButton"
@@ -6,7 +8,7 @@ import LinkCard from "./AdminComponents/Link/LinkCard"
 import FAQCard from "./AdminComponents/FAQ/FAQCard"
 import NewLinkForm from "./AdminComponents/Link/LinkForm"
 import NewFAQForm from "./AdminComponents/FAQ/FAQForm"
-
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('Links');
@@ -36,23 +38,49 @@ const Dashboard = () => {
             .catch(error => {
                 console.error('Error fetching blog data:', error);
             });
+
+        axios.get('http://localhost:8008/api/faqs')
+            .then(response => {
+                setFaqs(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching FAQs:', error);
+            });
     }, []);
 
+    const renderHeader = () => {
+        switch (activeTab) {
+            case 'Links':
+                return 'Links';
+            case 'FAQs':
+                return 'FAQs';
+            case 'Add New Link':
+                return 'Add New Link';
+            case 'Add New FAQs':
+                return 'Add New FAQ';
+            default:
+                return '';
+        }
+    };
+
     return (
-        <div className="container-fluid gray-bg">
-            <div className="row">
-                {/* Sidebar */}
-                <nav className="col-md-2 sidebar shadow-lg d-flex flex-column" style={{ paddingTop: '50px' }}>
-                    <div className="justify-content-center" style={{ marginTop: '20px' }}>
-                        <img src={GDSLogo} alt="Logo" className="img-fluid" style={{ maxHeight: '80px', paddingTop: '10px', paddingBottom: '10px' }} />
-                    </div>
-                    <div className="nav flex-column flex-grow-1">
-                        <TabButton label="Links" onClick={() => handleTabChange('Links')} isActive={activeTab === 'Links'} />
-                        <TabButton label="FAQs" onClick={() => handleTabChange('FAQs')} isActive={activeTab === 'FAQs'} />
-                        <TabButton label="Add New Link" onClick={() => handleTabChange('Add New Link')} isActive={activeTab === 'Add New Link'} />
-                        <TabButton label="Add New FAQs" onClick={() => handleTabChange('Add New FAQs')} isActive={activeTab === 'Add New FAQs'} />
-                    </div>
-                </nav>
+        <div className='row bg p-0 m-0' style={{ height: '100vh', backgroundColor: '#222840'}}>
+            <nav className="col-md-2 shadow-lg d-flex flex-column px-3" style={{ paddingTop: '20px', backgroundColor: '#131633', borderRight: '1px solid #313452', position: 'sticky', margin: '0' }}>
+                <div className="navbar-brand d-flex justify-content-center mb-auto">
+                    <img src={GDSLogo} alt="GDS Logo" width="200px" className="align-top" />
+                </div>
+                <div className="nav flex-column flex-grow-1 pt-5">
+                    <TabButton label="Links" icon={faLink} onClick={() => handleTabChange('Links')} isActive={activeTab === 'Links'} />
+                    <TabButton label="FAQs" icon={faQuestionCircle} onClick={() => handleTabChange('FAQs')} isActive={activeTab === 'FAQs'} />
+                    <TabButton label="Add New Link" icon={faPlus} onClick={() => handleTabChange('Add New Link')} isActive={activeTab === 'Add New Link'} />
+                    <TabButton label="Add New FAQs" icon={faComment} onClick={() => handleTabChange('Add New FAQs')} isActive={activeTab === 'Add New FAQs'} />
+                </div>
+                <div className="d-flex justify-content-center flex-column mt-auto">
+                    <button className="btn btn-danger w-100">
+                        <FontAwesomeIcon icon={faSignOutAlt} /> Sign Out
+                    </button>
+                </div>
+            </nav>
 
                 {/* Main Content */}
                 <main role="main" className="col-md-10 ml-sm-auto col-lg-10 px-4">
@@ -92,35 +120,44 @@ const Dashboard = () => {
                                 ))}
                             </div>
                         )}
-                        {/* Add New Link Form */}
-                        {activeTab === 'Add New Link' && (
-                            <div className="container">
-                                <div className="mb-3">
-                                    <h2>Add New Link</h2>
-                                    <NewLinkForm/>
+                    {activeTab === 'FAQs' && (
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                            {faqs.map((faq, index) => (
+                                <div key={faq.id} className="col">
+                                    <FAQCard
+                                        id={faq.id}
+                                        question={faq.question}
+                                        answer={faq.answer}
+                                        dateTimeCreated={faq.dateTimeCreated}
+                                    />
                                 </div>
+                            ))}
+                        </div>
+                    )}
+                    {activeTab === 'Add New Link' && (
+                        <div className="container">
+                            <div className="mb-3">
+                                <NewLinkForm />
                             </div>
-                        )}
-                        {activeTab === 'Add New FAQs' && (
-                            <div className="container">
-                                <div className="mb-3">
-                                    <h2>Add New FAQ</h2>
-                                    <NewFAQForm/>
-                                </div>
+                        </div>
+                    )}
+                    {activeTab === 'Add New FAQs' && (
+                        <div className="container">
+                            <div className="mb-3">
+                                <NewFAQForm />
                             </div>
-                        )}
+                        </div>
+                    )}
+                </section>
+            </main>
 
-                    </section>
-                </main>
-            </div>
             <style jsx>{`
-                .gray-bg {
-                    background-color: #f0f0f0;
+                .sidebar {
+                    transition: width 0.3s ease;
                 }
 
-                .sidebar {
-                    background-color: #333;
-                    transition: width 0.3s ease;
+                ::-webkit-scrollbar {
+                    display: none;
                 }
             `}</style>
         </div>
