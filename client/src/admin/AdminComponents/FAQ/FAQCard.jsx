@@ -4,7 +4,7 @@ import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
-const FAQCard = ({ id, question, answer }) => {
+const FAQCard = ({ id }) => {
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
     const [ infoData, setInfos] = useState();
     const [disabled, setDisabled] = useState(false);
@@ -46,21 +46,25 @@ const FAQCard = ({ id, question, answer }) => {
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const toggleEdit = () => {
         setEditable(true);
     };
 
-    const cancelEdit = () => {
+    const cancelEdit = async () => {
         setDisabled(false);
         setEditable(false);
-        setFormData({
-            question: infoData.question,
-            answer: infoData.answer
-        });
+        try {
+            const response = await axios.get(`http://localhost:8008/api/info/${id}`);
+            if (response.status === 200) {
+                const { question, answer } = response.data;
+                setFormData({ question, answer });
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
     };
     
     const handleSubmit = async (e) => {
@@ -101,6 +105,7 @@ const FAQCard = ({ id, question, answer }) => {
     
           if (response && response.data) {
             toast.success("FAQ updated successfully");
+            setEditable(false)
           } else {
             console.log("Response data not available");
             toast.error("Failed to update FAQ");
