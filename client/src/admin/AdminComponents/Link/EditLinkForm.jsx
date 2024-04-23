@@ -128,8 +128,11 @@ const UpdateLinkForm = () => {
   return (
     <div style={{ backgroundColor: "#222840", color: "white" }}>
       <div className="container py-5">
+              <button className="btn btn-primary m-1 mr-2" onClick={handleCancel}>
+              <FontAwesomeIcon icon={faArrowLeft} /> Back </button>
+        
         <ToastContainer/>
-        <div className="row justify-content-center">
+        <div className="row justify-content-center p-5" style={{ border: '1px solid #313452', backgroundColor: '#131633' }}>
           <form
             ref={formRef}
             onSubmit={handleSubmit}
