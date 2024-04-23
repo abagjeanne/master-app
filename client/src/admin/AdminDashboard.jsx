@@ -11,6 +11,7 @@ import NewFAQForm from "./AdminComponents/FAQ/FAQForm"
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('Links');
     const [blogPosts, setBlogPosts] = useState([]);
+    const [faqPosts, setFaqPosts] = useState([]);
     const [faqs, setFaqs] = useState([]);
 
     const handleTabChange = (tab) => {
@@ -21,7 +22,16 @@ const Dashboard = () => {
         axios.get('http://localhost:8008/api/blog')
             .then(response => {
                 setBlogPosts(response.data);
-                console.log(response.data)
+            })
+            .catch(error => {
+                console.error('Error fetching blog data:', error);
+            });
+    }, []);
+
+    useEffect(() => {
+        axios.get('http://localhost:8008/api/info')
+            .then(response => {
+                setFaqPosts(response.data);
             })
             .catch(error => {
                 console.error('Error fetching blog data:', error);
@@ -68,15 +78,16 @@ const Dashboard = () => {
                             </div>
                         )}
                         {activeTab === 'FAQs' && (
-                            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                                {faqs.map((faq, index) => (
-                                    <div key={index} className="col">
-                                        <FAQCard 
-                                            id={faq.id} 
-                                            question={faq.question} 
-                                            answer={faq.answer} 
-                                            dateTimeCreated={faq.dateTimeCreated} 
-                                        />
+                            <div className="container">
+                                {faqPosts.map((faq, index) => (
+                                    <div key={index} className="row mb-4">
+                                        <div className="col-12">
+                                            <FAQCard
+                                                id={faq._id} 
+                                                question={faq.question} 
+                                                answer={faq.answer} 
+                                            />
+                                        </div>
                                     </div>
                                 ))}
                             </div>

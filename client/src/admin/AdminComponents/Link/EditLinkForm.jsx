@@ -113,7 +113,6 @@ const UpdateLinkForm = () => {
       );
 
       if (response && response.data) {
-        console.log(response.data);
         toast.success("Blog updated successfully");
       } else {
         console.log("Response data not available");

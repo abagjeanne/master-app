@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 
 const NewLinkForm = () => {
     const formRef = useRef(null);
+    const [invalidFields, setInvalidFields] = useState({});
     const [formData, setFormData] = useState({
         title: '',
         content: '',
@@ -29,6 +31,27 @@ const NewLinkForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setInvalidFields({});
+        const errors = {};
+        if (formData.title.length === 0) {
+            toast.error('Please input your title');
+            errors.serviceName = "Please input your title";
+          }
+        if (formData.content.length === 0) {
+            toast.error('Please input your content');
+            errors.serviceType = "Please input your content";
+        }
+        if (formData.author.length === 0) {
+            toast.error('Please input your name');
+            errors.serviceType = "Please input your name";
+        }
+
+        setInvalidFields(errors);
+
+        if (Object.keys(errors).length > 0) {
+            return;
+        }
+
         try {
             const formObject = new FormData();
             formObject.append('file', thumbnail);
@@ -40,21 +63,25 @@ const NewLinkForm = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(response.data);
+            // console.log(response.data);
 
-            setFormData({
-                title: '',
-                content: '',
-                author: '',
-                dateCreated: new Date().toLocaleDateString(),
-            });
-            formRef.current.reset();
+            if (response && response.data) {
+                toast.success("Uploaded successfully");
+                setFormData({
+                    title: '',
+                    content: '',
+                    author: '',
+                    dateCreated: new Date().toLocaleDateString(),
+                });
+                formRef.current.reset();
+            } else {
+                console.log("Response data not available");
+                toast.error("Failed to upload");
+            }  
         } catch (error) {
             console.error('Error during form submission:', error.message);
         }
     };
-
-    console.log(formData)
 
     return (
         <form ref={formRef} onSubmit={handleSubmit} className="needs-validation" noValidate>
