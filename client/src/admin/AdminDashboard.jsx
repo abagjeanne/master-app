@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink, faQuestionCircle, faPlus, faCog, faComment } from '@fortawesome/free-solid-svg-icons';
+import { faLink, faQuestionCircle, faPlus, faComment, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import GDSLogo from '../assets/3.png';
 import TabButton from "./AdminComponents/TabButton"
@@ -8,6 +8,7 @@ import LinkCard from "./AdminComponents/Link/LinkCard"
 import FAQCard from "./AdminComponents/FAQ/FAQCard"
 import NewLinkForm from "./AdminComponents/Link/LinkForm"
 import NewFAQForm from "./AdminComponents/FAQ/FAQForm"
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('Links');
@@ -52,16 +53,21 @@ const Dashboard = () => {
     };
 
     return (
-        <div className='row bg' style={{ height: '100vh', backgroundColor: '#222840' }}>
-            <nav className="col-md-2 sidebar shadow-lg d-flex flex-column" style={{ paddingTop: '20px', backgroundColor: '#131633', borderRight: '1px solid #313452', position: 'sticky' }}>
+        <div className='row bg p-0 m-0' style={{ height: '100vh', backgroundColor: '#222840'}}>
+            <nav className="col-md-2 shadow-lg d-flex flex-column px-3" style={{ paddingTop: '20px', backgroundColor: '#131633', borderRight: '1px solid #313452', position: 'sticky', margin: '0' }}>
                 <div className="navbar-brand d-flex justify-content-center mb-auto">
                     <img src={GDSLogo} alt="GDS Logo" width="200px" className="align-top" />
                 </div>
-                <div className="nav flex-column flex-grow-1">
+                <div className="nav flex-column flex-grow-1 pt-5">
                     <TabButton label="Links" icon={faLink} onClick={() => handleTabChange('Links')} isActive={activeTab === 'Links'} />
                     <TabButton label="FAQs" icon={faQuestionCircle} onClick={() => handleTabChange('FAQs')} isActive={activeTab === 'FAQs'} />
                     <TabButton label="Add New Link" icon={faPlus} onClick={() => handleTabChange('Add New Link')} isActive={activeTab === 'Add New Link'} />
                     <TabButton label="Add New FAQs" icon={faComment} onClick={() => handleTabChange('Add New FAQs')} isActive={activeTab === 'Add New FAQs'} />
+                </div>
+                <div className="d-flex justify-content-center flex-column mt-auto">
+                    <button className="btn btn-danger w-100">
+                        <FontAwesomeIcon icon={faSignOutAlt} /> Sign Out
+                    </button>
                 </div>
             </nav>
 
