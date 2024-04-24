@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
+import { formatDistanceToNow } from 'date-fns';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 
 const Main = () => {
   const [blogData, setBlog] = useState([]);
@@ -45,20 +49,31 @@ const Main = () => {
                 <div className="card h-100 border-0 shadow hover-effect">
                   <img src={link.thumbnail.link} className="card-img-top" alt="Blog Post" style={{ objectFit: 'cover', height: '200px' }} />
                   <div className="card-body">
-                    <h5 className="card-title">{link.title}</h5>
-                    <p className="card-text">{link.content ? link.content.substring(0, 100) : ''}...</p>
+                    <h5 className="card-title text-capitalize"><strong>{link.title}</strong></h5>
+                    {/* Use dangerouslySetInnerHTML to render HTML content */}
+                    <p className="card-text" dangerouslySetInnerHTML={{ __html: link.content ? link.content.substring(0,20) + "..." : '' }} />
+
                   </div>
-                  <div className="card-footer bg-transparent border-0">
-                    <small className="text-muted">Author: {link.author}</small>
-                    <br />
-                    <small className="text-muted">Date: {new Date(link.dateCreated).toLocaleDateString()}</small>
+                  <div className="card-footer bg-transparent border-0 d-flex justify-content-between">
+                    <div>
+                      <small className="text-muted text-capitalize mx-1 bold">{link.author}</small>
+                      <small className="text-muted mx-1">●</small>
+                      <small className="text-muted">{formatDistanceToNow(new Date(link.dateCreated))} ago</small> {/* Format date */}
+                    </div>
                   </div>
+                  {/* <Link to={`/blog/${link._id}`} className="text-center my-2">Read More</Link>  */}
                 </div>
               </Link>
             </div>
           ))}
         </div>
       )}
+        <div className="text-center mt-5">
+          <Link to="/links" style={{ textDecoration: 'none' }}>
+            <strong>View More Links </strong>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </Link>
+        </div>
     </div>
   );
 };

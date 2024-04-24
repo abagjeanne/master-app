@@ -47,7 +47,7 @@ const FAQCard = () => {
         <div className="accordion-solid-header card mb-3">
           {infoData.map((faq, index) => (
             <div key={index}>
-              <div className="card-header" onClick={() => toggleAnswer(index)}>
+              <div className="card-header" style={{backgroundColor:""}} onClick={() => toggleAnswer(index)}>
                 <div className="d-flex justify-content-between align-items-center">
                   <h4 className="mb-0">{faq.question}</h4>
                   <div>

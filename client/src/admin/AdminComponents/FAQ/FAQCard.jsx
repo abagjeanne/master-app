@@ -154,11 +154,11 @@ const FAQCard = ({ id }) => {
             {showConfirmationModal && (
                 <div className="confirmation-modal">
                     <h2>Are you sure you want to delete this FAQ?</h2>
-                    <div className="button-container d-flex justify-content-end">
-                        <button type="button" className="btn btn-danger" onClick={deleteUser}>
+                    <div className="button-container">
+                        <button type="button" className="mx-2 btn btn-danger" onClick={deleteUser}>
                             Yes, Delete
                         </button>
-                        <button type="button" className="btn btn-secondary" onClick={() => setShowConfirmationModal(false)}>
+                        <button type="button" className="mx-2 btn btn-secondary" onClick={() => setShowConfirmationModal(false)}>
                             Cancel
                         </button>
                     </div>
