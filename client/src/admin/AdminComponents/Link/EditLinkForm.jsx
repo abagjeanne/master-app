@@ -7,6 +7,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faCheck, faArrowLeft } from '@fortawesome/free-solid-svg-icons';// Import Quill styles
+import WithAuth from "../../../../auth/WithAuth";
 
 const UpdateLinkForm = () => {
   const { id } = useParams();
@@ -249,4 +250,4 @@ const UpdateLinkForm = () => {
   );
 };
 
-export default UpdateLinkForm;
+export default WithAuth(UpdateLinkForm);

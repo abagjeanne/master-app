@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const upload = require("../config/Multer.js");
+const authToken = require('../utils/authToken')
 
 const {
   GetAllBlog,
@@ -13,6 +14,7 @@ const {
 // Routes for Service
 router.get("/", GetAllBlog);
 router.get("/:id", GetSpecificBlog);
+router.use(authToken)
 router.post("/create", upload.single("file"), CreateBlog);
 router.patch("/edit/:id", upload.single("file"), EditBlog);
 router.delete("/delete/:id", DeleteBlog);

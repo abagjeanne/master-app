@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const AdminModel = require('../models/AdminModel');
+const jwt = require('jsonwebtoken')
 
 const LoginUser = async (req, res) => {
   try {
     const { userName, passWord } = req.body;
 
-    // Find the user by username
     const user = await AdminModel.findOne({ userName });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -17,12 +17,16 @@ const LoginUser = async (req, res) => {
     }
 
     // If username and password match, send a success response
-    res.status(200).json({ message: 'Login successful' });
+    res.status(200).json({ message: 'Login successful', token: generateToken(user._id) });
 
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+const generateToken = (id) => {
+  return jwt.sign({id}, process.env.JWT_SECRET, { expiresIn: '30m'})
+} 
 
 module.exports = {
   LoginUser,

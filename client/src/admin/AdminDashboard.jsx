@@ -9,6 +9,7 @@ import FAQCard from "./AdminComponents/FAQ/FAQCard"
 import NewLinkForm from "./AdminComponents/Link/LinkForm"
 import NewFAQForm from "./AdminComponents/FAQ/FAQForm"
 import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
+import WithAuth from '../../auth/WithAuth';
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('Links');
@@ -72,7 +73,7 @@ const Dashboard = () => {
     };
     const handleSignOut = () => {
         // Handle sign out action
-        window.history.pushState(null, '', '/admin');
+        localStorage.removeItem('token')
         navigate('/admin'); // Navigate to the admin login page
     };
 
@@ -163,4 +164,4 @@ const Dashboard = () => {
     );
 }
 
-export default Dashboard;
+export default WithAuth(Dashboard);

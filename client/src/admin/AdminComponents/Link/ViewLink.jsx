@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faArchive, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import WithAuth from '../../../../auth/WithAuth';
 
 const ViewLink = () => {
   const { id } = useParams();
@@ -101,4 +102,4 @@ const ViewLink = () => {
   );
 };
 
-export default ViewLink;
+export default WithAuth(ViewLink);
