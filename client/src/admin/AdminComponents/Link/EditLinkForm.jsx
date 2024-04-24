@@ -1,17 +1,27 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark, faCheck, faArrowLeft } from '@fortawesome/free-solid-svg-icons';// Import Quill styles
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faXmark,
+  faCheck,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons"; // Import Quill styles
 import WithAuth from "../../../../auth/WithAuth";
 
 const UpdateLinkForm = () => {
   const { id } = useParams();
-  const [viewLink, setViewLink] = useState({ title: '', content: '', thumbnail: '', author: '', dateCreated: new Date().toISOString() });;
+  const [viewLink, setViewLink] = useState({
+    title: "",
+    content: "",
+    thumbnail: "",
+    author: "",
+    dateCreated: new Date().toISOString(),
+  });
   const navigate = useNavigate();
   const formRef = useRef(null);
   const [formData, setFormData] = useState({
@@ -25,7 +35,9 @@ const UpdateLinkForm = () => {
   useEffect(() => {
     const fetchViewLink = async () => {
       try {
-        const response = await axios.get(`http://localhost:8008/api/blog/${id}`);
+        const response = await axios.get(
+          `http://localhost:8008/api/blog/${id}`
+        );
         if (response.status === 200) {
           setViewLink(response.data);
           setFormData({
@@ -70,20 +82,20 @@ const UpdateLinkForm = () => {
     setInvalidFields({});
 
     const isFormDataChanged =
-    formData.title !== viewLink.title ||
-    formData.content !== viewLink.content;
+      formData.title !== viewLink.title ||
+      formData.content !== viewLink.content;
 
     const errors = {};
     if (!isFormDataChanged) {
-      toast.error('No changes have been made');
+      toast.error("No changes have been made");
       return;
     }
     if (formData.title.length === 0) {
-      toast.error('Please input your title');
+      toast.error("Please input your title");
       errors.title = "Please input your title";
     }
     if (formData.content.length === 0) {
-      toast.error('Please input your content');
+      toast.error("Please input your content");
       errors.content = "Please input your content";
     }
 
@@ -94,23 +106,27 @@ const UpdateLinkForm = () => {
     }
 
     try {
+      const token = localStorage.getItem("token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      };
+
       const formObject = new FormData();
-      formObject.append("blog", JSON.stringify({
-        ...viewLink,
-        title: formData.title,
-        content: formData.content,
-        dateUpdated: formData.dateUpdated
-      }));
+      formObject.append(
+        "blog",
+        JSON.stringify({
+          ...viewLink,
+          title: formData.title,
+          content: formData.content,
+          dateUpdated: formData.dateUpdated,
+        })
+      );
       formObject.append("file", thumbnail);
 
       const response = await axios.patch(
         `http://localhost:8008/api/blog/edit/${id}`,
-        formObject,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        formObject, { headers }
       );
 
       if (response && response.data) {
@@ -129,11 +145,15 @@ const UpdateLinkForm = () => {
   return (
     <div style={{ backgroundColor: "#222840", color: "white" }}>
       <div className="container py-5">
-              <button className="btn btn-primary m-1 mr-2" onClick={handleCancel}>
-              <FontAwesomeIcon icon={faArrowLeft} /> Back </button>
-        
-        <ToastContainer/>
-        <div className="row justify-content-center p-5" style={{ border: '1px solid #313452', backgroundColor: '#131633' }}>
+        <button className="btn btn-primary m-1 mr-2" onClick={handleCancel}>
+          <FontAwesomeIcon icon={faArrowLeft} /> Back{" "}
+        </button>
+
+        <ToastContainer />
+        <div
+          className="row justify-content-center p-5"
+          style={{ border: "1px solid #313452", backgroundColor: "#131633" }}
+        >
           <form
             ref={formRef}
             onSubmit={handleSubmit}
@@ -160,7 +180,14 @@ const UpdateLinkForm = () => {
                 Thumbnail
               </label>
               <div className="flex justify-center p-2">
-                {viewLink && viewLink.thumbnail && (<img src={viewLink.thumbnail.link} alt="" className='w-[200px]' style={{ objectFit: 'contain', width: '800px' }}/>)}
+                {viewLink && viewLink.thumbnail && (
+                  <img
+                    src={viewLink.thumbnail.link}
+                    alt=""
+                    className="w-[200px]"
+                    style={{ objectFit: "contain", width: "800px" }}
+                  />
+                )}
               </div>
               <input
                 type="file"
@@ -180,7 +207,7 @@ const UpdateLinkForm = () => {
                 className="form-control"
                 id="author"
                 name="author"
-                value={viewLink.author || ''}
+                value={viewLink.author || ""}
                 readOnly
                 onChange={handleChange}
               />
@@ -220,7 +247,11 @@ const UpdateLinkForm = () => {
                 className="form-control"
                 id="dateCreated"
                 name="dateCreated"
-                value={viewLink.dateCreated ? new Date(viewLink.dateCreated).toLocaleString() : ''}
+                value={
+                  viewLink.dateCreated
+                    ? new Date(viewLink.dateCreated).toLocaleString()
+                    : ""
+                }
                 disabled
               />
             </div>
@@ -240,9 +271,13 @@ const UpdateLinkForm = () => {
             <button className="btn btn-danger m-1 mr-2" onClick={handleCancel}>
               <FontAwesomeIcon icon={faXmark} /> Cancel
             </button>
-            <button type="submit" className="btn btn-primary m-1 mr-2" onClick={handleEdit}>
+            <button
+              type="submit"
+              className="btn btn-primary m-1 mr-2"
+              onClick={handleEdit}
+            >
               <FontAwesomeIcon icon={faCheck} /> Save
-            </button>       
+            </button>
           </form>
         </div>
       </div>

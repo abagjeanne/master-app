@@ -37,9 +37,14 @@ const NewFAQForm = () => {
         }
 
         try {
+            const token = localStorage.getItem('token')
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
             const response = await axios.post(
                 'http://localhost:8008/api/info/create', 
-                formData
+                formData, {headers}
             );
             console.log(response.data)
             if (response && response.data) {

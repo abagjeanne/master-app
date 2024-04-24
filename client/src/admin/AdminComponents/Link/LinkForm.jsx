@@ -53,15 +53,19 @@ const NewLinkForm = () => {
         }
 
         try {
+            const token = localStorage.getItem('token')
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+            }
+
             const formObject = new FormData();
             formObject.append('file', thumbnail);
             formObject.append('blog', JSON.stringify(formData));
             formObject.append('dateUpdated', null)
 
             const response = await axios.post('http://localhost:8008/api/blog/create', formObject, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
+                headers
             });
             // console.log(response.data);
 
