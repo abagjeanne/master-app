@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const InformationModel = require("../models/InformationModel");
+const requireAuth = require('../utils/authToken');
 
 const GetAllInfo = async (req, res) => {
   try {

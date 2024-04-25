@@ -20,6 +20,4 @@ JWTClient.authorize(function (err, tokens) {
   }
 });
 
-console.log("sdfsd")
-
 module.exports = JWTClient;

@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 const AdminModel = require('../models/AdminModel');
+const BlogModel = require('../models/BlogModel');
+const InfoModel = require('../models/InformationModel');
 
 const authToken = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -17,13 +19,13 @@ const authToken = async (req, res, next) => {
 
     // Check if the user exists in the AdminModel
     const user = await AdminModel.findById(decoded._id);
-
+    
     // If user exists, attach user object to request and proceed to next middleware
     if (user) {
       req.user = decoded; // Attach decoded token payload to request
       next();
     } else {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "User not found"});
     }
   } catch (err) {
     if (err instanceof jwt.TokenExpiredError) {

@@ -45,6 +45,10 @@ const NewLinkForm = () => {
             toast.error('Please input your name');
             errors.author = "Please input your name";
         }
+        if (!thumbnail || !thumbnail.type.startsWith("image/")){
+            toast.error('Please input a valid image');
+            errors.author = "Please input a valid image";
+        }
 
         setInvalidFields(errors);
 
@@ -70,6 +74,7 @@ const NewLinkForm = () => {
             // console.log(response.data);
 
             if (response && response.data) {
+                setBlogPosts(prevState => [...prevState, response.data]);
                 toast.success("Uploaded successfully");
                 setFormData({
                     title: '',
@@ -111,6 +116,7 @@ const NewLinkForm = () => {
                     name="thumbnail"
                     value={formData.thumbnail}
                     onChange={handleImage}
+                    accept='image/*'
                     required
                 />
             </div>

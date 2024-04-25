@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const BlogModel = require("../models/BlogModel");
 const DriveService = require("../utils/DriveService");
+const requireAuth = require('../utils/authToken');
 
 const GetAllBlog = async (req, res) => {
   try {
@@ -152,7 +153,7 @@ const CreateBlogWithAuth = (req, res) => {
 };
 const EditBlogWithAuth = (req, res) => {
   requireAuth(req, res, async () => {
-    await UpdateBlog(req, res);
+    await EditBlog(req, res);
   });
 };
 const DeleteBlogWithAuth = (req, res) => {

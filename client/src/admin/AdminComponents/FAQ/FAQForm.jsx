@@ -46,7 +46,6 @@ const NewFAQForm = () => {
                 'http://localhost:8008/api/info/create', 
                 formData, {headers}
             );
-            console.log(response.data)
             if (response && response.data) {
                 toast.success("Uploaded successfully");
                 setFormData({

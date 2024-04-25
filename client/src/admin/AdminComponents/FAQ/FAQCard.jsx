@@ -35,7 +35,12 @@ const FAQCard = ({ id }) => {
 
     const deleteUser = async () => {
         try {
-            const response = await axios.delete(`http://localhost:8008/api/info/delete/${id}`);
+            const token = localStorage.getItem('token')
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+            const response = await axios.delete(`http://localhost:8008/api/info/delete/${id}`, {headers});
             if (response.status === 200) {
                 console.log("FAQ deleted successfully");
                 setShowConfirmationModal(false); // Close modal after deletion

@@ -24,16 +24,16 @@ const Dashboard = () => {
     const fetchBlogPosts = async () => {
         try {
             const response = await axios.get('http://localhost:8008/api/blog');
-            setBlogPosts(response.data);
+            setBlogPosts(response.data); // Update the entire blogPosts state with the fetched data
         } catch (error) {
             console.error('Error fetching blog data:', error);
         }
-    };
+    };    
 
     const fetchFAQs = async () => {
         try {
             const response = await axios.get('http://localhost:8008/api/info');
-            setFaqPosts(response.data);
+            setFaqPosts( ...faqPosts, response.data);
         } catch (error) {
             console.error('Error fetching FAQs:', error);
         }
