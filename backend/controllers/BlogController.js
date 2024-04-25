@@ -145,10 +145,26 @@ const DeleteBlog = async (req, res) => {
   
 };
 
+const CreateBlogWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await CreateBlog(req, res);
+  });
+};
+const EditBlogWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await UpdateBlog(req, res);
+  });
+};
+const DeleteBlogWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await DeleteBlog(req, res);
+  });
+};
+
 module.exports = {
   GetAllBlog,
   GetSpecificBlog,
-  CreateBlog,
-  EditBlog,
-  DeleteBlog,
+  CreateBlogWithAuth,
+  EditBlogWithAuth,
+  DeleteBlogWithAuth
 };

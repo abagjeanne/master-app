@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const InformationModel = require("../models/InformationModel");
+const InformationrmationModel = require("../models/InformationrmationModel");
 
-const GetAllInformation = async (req, res) => {
+const GetAllInfo = async (req, res) => {
   try {
-    const result = await InformationModel.find({});
+    const result = await InformationrmationModel.find({});
 
     res.status(200).json(result);
   } catch (err) {
@@ -11,15 +11,15 @@ const GetAllInformation = async (req, res) => {
   }
 };
 
-const GetSpecificInformation = async (req, res) => {
+const GetSpecificInfo = async (req, res) => {
   try {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      res.status(400).json("No such info");
+      res.status(400).json("No such Information");
     }
 
-    const result = await InformationModel.findById(id);
+    const result = await InformationrmationModel.findById(id);
 
     res.status(200).json(result);
   } catch (err) {
@@ -27,13 +27,13 @@ const GetSpecificInformation = async (req, res) => {
   }
 };
 
-const CreateInformation = async (req, res) => {
+const CreateInfo = async (req, res) => {
   try{
-    const info = req.body;
+    const Information = req.body;
 
-    const result = await InformationModel.create({
-      question: info.question,
-      answer: info.answer,
+    const result = await InformationrmationModel.create({
+      question: Information.question,
+      answer: Information.answer,
     });
     res.status(201).json(result);
 
@@ -42,40 +42,40 @@ const CreateInformation = async (req, res) => {
   }
 };
 
-const EditInformation = async (req, res) => {
+const EditInfo = async (req, res) => {
   try {
     const { id } = req.params;
-    const info = req.body;
+    const Information = req.body;
 
     let update = {
       $set: {
-        question: info.question,
-        answer: info.answer,
+        question: Information.question,
+        answer: Information.answer,
       }
     };
 
-    const result = await InformationModel.findByIdAndUpdate(id, update, { new: true });
+    const result = await InformationrmationModel.findByIdAndUpdate(id, update, { new: true });
     res.status(201).json(result);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 };
 
-const DeleteInformation = async (req, res) => {
+const DeleteInfo = async (req, res) => {
   try {
     const { id } = req.params;
   
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json("No info listed");
+      return res.status(400).json("No Information listed");
     }
   
-    const info = await InformationModel.findById(id);
+    const Information = await InformationrmationModel.findById(id);
   
-    if (!info) {
+    if (!Information) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const result = await InformationModel.findByIdAndDelete(id);
+    const result = await InformationrmationModel.findByIdAndDelete(id);
   
     res.status(200).json(result);
   } catch (err) {
@@ -84,10 +84,26 @@ const DeleteInformation = async (req, res) => {
   
 };
 
+const CreateInfoWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await CreateInfo(req, res);
+  });
+};
+const EditInfoWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await EditInfo(req, res);
+  });
+};
+const DeleteInfoWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await DeleteInfo(req, res);
+  });
+};
+
 module.exports = {
-  GetAllInformation,
-  GetSpecificInformation,
-  CreateInformation,
-  EditInformation,
-  DeleteInformation,
+  GetAllInfo,
+  GetSpecificInfo,
+  CreateInfoWithAuth,
+  EditInfoWithAuth,
+  DeleteInfoWithAuth,
 };

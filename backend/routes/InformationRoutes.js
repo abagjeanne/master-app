@@ -1,21 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const authToken = require('../utils/authToken')
+const authToken = require("../utils/authToken");
 
 const {
-    GetAllInformation,
-    GetSpecificInformation,
-    CreateInformation,
-    EditInformation,
-    DeleteInformation,
+  GetAllInfo,
+  GetSpecificInfo,
+  CreateInfoWithAuth,
+  EditInfoWithAuth,
+  DeleteInfoWithAuth,
 } = require("../controllers/InformationController.js");
 
 // Routes for Service
-router.get("/", GetAllInformation);
-router.get("/:id", GetSpecificInformation);
-router.use(authToken)
-router.post("/create", CreateInformation);
-router.patch("/edit/:id", EditInformation);
-router.delete("/delete/:id", DeleteInformation);
+router.get("/", GetAllInfo);
+router.get("/:id", GetSpecificInfo);
+router.use(authToken);
+router.post("/create", CreateInfoWithAuth);
+router.patch("/edit/:id", EditInfoWithAuth);
+router.delete("/delete/:id", DeleteInfoWithAuth);
 
 module.exports = router;

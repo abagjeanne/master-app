@@ -1,21 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const authToken = require('../utils/authToken')
+const authToken = require("../utils/authToken");
 
 const {
-    GetAllAdmin,
-    GetSpecificAdmin,
-    CreateAdmin,
-    UpdateAdmin,
-    DeleteAdmin
+  GetAllAdminWithAuth,
+  GetSpecificAdminWithAuth,
+  CreateAdminWithAuth,
+  UpdateAdminWithAuth,
+  DeleteAdminWithAuth,
 } = require("../controllers/AdminController.js");
 
 // Routes for Service
-router.use(authToken)
-router.get("/", GetAllAdmin);
-router.get("/:id", GetSpecificAdmin);
-router.post("/create", CreateAdmin);
-router.patch("/edit/:id", UpdateAdmin);
-router.delete("/delete/:id", DeleteAdmin);
+router.use(authToken);
+router.get("/", GetAllAdminWithAuth);
+router.get("/:id", GetSpecificAdminWithAuth);
+router.post("/create", CreateAdminWithAuth);
+router.patch("/edit/:id", UpdateAdminWithAuth);
+router.delete("/delete/:id", DeleteAdminWithAuth);
 
 module.exports = router;

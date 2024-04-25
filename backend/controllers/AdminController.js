@@ -93,13 +93,38 @@ const DeleteAdmin = async (req, res) => {
   } catch (err) {
     res.send(err.message);
   }
-  
+};
+
+const GetAllAdminWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await GetAllAdmin(req, res);
+  });
+};
+const GetSpecificAdminWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await GetSpecificAdmin(req, res);
+  });
+};
+const CreateAdminWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await CreateAdmin(req, res);
+  });
+};
+const UpdateAdminWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await UpdateAdmin(req, res);
+  });
+};
+const DeleteAdminWithAuth = (req, res) => {
+  requireAuth(req, res, async () => {
+    await DeleteAdmin(req, res);
+  });
 };
 
 module.exports = {
-    GetAllAdmin,
-    GetSpecificAdmin,
-    CreateAdmin,
-    UpdateAdmin,
-    DeleteAdmin
+  GetAllAdminWithAuth,
+  GetSpecificAdminWithAuth,
+  CreateAdminWithAuth,
+  UpdateAdminWithAuth,
+  DeleteAdminWithAuth
 };
