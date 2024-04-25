@@ -74,7 +74,6 @@ const NewLinkForm = () => {
             // console.log(response.data);
 
             if (response && response.data) {
-                setBlogPosts(prevState => [...prevState, response.data]);
                 toast.success("Uploaded successfully");
                 setFormData({
                     title: '',
