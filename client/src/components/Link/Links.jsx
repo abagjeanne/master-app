@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
+import { formatDistanceToNow } from 'date-fns';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const Main = () => {
   const [blogData, setBlog] = useState([]);
@@ -22,18 +25,16 @@ const Main = () => {
     fetchLink();
   }, []);
 
-  console.log(blogData);
-
   return (
-    <div className="container py-4 py-xl-5 ">
-      <div className="row mb-5 ">
+    <div className="container py-4 py-xl-5">
+      <div className="row mb-5">
         <div className="col-md-8 col-xl-6 text-center mx-auto">
           <h2 className="display-6" style={{ fontWeight: 'bold' }}>Links</h2>
         </div>
       </div>
       {blogData.length === 0 ? (
         <div className="row">
-          <div className="col text-center">
+          <div className="col text-center no-links-message">
             <p>No links found</p>
           </div>
         </div>
@@ -41,17 +42,22 @@ const Main = () => {
         <div className="row gy-4">
           {blogData.map(link => (
             <div key={link._id} className="col-md-4">
-              <Link to={`/blog/${link._id}`} style={{ textDecoration: 'none', color: 'inherit' }}> {/* Use Link component with the path to your blog post */}
+              <Link to={`/blog/${link._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="card h-100 border-0 shadow hover-effect">
                   <img src={link.thumbnail.link} className="card-img-top" alt="Blog Post" style={{ objectFit: 'cover', height: '200px' }} />
-                  <div className="card-body">
-                    <h5 className="card-title">{link.title}</h5>
-                    <p className="card-text">{link.content ? link.content.substring(0, 100) : ''}...</p>
-                  </div>
+                  <div className="m-4" style={{ whiteSpace: 'nowrap' }}>
+                      {link.content ? (
+                        <p dangerouslySetInnerHTML={{ __html: link.content.substring(0, 5) + '...' }} />
+                      ) : (
+                        <p>No content available</p>
+                      )}
+                    </div>
                   <div className="card-footer bg-transparent border-0">
-                    <small className="text-muted">Author: {link.author}</small>
-                    <br />
-                    <small className="text-muted">Date: {new Date(link.dateCreated).toLocaleDateString()}</small>
+                    <div>
+                      <small className="text-muted text-capitalize mx-1 bold">{link.author}</small>
+                      <small className="text-muted mx-1">●</small>
+                      <small className="text-muted">{formatDistanceToNow(new Date(link.dateCreated))} ago</small>
+                    </div>
                   </div>
                 </div>
               </Link>

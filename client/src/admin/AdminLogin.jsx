@@ -29,10 +29,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
+    <div className=" d-flex justify-content-center align-items-center vh-100" style={{backgroundColor:'#222840', color:'white'}}>
       <div className="row justify-content-center">
         <div className="border p-4 mt-5" style={{ width: '400px' }}>
-          <h2 className="text-center mb-4">Login</h2>
+          <h2 className="text-center mb-4">Admin Login</h2>
           {error && <div className="alert alert-danger">{error}</div>}
           <form onSubmit={handleSubmit}>
             <div className="mb-3">

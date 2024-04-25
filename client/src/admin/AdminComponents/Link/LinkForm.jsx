@@ -34,22 +34,34 @@ const NewLinkForm = () => {
         setInvalidFields({});
         const errors = {};
         if (formData.title.length === 0) {
-            toast.error('Please input your title');
             errors.title = "Please input your title";
-          }
-        if (formData.content.length === 0) {
-            toast.error('Please input your content');
-            errors.content = "Please input your content";
-        }
-        if (formData.author.length === 0) {
-            toast.error('Please input your name');
-            errors.author = "Please input your name";
-        }
-        if (!thumbnail || !thumbnail.type.startsWith("image/")){
-            toast.error('Please input a valid image');
-            errors.author = "Please input a valid image";
+        } else if (formData.title.length < 5) { 
+            errors.title = "Title must be at least 5 characters long";
         }
 
+        if (formData.content.length === 0) {
+            errors.content = "Please input your content";
+        } else if (formData.content.length < 20) { 
+            errors.content = "Content must be at least 20 characters long";
+        }
+
+        if (formData.author.length === 0) {
+            errors.author = "Please input your name";
+        } else if (/\d/.test(formData.author)) { 
+            errors.author = "Name cannot contain numbers";
+        }
+        if (!thumbnail) {
+            errors.thumbnail = "Please upload an image";
+        } else {
+            const maxSizeInBytes = 1 * 1024 * 1024; // 1MB
+        
+            console.log("Image Type:", thumbnail.type);
+            console.log("Image Size:", thumbnail.size);
+            if (thumbnail.size > maxSizeInBytes) {
+                errors.thumbnail = "Image size exceeds the maximum allowed size (1MB)";
+            }
+        }
+        
         setInvalidFields(errors);
 
         if (Object.keys(errors).length > 0) {
@@ -94,20 +106,20 @@ const NewLinkForm = () => {
     return (
         <form ref={formRef} onSubmit={handleSubmit} className="needs-validation" noValidate>
             <div className="mb-3">
-                <label htmlFor="title" className="form-label text-white">Title:</label>
+                <label htmlFor="title" className="form-label">Title:</label>
                 <input
                     type="text"
-                    className="form-control"
+                    className={`form-control ${invalidFields.title ? 'is-invalid' : ''}`}
                     id="title"
                     name="title"
                     value={formData.title}
                     onChange={handleChange}
                     required
                 />
-                <div className="invalid-feedback">Please provide a title.</div>
+                {invalidFields.title && <div className="invalid-feedback">{invalidFields.title}</div>}
             </div>
             <div className="mb-3">
-                <label htmlFor="thumbnail" className="form-label text-white">Thumbnail</label>
+                <label htmlFor="thumbnail" className="form-label">Thumbnail</label>
                 <input
                     type="file"
                     className="form-control"
@@ -118,21 +130,23 @@ const NewLinkForm = () => {
                     accept='image/*'
                     required
                 />
+                {invalidFields.thumbnail && <div className="invalid-feedback">{invalidFields.thumbnail}</div>}
             </div>
             <div className="mb-3">
-                <label htmlFor="author" className="form-label text-white">Author:</label>
+                <label htmlFor="author" className="form-label">Author:</label>
                 <input
                     type="text"
-                    className="form-control"
+                    className={`form-control ${invalidFields.author ? 'is-invalid' : ''}`}
                     id="author"
                     name="author"
                     value={formData.author}
                     onChange={handleChange}
                     required
                 />
+                {invalidFields.author && <div className="invalid-feedback">{invalidFields.author}</div>}
             </div>
             <div className="mb-3">
-                <label htmlFor="content" className="form-label text-white">Content:</label>
+                <label htmlFor="content" className="form-label">Content:</label>
                 <ReactQuill
                     theme="snow"
                     value={formData.content}
@@ -148,8 +162,9 @@ const NewLinkForm = () => {
                             ['clean']
                         ],
                     }}
+                    className={invalidFields.content ? 'is-invalid' : ''}
                 />
-                <div className="invalid-feedback">Please provide content.</div>
+                {invalidFields.content && <div className="invalid-feedback">{invalidFields.content}</div>}
             </div>
             <div className="mb-3">
                 <label htmlFor="dateCreated" className="form-label text-white">Date Published:</label>
