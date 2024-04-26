@@ -166,11 +166,6 @@ button:focus-visible {
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
-@media (max-width: 500px) {
- .dropbtn{
-  
- }
-}
 
 .hover-effect {
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smoother animation */
