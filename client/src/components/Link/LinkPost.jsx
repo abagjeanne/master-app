@@ -81,7 +81,7 @@ const BlogPost = () => {
                   </div>
                 </div>
               </div>
-              <img src={blogPost.thumbnail.link} className="card-img-top mb-4 rounded" alt={blogPost.title} style={{margin: 'auto', display: 'block', objectFit: 'contain', maxWidth: '100%', border: '2px solid gray', maxHeight: '400px' }} />
+              <img src={blogPost.thumbnail.link} className="card-img-top mb-4 rounded" alt={blogPost.title} style={{margin: 'auto', display: 'block', objectFit: 'contain', maxWidth: '700px', border: '2px solid gray', maxHeight: '450px' }} />
               <div className="card-text m-4 text-justify" dangerouslySetInnerHTML={{ __html: blogPost.content }} />
             </div>
           </div>

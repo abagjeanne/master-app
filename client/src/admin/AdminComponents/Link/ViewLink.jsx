@@ -73,9 +73,9 @@ const ViewLink = () => {
     setShowConfirmationModal(false);
   };
 
-  const handleArchive = () => {
-    // Implement archive functionality
-  };
+  // const handleArchive = () => {
+  //   // Implement archive functionality
+  // };
 
   if (!viewLink) {
     return <div className="container text-center mt-5">Loading...</div>;
@@ -101,9 +101,9 @@ const ViewLink = () => {
             >
               <FontAwesomeIcon icon={faTrash} /> Delete
             </button>
-            <button className="btn btn-light m-1" onClick={handleArchive}>
+            {/* <button className="btn btn-light m-1" onClick={handleArchive}>
               <FontAwesomeIcon icon={faArchive} /> Archive
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="row justify-content-center">
