@@ -6,34 +6,14 @@ const ImageCropper = ({ image, onCropCancel, onCropDone }) => {
   const [zoom, setZoom] = useState(1);
 
   const [croppedArea, setCroppedArea] = useState(null);
-  const [aspectRatio, setAspectRatio] = useState({ width: 4, height: 3 });
+  const [aspectRatio, setAspectRatio] = useState(4 / 3);
 
   const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
   };
 
   const onAspectRatioChange = (event) => {
-    const value = event.target.value;
-    let newAspectRatio = { width: 1, height: 1 };
-
-    switch (value) {
-      case "2x2":
-        newAspectRatio = { width: 2, height: 2 };
-        break;
-      case "420x560":
-        newAspectRatio = { width: 420, height: 560 };
-        break;
-      case "1x1":
-        newAspectRatio = { width: 1, height: 1 };
-        break;
-      case "passportSize":
-        newAspectRatio = { width: 2, height: 2.5 };
-        break;
-      default:
-        break;
-    }
-
-    setAspectRatio(newAspectRatio);
+    setAspectRatio(event.target.value);
   };
 
   return (
@@ -41,7 +21,7 @@ const ImageCropper = ({ image, onCropCancel, onCropDone }) => {
       <div>
         <Cropper
           image={image}
-          aspect={aspectRatio.width / aspectRatio.height}
+          aspect={aspectRatio}
           crop={crop}
           zoom={zoom}
           onCropChange={setCrop}
@@ -59,14 +39,12 @@ const ImageCropper = ({ image, onCropCancel, onCropDone }) => {
 
       <div className="action-btns">
         <div className="aspect-ratios" onChange={onAspectRatioChange}>
-          <input type="radio" value="1x1" name="ratio" />
-          1 x 1
-          <input type="radio" value="2x2" name="ratio" />
-          2 x 2
-          <input type="radio" value="420x560" name="ratio" />
-          420 x 560
-          <input type="radio" value="passportSize" name="ratio" />
-          Passport Size (Ph)
+          <input type="radio" value={420 / 560} name="ratio" />
+          China Visa (33mm x 48mm)
+          <input type="radio" value={826/ 1062} name="ratio" />
+          Ph Passport (35mm x 45mm)
+          <input type="radio" value={51 / 51} name="ratio" />
+          2X2 and 1x1 ID Size (Box Size)
         </div>
 
         <div className="btn-container">

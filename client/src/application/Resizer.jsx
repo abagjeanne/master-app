@@ -1,9 +1,7 @@
-
 import React, { useState } from "react";
 import "./appcomp/App.css";
 import FileInput from "./appcomp/FileInput";
 import ImageCropper from "./appcomp/ImageCropper";
-
 
 function Resizer() {
   const [image, setImage] = useState("");
@@ -49,6 +47,15 @@ function Resizer() {
     setImage("");
   };
 
+  const downloadCroppedImage = () => {
+    const a = document.createElement("a");
+    a.href = imgAfterCrop;
+    a.download = "cropped_image.jpg";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   return (
     <div className="container">
       {currentPage === "choose-img" ? (
@@ -62,7 +69,7 @@ function Resizer() {
       ) : (
         <div>
           <div>
-            <img src={imgAfterCrop} className="cropped-img" />
+            <img src={imgAfterCrop} className="cropped-img" alt="Cropped" />
           </div>
           <button
             onClick={() => {
@@ -81,6 +88,13 @@ function Resizer() {
             className="btn"
           >
             New Image
+          </button>
+
+          <button
+            onClick={downloadCroppedImage}
+            className="btn"
+          >
+            Download Cropped Image
           </button>
         </div>
       )}
