@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./appcomp/App.css";
+import { Link } from "react-router-dom";
 import FileInput from "./appcomp/FileInput";
 import ImageCropper from "./appcomp/ImageCropper";
 
@@ -57,7 +57,16 @@ function Resizer() {
   };
 
   return (
-    <div className="container">
+    <div className="m-5">
+        <Link
+            to="#"
+            className="rbtn rbtn-outline"
+            onClick={() => setCurrentPage("choose-img")}
+          >
+            Back
+        </Link>
+    <div className="r-container ">
+
       {currentPage === "choose-img" ? (
         <FileInput onImageSelected={onImageSelected} />
       ) : currentPage === "crop-img" ? (
@@ -68,36 +77,41 @@ function Resizer() {
         />
       ) : (
         <div>
-          <div>
-            <img src={imgAfterCrop} className="cropped-img" alt="Cropped" />
+          {/* <Link
+            to="#"
+            className="rbtn rbtn-outline"
+            onClick={() => setCurrentPage("choose-img")}
+          >
+            Back
+          </Link> */}
+
+            <div className="cropped-img-container">
+              <img
+                src={imgAfterCrop}
+                className="cropped-img"
+                alt="Cropped"
+              />
+            </div>
+            <button onClick={() => setCurrentPage("crop-img")} className="rbtn">
+              Crop
+            </button>
+
+            <button
+              onClick={() => {
+                setCurrentPage("choose-img");
+                setImage("");
+              }}
+              className="rbtn"
+            >
+              New Image
+            </button>
+
+            <button onClick={downloadCroppedImage} className="rbtn">
+              Download Cropped Image
+            </button>
           </div>
-          <button
-            onClick={() => {
-              setCurrentPage("crop-img");
-            }}
-            className="btn"
-          >
-            Crop
-          </button>
-
-          <button
-            onClick={() => {
-              setCurrentPage("choose-img");
-              setImage("");
-            }}
-            className="btn"
-          >
-            New Image
-          </button>
-
-          <button
-            onClick={downloadCroppedImage}
-            className="btn"
-          >
-            Download Cropped Image
-          </button>
-        </div>
       )}
+    </div>
     </div>
   );
 }
