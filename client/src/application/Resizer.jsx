@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import GDSLogo from '../assets/GDS Travel.png';
-import Upload from '../assets/upload.png';
+import UploadPlaceholder from '../assets/upload.png'; // Renamed for clarity
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
@@ -28,12 +28,21 @@ window.onclick = function(event) {
 }
 
 const Resizer = () => {
+  const [imageSrc, setImageSrc] = useState(UploadPlaceholder); // Initial image is the placeholder
+
   // Function to handle file selection
-    const handleFileSelect = (event) => {
-    // You can access the selected file using event.target.files[0]
-    const selectedFile = event.target.files[0];
-    console.log(selectedFile);
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImageSrc(reader.result); // Set image source to the uploaded image
+      };
+      reader.readAsDataURL(file);
+    }
   };
+
+
   return(
     <div>
       <Header/>
@@ -58,8 +67,8 @@ const Resizer = () => {
           <div className='neu_box m-5' >
             <div className='row'style={{padding:70, paddingInline:100}}>
               <div className='col-md-5 mb-1'style={{ textAlign: 'center' }}>
-                <img src={Upload} style={{width:100}}></img>
-                <h6 style= {{textAlign: 'center', marginTop:20, marginBottom: 20}}>Upload Image</h6>
+                <img src={imageSrc} style={{width:100}}></img>
+                {imageSrc === UploadPlaceholder && <h6 style={{ textAlign: 'center', marginTop: 20, marginBottom: 20 }}>Upload Image</h6>}
               </div>
               <div className='col-md-7' style ={{display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign:'center'}}>
                 <input type="file" accept="image/jpeg, image/png" onChange={handleFileSelect} id="fileInput" style={{width: 250}} />
