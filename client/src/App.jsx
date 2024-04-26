@@ -214,7 +214,9 @@ function App() {
           path="/gdsintl-Resizer"
           element={
             <>
+              <Header/>
               <Resize />
+              <Footer />
             </>
           }
         />

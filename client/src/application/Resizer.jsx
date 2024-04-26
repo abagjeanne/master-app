@@ -1,114 +1,91 @@
-import React, {useState} from 'react';
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
-import GDSLogo from '../assets/GDS Travel.png';
-import UploadPlaceholder from '../assets/upload.png'; // Renamed for clarity
 
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
+import React, { useState } from "react";
+import "./appcomp/App.css";
+import FileInput from "./appcomp/FileInput";
+import ImageCropper from "./appcomp/ImageCropper";
 
-function handleDropdownClick(event) {
-  const selectedOption = event.target.textContent;
-  document.getElementById("selectedSize").textContent = selectedOption;
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
+function Resizer() {
+  const [image, setImage] = useState("");
+  const [currentPage, setCurrentPage] = useState("choose-img");
+  const [imgAfterCrop, setImgAfterCrop] = useState("");
 
-const Resizer = () => {
-  const [imageSrc, setImageSrc] = useState(UploadPlaceholder); // Initial image is the placeholder
-
-  // Function to handle file selection
-  const handleFileSelect = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImageSrc(reader.result); // Set image source to the uploaded image
-      };
-      reader.readAsDataURL(file);
-    }
+  const onImageSelected = (selectedImg) => {
+    setImage(selectedImg);
+    setCurrentPage("crop-img");
   };
 
+  const onCropDone = (imgCroppedArea) => {
+    const canvasEle = document.createElement("canvas");
+    canvasEle.width = imgCroppedArea.width;
+    canvasEle.height = imgCroppedArea.height;
 
-  return(
-    <div>
-      <Header/>
-      <div>
-      <div className='container text-center mt-5'>
-        <div className='row'>
-          <div className='col'>
-            <img src={GDSLogo} style={{width: 400, height: 100 }} alt="GDS Logo" />
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col mt-3 mb-5'>
-            <h5>GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED</h5>
-          </div>
-        </div>
-      </div>
-      </div>
+    const context = canvasEle.getContext("2d");
 
-      {/*Content */}
-      <div className='container-fluid ' style = {{paddingBottom:35}}>
-        <div className='parent_container'>
-          <div className='neu_box m-5' >
-            <div className='row'style={{padding:70, paddingInline:100}}>
-              <div className='col-md-5 mb-1'style={{ textAlign: 'center' }}>
-                <img src={imageSrc} style={{width:100}}></img>
-                {imageSrc === UploadPlaceholder && <h6 style={{ textAlign: 'center', marginTop: 20, marginBottom: 20 }}>Upload Image</h6>}
-              </div>
-              <div className='col-md-7' style ={{display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign:'center'}}>
-                <input type="file" accept="image/jpeg, image/png" onChange={handleFileSelect} id="fileInput" style={{width: 250}} />
-              </div>
-            </div>           
-          </div>
-          <div className='neu_box mb-5' style={{paddingInline:100}}>
-              <div className='row'>
-                  <h3 className="my-5"style={{textAlign: 'center',fontWeight: 'bold', marginBottom:30, marginTop:30}}>Image Option:</h3> 
-              </div>
-              <div className='row mb-3' style ={{display: 'flex', textAlign:'center'}}>
-                <div className='col my-2'>
-                  <div className='dropdown '>
-                  <button onClick={handleDropdownClick} className="dropbtn" style={{width:170}}> 
-                    <span id="selectedSize">Select Size -➤</span> </button>
-                    <div id="myDropdown" className="dropdown-content">
-                      <a href="#">2 x 2</a>
-                      <a href="#">1 x 1</a>
-                      <a href="#">Passport Size</a>
-                    </div>
-                  </div>
-                  
-                </div>
-                <div className='col my-2'>
-                  <button className='select' style={{padding: 16}}>Select</button>
-                </div>
-              </div>
-              <div className='row'>
-                <div className='col'style={{ textAlign: 'center' }}>
-                  <button class='my-5'>Download</button>
-                </div>
-            </div>
+    let imageObj1 = new Image();
+    imageObj1.src = image;
+    imageObj1.onload = function () {
+      context.drawImage(
+        imageObj1,
+        imgCroppedArea.x,
+        imgCroppedArea.y,
+        imgCroppedArea.width,
+        imgCroppedArea.height,
+        0,
+        0,
+        imgCroppedArea.width,
+        imgCroppedArea.height
+      );
 
+      const dataURL = canvasEle.toDataURL("image/jpeg");
+
+      setImgAfterCrop(dataURL);
+      setCurrentPage("img-cropped");
+    };
+  };
+
+  const onCropCancel = () => {
+    setCurrentPage("choose-img");
+    setImage("");
+  };
+
+  return (
+    <div className="container">
+      {currentPage === "choose-img" ? (
+        <FileInput onImageSelected={onImageSelected} />
+      ) : currentPage === "crop-img" ? (
+        <ImageCropper
+          image={image}
+          onCropDone={onCropDone}
+          onCropCancel={onCropCancel}
+        />
+      ) : (
+        <div>
+          <div>
+            <img src={imgAfterCrop} className="cropped-img" />
           </div>
+          <button
+            onClick={() => {
+              setCurrentPage("crop-img");
+            }}
+            className="btn"
+          >
+            Crop
+          </button>
+
+          <button
+            onClick={() => {
+              setCurrentPage("choose-img");
+              setImage("");
+            }}
+            className="btn"
+          >
+            New Image
+          </button>
         </div>
-      </div>
-      <Footer/>
+      )}
     </div>
-  )
-
+  );
 }
 
-export default Resizer
+export default Resizer;
