@@ -50,8 +50,10 @@ const BlogPost = () => {
   const formattedDate = format(new Date(blogPost.dateCreated), 'MMMM dd, yyyy');
 
   return (
-    <div className="container my-5"><Link to="#" className="btn btn-outline-primary mb-3" onClick={() => window.history.back()}>
-    <FontAwesomeIcon icon={faArrowLeft} className="mr-2" /> Back</Link>
+    <div className="container my-5">
+      <Link to="#" className="btn btn-outline-primary mb-3" onClick={() => window.history.back()}>
+        <FontAwesomeIcon icon={faArrowLeft} className="mr-2" /> Back
+      </Link>
       <div className="row justify-content-center">
         <div className="col-md-15">
           <div className="card shadow-lg">
@@ -79,7 +81,7 @@ const BlogPost = () => {
                   </div>
                 </div>
               </div>
-              <img src={blogPost.thumbnail.link} className="card-img-top mb-4 rounded" alt={blogPost.title} style={{ objectFit: 'cover', height: '500px', border: '2px gray' }} />
+              <img src={blogPost.thumbnail.link} className="card-img-top mb-4 rounded" alt={blogPost.title} style={{margin: 'auto', display: 'block', objectFit: 'contain', maxWidth: '100%', border: '2px solid gray', maxHeight: '400px' }} />
               <div className="card-text m-4 text-justify" dangerouslySetInnerHTML={{ __html: blogPost.content }} />
             </div>
           </div>

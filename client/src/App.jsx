@@ -6,6 +6,7 @@ import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import Main from "./components/Main.jsx";
 import Company from "./components/Companies.jsx";
+import Scroll from "./components/Scroll.jsx";
 import Links from "./components/Link/Links.jsx";
 import Information from "./components/Information.jsx";
 import About from "./components/AboutUs.jsx";
@@ -44,6 +45,7 @@ function App() {
               <LinkPrev />
               <Information />
               <Footer />
+              <Scroll />
             </>
           }
         />
@@ -54,6 +56,7 @@ function App() {
             <>
               <Header />
               <Company />
+              
               <Footer />
             </>
           }
@@ -66,6 +69,7 @@ function App() {
               <Header />
               <Links />
               <Footer />
+              <Scroll />
             </>
           }
         />
@@ -77,6 +81,7 @@ function App() {
               <Header />
               <Information />
               <Footer />
+              <Scroll />
             </>
           }
         />
@@ -88,6 +93,7 @@ function App() {
               <Header />
               <About />
               <Footer />
+              <Scroll />
             </>
           }
         />
@@ -99,6 +105,7 @@ function App() {
               <Header />
               <Contact />
               <Footer />
+              <Scroll />
             </>
           }
         />

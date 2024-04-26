@@ -50,30 +50,29 @@ const Main = () => {
                   <img src={link.thumbnail.link} className="card-img-top" alt="Blog Post" style={{ objectFit: 'cover', height: '200px' }} />
                   <div className="card-body">
                     <h5 className="card-title text-capitalize"><strong>{link.title}</strong></h5>
-                    {/* Use dangerouslySetInnerHTML to render HTML content */}
-                    <p className="card-text" dangerouslySetInnerHTML={{ __html: link.content ? link.content.substring(0,20) + "..." : '' }} />
-
+                    <p className="card-text" dangerouslySetInnerHTML={{ __html: link.content ? link.content.substring(0, 20) + "..." : '' }} />
                   </div>
                   <div className="card-footer bg-transparent border-0 d-flex justify-content-between">
                     <div>
                       <small className="text-muted text-capitalize mx-1 bold">{link.author}</small>
                       <small className="text-muted mx-1">●</small>
-                      <small className="text-muted">{formatDistanceToNow(new Date(link.dateCreated))} ago</small> {/* Format date */}
+                      <small className="text-muted">{formatDistanceToNow(new Date(link.dateCreated))} ago</small>
                     </div>
                   </div>
-                  {/* <Link to={`/blog/${link._id}`} className="text-center my-2">Read More</Link>  */}
                 </div>
               </Link>
             </div>
           ))}
         </div>
       )}
+      {blogData.length > 0 && (
         <div className="text-center mt-5">
           <Link to="/links" style={{ textDecoration: 'none' }}>
             <strong>View More Links </strong>
             <FontAwesomeIcon icon={faChevronRight} />
           </Link>
         </div>
+      )}
     </div>
   );
 };

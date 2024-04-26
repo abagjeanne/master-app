@@ -183,19 +183,27 @@ button:focus-visible {
 
 
 .nav-link.btn {
-  color: #6C7293; 
-  margin-right: 0.5rem;
-  
+  color: #919191; 
+  /* margin-right: 0.5rem; */
+  width: 100%;
+  display: flex;
+  justify-content:left;
+  align-items: center;
 }
 
 .nav-link.btn.active {
-  color: #ffff; /* Background color when active */
-  background-color: #0F1015;
+  color: #6C50F3;
+  /* background-color: #0F1015; */
+  font-weight: bolder;
+  width: 100%;
 }
 
 .nav-link.btn:hover {
-  background-color: #0F1015; /* Background color on hover */
-  color: #ffffff; /* Text color on hover */
+  background-color: #b0b0b5; 
+  width: 100%;
+  color: #919191;
+  font-weight: bold;
+
 }
 
 .icon-circle {
@@ -205,7 +213,7 @@ button:focus-visible {
   width: 2rem; /* Adjust size as needed */
   height: 2rem; /* Adjust size as needed */
   border-radius: 50%;
-  background-color: #2A2D3A; /* Your custom background color */
+  background-color: #ffffff; /* Your custom background color */
 }
 
 .confirmation-modal {
@@ -243,3 +251,30 @@ button:focus-visible {
   background-color: #d32f2f;
 }
 
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #007bff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-to-top-btn:hover {
+  background-color: #0056b3;
+}
+
+.no-links-message {
+  display: flex;
+  justify-content: center;
+}

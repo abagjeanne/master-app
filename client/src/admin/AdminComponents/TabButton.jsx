@@ -10,7 +10,7 @@ function TabButton({ label, icon, onClick, isActive }) {
       >
         {icon && (
           <span className="icon-circle me-2">
-            <FontAwesomeIcon icon={icon} className="text-white" />
+            <FontAwesomeIcon icon={icon} style={{color:"#6C50F3"}} />
           </span>
         )} {/* Render the icon if provided */}
         {label}

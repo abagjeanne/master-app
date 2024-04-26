@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faQuestionCircle, faPlus, faComment, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'; // Add faSignOutAlt
 import axios from 'axios';
-import GDSLogo from '../assets/3.png';
+import GDSLogo from '../assets/GDS.png';
 import TabButton from "./AdminComponents/TabButton"
 import LinkCard from "./AdminComponents/Link/LinkCard"
 import FAQCard from "./AdminComponents/FAQ/FAQCard"
@@ -91,7 +91,7 @@ const Dashboard = () => {
                     <TabButton label="Add New Link" icon={faPlus} onClick={() => handleTabChange('Add New Link')} isActive={activeTab === 'Add New Link'} />
                     <TabButton label="Add New FAQs" icon={faComment} onClick={() => handleTabChange('Add New FAQs')} isActive={activeTab === 'Add New FAQs'} />
                 </div>
-                <div className="d-flex justify-content-center flex-column mt-auto">
+                <div className="d-flex justify-content-center flex-column mt-auto mb-3">
                     <button className="btn btn-danger w-100" onClick={handleSignOut}>
                         <FontAwesomeIcon icon={faSignOutAlt} /> Sign Out
                     </button>
