@@ -30,14 +30,14 @@ const GDS = () => {
         <div className='parent_container'>
           <Link to = '/gdsintl-Resizer'>
             <div className='child_containers'>
-            <img src = {Enhance} style={{ marginRight:20,marginBottom: 30,height:50}}></img>
+            <img src = {Resize} style={{margin: 'auto', height:50}}></img>
             <div style={{textAlign: 'center'}}>IMAGE CROPPING <br/>AND RESIZING</div>
             </div>
           </Link>
           <Link to = '/gdsintl-Enhancer'>
             <div className='child_containers'>
-              <img src = {Resize} style={{height:50}}></img>
-              <div style={{textAlign: 'center', marginLeft: 15}}>IMAGE ENHANCING AND BACKGROUND REMOVER</div>
+              <img src = {Enhance} style={{marginRight: 3, height:50}}></img>
+              <div style={{textAlign: 'center'}}>IMAGE BACKGROUND REMOVER</div>
             </div>
           </Link>
         <div className='child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
