@@ -73,7 +73,7 @@ const Remover = () => {
                                 onClick={handleFileUpload}
                                 className="bg-purple-600 p-2 rounded mt-2"
                             >
-                                Remove 
+                                 Remove Background 
                             </button>
                         ) : (
                             <button

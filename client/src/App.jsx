@@ -225,7 +225,9 @@ function App() {
           path="/gdsintl-Enhancer"
           element={
             <>
+              <Header/>
               <Enhance />
+              <Footer />
             </>
           }
         />
