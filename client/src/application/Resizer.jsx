@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import FileInput from "./appcomp/FileInput";
 import ImageCropper from "./appcomp/ImageCropper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesomeIcon
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 function Resizer() {
   const [image, setImage] = useState("");
@@ -57,16 +59,8 @@ function Resizer() {
   };
 
   return (
-    <div className="m-5">
-        <Link
-            to="#"
-            className="rbtn rbtn-outline"
-            onClick={() => setCurrentPage("choose-img")}
-          >
-            Back
-        </Link>
+    <div className="">
     <div className="r-container ">
-
       {currentPage === "choose-img" ? (
         <FileInput onImageSelected={onImageSelected} />
       ) : currentPage === "crop-img" ? (
@@ -77,14 +71,6 @@ function Resizer() {
         />
       ) : (
         <div>
-          {/* <Link
-            to="#"
-            className="rbtn rbtn-outline"
-            onClick={() => setCurrentPage("choose-img")}
-          >
-            Back
-          </Link> */}
-
             <div className="cropped-img-container">
               <img
                 src={imgAfterCrop}
@@ -92,10 +78,12 @@ function Resizer() {
                 alt="Cropped"
               />
             </div>
+            <Link to="#" className="rbtn rbtn-outline mb-3" onClick={() => window.history.back()}>
+            <FontAwesomeIcon icon={faArrowLeft} className="mr-2" /> Back
+            </Link>
             <button onClick={() => setCurrentPage("crop-img")} className="rbtn">
-              Crop
+              Choose Different Size
             </button>
-
             <button
               onClick={() => {
                 setCurrentPage("choose-img");
@@ -103,9 +91,8 @@ function Resizer() {
               }}
               className="rbtn"
             >
-              New Image
+              Crop New Image
             </button>
-
             <button onClick={downloadCroppedImage} className="rbtn">
               Download Cropped Image
             </button>
