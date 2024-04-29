@@ -1,84 +1,106 @@
-import React, { useState } from 'react';
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
-import GDSLogo from '../assets/GDS Travel.png';
-import Upload from '../assets/upload.png';
+import React, { useState } from "react";
+import axios from 'axios';
+import { FaFileDownload } from "react-icons/fa";
 
-const Enhancer = () => {
-  const [removeBackground, setRemoveBackground] = useState(false);
-  const [enhancePhoto, setEnhancePhoto] = useState(false);
+const Remover = () => {
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [finalUrl, setFinalUrl] = useState(null);
+    const [isUpload, setIsUpload] = useState(false);
+    const [error, setError] = useState('');
 
-  const handleFileSelect = (event) => {
-    // You can access the selected file using event.target.files[0]
-    const selectedFile = event.target.files[0];
-    console.log(selectedFile);
-  };
-  return(
-    <div>
-      <Header/>
-        <div>
-          <div className='container text-center mt-5'>
-            <div className='row'>
-              <div className='col'>
-                <img src={GDSLogo} style={{width: 400, height: 100 }} alt="GDS Logo" />
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col mt-3 mb-5'>
-                <h5>GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED</h5>
-              </div>
-            </div>
-          </div>
-        </div>
+    const handleFileInputChange = (file) => {
+        setSelectedFile(file);
+    };
 
-        <div className='container-fluid ' style = {{paddingBottom:35}}>
-        <div className='parent_container'>
-          <div className='neu_box m-5' >
-            <div className='row'style={{padding:70, paddingInline:100}}>
-              <div className='col-md-5 mb-1'style={{ textAlign: 'center' }}>
-                <img src={Upload} style={{width:100}}></img>
-                <h6 style= {{textAlign: 'center', marginTop:20, marginBottom: 20}}>Upload Image</h6>
-              </div>
-              <div className='col-md-7' style ={{display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign:'center'}}>
-                <input type="file" accept="image/jpeg, image/png" onChange={handleFileSelect} id="fileInput" style={{width: 250}} />
-              </div>
-            </div>           
-          </div>
-          
-          <div className='neu_box' style={{ paddingInline: 100 }}>
-            <div className='row'>
-              <h3 style={{ textAlign: 'center', fontWeight: 'bold', marginBottom: 30, marginTop: 30, paddingInline: 20 }}>Image Option:</h3>
-            </div>
-            <div className='row' style={{ marginBottom: 40 }}>
-              <div className='col'>
-                <div className='row mt-3 align-items-center'>
-                  <div className='col-auto'>
-                    <input style={{ width: 30, height: 40 }} type="checkbox" checked={removeBackground} onChange={() => setRemoveBackground(!removeBackground)} />
-                  </div>
-                  <div className='col'>
-                    <h4>Remove Background</h4>
-                  </div>
+    const handleFileUpload = async () => {
+        setIsUpload(true);
+
+        if (!selectedFile) {
+            console.error("No file selected");
+            setIsUpload(false);
+            setError("No file selected");
+            return;
+        }
+
+        if (!selectedFile.type.startsWith('image/')) {
+            console.error("Selected file is not an image");
+            setIsUpload(false);
+            setError("Selected file is not an image");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("image_file", selectedFile);
+
+        const api_key = "TQmMV7z65b8Ah2mT2cGzarrd";
+
+        try {
+            const response = await axios.post("https://api.remove.bg/v1.0/removebg", formData, {
+                headers: {
+                    "X-Api-Key": api_key,
+                },
+                responseType: 'blob',
+            });
+
+            const url = URL.createObjectURL(response.data);
+            setFinalUrl(url);
+        } catch (error) {
+            console.error("Error uploading file:", error);
+            setError("Unable to upload the image");
+        } finally {
+            setIsUpload(false);
+        }
+    };
+
+    return (
+        <div className="background w-screen h-screen">
+            <div className="remover_container text-slate-100 flex justify-evenly items-center flex-col w-screen h-screen md:flex-col lg:flex-col">
+                {error !== '' && <p>{error}</p>}
+                <div className="flex justify-center items-center flex-col h-1/2">
+                    <form className="info_container flex justify-between flex-col h-1/6 w-fit">
+                        <label htmlFor="userImg" className="info_text">Select a File</label>
+                        <input
+                            type="file"
+                            id="userImg"
+                            className="pb-7"
+                            onChange={(e) => handleFileInputChange(e.target.files?.[0] || null)}
+                            accept="image/*"
+                            required
+                        />
+                        {!isUpload ? (
+                            <button
+                                type="button"
+                                onClick={handleFileUpload}
+                                className="bg-purple-600 p-2 rounded mt-2"
+                            >
+                                 Remove Background 
+                            </button>
+                        ) : (
+                            <button
+                                type="button"
+                                className="bg-purple-300 p-2 rounded mt-2"
+                                disabled={true}
+                            >
+                                Removing...
+                            </button>
+                        )}
+                    </form>
+                    <div className="flex justify-center items-center flex-col mt-8 p-4" style={{ marginTop: '15%' }}>
+                        {finalUrl && (
+                            <div className="final_img_area w-fit grid place-items-center mb-2">
+                                <img src={finalUrl} alt="final_img" className="w-2/6 h-auto" />
+                            </div>
+                        )}
+                        {finalUrl && (
+                            <a href={finalUrl} download="Removed Background.png">
+                                <button className="bg-purple-600 p-2 rounded flex items-center m-1 w-full">Download <div className="px-2"><FaFileDownload /></div></button>
+                            </a>
+                        )}
+                    </div>
                 </div>
-                <div className='row mt-5 align-items-center'>
-                  <div className='col-auto'>
-                    <input style={{ width: 30, height: 40 }} type="checkbox" checked={enhancePhoto} onChange={() => setEnhancePhoto(!enhancePhoto)} />
-                  </div>
-                  <div className='col'>
-                    <h4>Enhance Photo</h4>
-                  </div>
-                </div>
-              </div>
             </div>
-            <div className='row'>
-              <button style={{ paddingInline: 50, marginBottom: 45 }}>Download</button>
-            </div>
-          </div>
-          </div>
         </div>
-      <Footer/>
-    </div>
-  )
+    );
+};
 
-}
-
-export default Enhancer
+export default Remover;
