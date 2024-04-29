@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { FaFileDownload } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Remover = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [finalUrl, setFinalUrl] = useState(null);
     const [isUpload, setIsUpload] = useState(false);
     const [error, setError] = useState('');
+    const [previewUrl, setPreviewUrl] = useState('');
 
     const handleFileInputChange = (file) => {
         setSelectedFile(file);
+        setPreviewUrl(file ? URL.createObjectURL(file) : '');
     };
 
     const handleFileUpload = async () => {
         setIsUpload(true);
+        
 
         if (!selectedFile) {
             console.error("No file selected");
@@ -50,32 +55,69 @@ const Remover = () => {
         } finally {
             setIsUpload(false);
         }
+        
     };
 
     return (
         <div className="background w-screen h-screen">
-            <div className="remover_container text-slate-100 flex justify-evenly items-center flex-col w-screen h-screen md:flex-col lg:flex-col">
-                {error !== '' && <p>{error}</p>}
-                <div className="flex justify-center items-center flex-col h-1/2">
-                    <form className="info_container flex justify-between flex-col h-1/6 w-fit">
-                        <label htmlFor="userImg" className="info_text">Select a File</label>
+            
+            <div className="container justify-content-center lg-shadow">
+                {error && <p>{error}</p>}
+                <div className="my-5 flex justify-center items-center flex-col h-1/2" style={{
+                    width: "100%",
+                    height: "100%",
+                    border: "2px dashed #ccc",
+                    borderRadius: "5px",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    padding:200,
+                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                }}>
+                   <div>
+                    {previewUrl && (
+                        <div className="preview_img_area w-fit grid place-items-center mb-2">
+                            <img src={previewUrl} alt="Preview" key={previewUrl} className="w-2/6 h-auto" />
+                        </div>
+                    )}
+                    </div>                      
+                        
+                    <div>
+                        {finalUrl && (
+                            <div className="final_img_area w-fit grid place-items-center mb-2">
+                                <img src={finalUrl} alt="final_img" className="w-2/6 h-auto" />
+                            </div>
+                        )}
+                        {finalUrl && (
+                            <a href={finalUrl} download="Removed Background.png">
+                                <button>Download <div className="px-2"><FaFileDownload /></div></button>
+                            </a>
+                        )}
+                    </div>
+                    <form style={{marginBottom:10}}>
+                    <label htmlFor="userImg" className="info_text"></label>
                         <input
                             type="file"
                             id="userImg"
-                            className="pb-7"
+                            className="pb-7 file-input"
                             onChange={(e) => handleFileInputChange(e.target.files?.[0] || null)}
                             accept="image/*"
                             required
+                            style={{display: 'none'}}
                         />
-                        {!isUpload ? (
-                            <button
+                         <label htmlFor="userImg" className="rbtn rbtn-outline" style={{ margin: "auto" }}>
+                         {selectedFile ? "Change Image" : "Upload a File"} <FontAwesomeIcon icon={faArrowUpFromBracket} className="ml-2" />
+                        </label>
+                        {selectedFile && !isUpload && (
+                            <button 
+                                style={{marginLeft: 10}}
                                 type="button"
                                 onClick={handleFileUpload}
                                 className="bg-purple-600 p-2 rounded mt-2"
                             >
-                                 Remove Background 
+                                Remove Background
                             </button>
-                        ) : (
+                        )}
+                        {isUpload && (
                             <button
                                 type="button"
                                 className="bg-purple-300 p-2 rounded mt-2"
@@ -85,18 +127,7 @@ const Remover = () => {
                             </button>
                         )}
                     </form>
-                    <div className="flex justify-center items-center flex-col mt-8 p-4" style={{ marginTop: '15%' }}>
-                        {finalUrl && (
-                            <div className="final_img_area w-fit grid place-items-center mb-2">
-                                <img src={finalUrl} alt="final_img" className="w-2/6 h-auto" />
-                            </div>
-                        )}
-                        {finalUrl && (
-                            <a href={finalUrl} download="Removed Background.png">
-                                <button className="bg-purple-600 p-2 rounded flex items-center m-1 w-full">Download <div className="px-2"><FaFileDownload /></div></button>
-                            </a>
-                        )}
-                    </div>
+
                 </div>
             </div>
         </div>
