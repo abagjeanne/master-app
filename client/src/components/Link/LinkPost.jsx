@@ -8,7 +8,8 @@ import { format } from 'date-fns';
 const BlogPost = () => {
   const { id } = useParams();
   const [blogPost, setBlogPost] = useState(null);
-
+  const [comment, setComment] = useState('');
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const fetchBlogPost = async () => {
@@ -26,6 +27,21 @@ const BlogPost = () => {
     fetchBlogPost();
   }, [id]);
 
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`http://localhost:8008/api/blog/comment/${id}`, { comment });
+      if (response.status === 200) {
+        const updatedComments = await axios.get(`http://localhost:8008/api/blog/comments/${id}`);
+        setComments(updatedComments.data);
+        setComment('');
+      } else {
+        console.error("Failed to submit comment", response.status);
+      }
+    } catch (error) {
+      console.error("Error submitting comment:", error);
+    }
+  };
 
   if (!blogPost) {
     return <div className="container text-center mt-5">Loading...</div>;
@@ -71,7 +87,7 @@ const BlogPost = () => {
           </div>
         </div>
       </div>
-      {/* <div className="mt-5 card shadow-lg p-3">
+      <div className="mt-5 card shadow-lg p-3">
         <h3 className="mb-3">Leave a Comment</h3>
         <form onSubmit={handleSubmitComment}>
           <div className="form-group">
@@ -86,7 +102,7 @@ const BlogPost = () => {
           </div>
           <button type="submit" className="mt-3 btn btn-primary">Submit</button>
         </form>
-      </div> */}
+      </div>
     </div>
   );
 };
