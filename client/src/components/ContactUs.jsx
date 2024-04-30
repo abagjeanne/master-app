@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import ContactCard from "./ContactCard";
 import { ToastContainer, toast } from "react-toastify";
-import axios from 'axios'
+import axios from "axios";
 
 import QR from "../assets/qrsample.png";
 import Profile from "../assets/profile.jpg";
@@ -56,7 +56,7 @@ const Contact = () => {
 
   return (
     <div className="p-5 py-xl-5">
-      <ToastContainer/>
+      <ToastContainer />
       <div className="row justify-content-center">
         <div className="col-md-8 text-center">
           <h2 className="mb-3" style={{ fontSize: "27px" }}>
@@ -148,7 +148,7 @@ const Contact = () => {
               <div className="mb-3">
                 <input
                   type="text"
-                  className='form-control'
+                  className="form-control"
                   placeholder="Name/PC Number"
                   name="sender"
                   value={formData.sender}
@@ -158,7 +158,7 @@ const Contact = () => {
               </div>
               <div className="mb-3">
                 <select
-                  className='form-select'
+                  className="form-select"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
@@ -174,13 +174,22 @@ const Contact = () => {
                   <option value="Supernova Innovation Incorporated">
                     Supernova Innovation Incorporated
                   </option>
+                  <option value="GDS International Travel Agency Incorporated">
+                    GDS International Travel Agency Incorporated
+                  </option>
+                  <option value="Voltion Motors Philippines">
+                    Voltion Motors Philippines
+                  </option>
+                  <option value="Starlight Business Consulting Services Incorporated">
+                    Starlight Business Consulting Services Incorporated
+                  </option>
                   {/* Add more options as needed */}
                 </select>
               </div>{" "}
               <div className="mb-3">
                 <input
                   type="text"
-                  className='form-control'
+                  className="form-control"
                   placeholder="Message Title"
                   name="cTitle"
                   value={formData.cTitle}
@@ -189,7 +198,7 @@ const Contact = () => {
               </div>
               <div className="mb-3">
                 <textarea
-                  className='form-control'
+                  className="form-control"
                   placeholder="Message Content"
                   name="cContent"
                   value={formData.cContent}
