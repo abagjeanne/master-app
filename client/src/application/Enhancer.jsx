@@ -1,84 +1,183 @@
-import React, { useState } from 'react';
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
-import GDSLogo from '../assets/GDS Travel.png';
-import Upload from '../assets/upload.png';
+import React, { useState, useRef } from "react";
+import axios from 'axios';
+import { FaFileDownload } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faUndo } from "@fortawesome/free-solid-svg-icons";
 
-const Enhancer = () => {
-  const [removeBackground, setRemoveBackground] = useState(false);
-  const [enhancePhoto, setEnhancePhoto] = useState(false);
 
-  const handleFileSelect = (event) => {
-    // You can access the selected file using event.target.files[0]
-    const selectedFile = event.target.files[0];
-    console.log(selectedFile);
-  };
-  return(
-    <div>
-      <Header/>
-        <div>
-          <div className='container text-center mt-5'>
-            <div className='row'>
-              <div className='col'>
-                <img src={GDSLogo} style={{width: 400, height: 100 }} alt="GDS Logo" />
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col mt-3 mb-5'>
-                <h5>GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED</h5>
-              </div>
-            </div>
-          </div>
-        </div>
+const Remover = () => {
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [finalUrl, setFinalUrl] = useState(null);
+    const [originalUrl, setOriginalUrl] = useState(null); // Keep track of the original image
+    const [isUpload, setIsUpload] = useState(false);
+    const [error, setError] = useState('');
+    const [previewUrl, setPreviewUrl] = useState('');
+    const canvasRef = useRef(null);
+    const [whitened, setWhitened] = useState(false); // State to track if background is whitened
 
-        <div className='container-fluid ' style = {{paddingBottom:35}}>
-        <div className='parent_container'>
-          <div className='neu_box m-5' >
-            <div className='row'style={{padding:70, paddingInline:100}}>
-              <div className='col-md-5 mb-1'style={{ textAlign: 'center' }}>
-                <img src={Upload} style={{width:100}}></img>
-                <h6 style= {{textAlign: 'center', marginTop:20, marginBottom: 20}}>Upload Image</h6>
-              </div>
-              <div className='col-md-7' style ={{display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign:'center'}}>
-                <input type="file" accept="image/jpeg, image/png" onChange={handleFileSelect} id="fileInput" style={{width: 250}} />
-              </div>
-            </div>           
-          </div>
-          
-          <div className='neu_box' style={{ paddingInline: 100 }}>
-            <div className='row'>
-              <h3 style={{ textAlign: 'center', fontWeight: 'bold', marginBottom: 30, marginTop: 30, paddingInline: 20 }}>Image Option:</h3>
-            </div>
-            <div className='row' style={{ marginBottom: 40 }}>
-              <div className='col'>
-                <div className='row mt-3 align-items-center'>
-                  <div className='col-auto'>
-                    <input style={{ width: 30, height: 40 }} type="checkbox" checked={removeBackground} onChange={() => setRemoveBackground(!removeBackground)} />
-                  </div>
-                  <div className='col'>
-                    <h4>Remove Background</h4>
-                  </div>
+    const handleFileInputChange = (file) => {
+        setSelectedFile(file);
+        setPreviewUrl(file ? URL.createObjectURL(file) : '');
+        setFinalUrl(null);
+        setError('');
+    };
+
+    const handleFileUpload = async () => {
+        setIsUpload(true);
+        setError('');
+
+        if (!selectedFile) {
+            console.error("No file selected");
+            setIsUpload(false);
+            setError("No file selected");
+            return;
+        }
+
+        if (!selectedFile.type.startsWith('image/')) {
+            console.error("Selected file is not an image");
+            setIsUpload(false);
+            setError("Selected file is not an image");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("image_file", selectedFile);
+        const api_key = "TQmMV7z65b8Ah2mT2cGzarrd";
+
+        try {
+            const response = await axios.post("https://api.remove.bg/v1.0/removebg", formData, {
+                headers: {
+                    "X-Api-Key": api_key,
+                },
+                responseType: 'blob',
+            });
+
+            const url = URL.createObjectURL(response.data);
+            setOriginalUrl(url); // Set original image URL for undoing later
+            setFinalUrl(url);
+        } catch (error) {
+            console.error("Error uploading file:", error);
+            setError("Unable to upload the image");
+        } finally {
+            setIsUpload(false);
+        }
+    };
+
+    const whitenBackground = () => {
+        if (!finalUrl) return;
+
+        if (whitened) {
+            // If already whitened, then undo
+            setFinalUrl(originalUrl);
+            setWhitened(false);
+        } else {
+            // Whiten the background
+            const canvas = canvasRef.current;
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            img.src = finalUrl;
+
+            img.onload = () => {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.fillStyle = '#FFFFFF'; // White background
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+                
+                canvas.toBlob((blob) => {
+                    const newUrl = URL.createObjectURL(blob);
+                    setFinalUrl(newUrl);
+                    setWhitened(true);
+                });
+            };
+        }
+    };
+
+    return (
+        <div className="background w-screen h-screen">
+            <div className="container justify-content-center lg-shadow">
+                {error && <p>{error}</p>}
+                <div className="my-5 flex justify-center items-center flex-col h-1/2" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: '#EFECEC',
+                    border: "2px dashed #ccc",
+                    borderRadius: "5px",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    padding: 200,
+                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                }}>
+                    <div className="container justify-content-center lg-shadow" style={{ display: "flex", flexDirection: "row"}}>
+                        <div className="flex: 1">
+                            {previewUrl && (
+                                <div className="preview_img_area w-fit grid place-items-center mb-2">
+                                    <img src={previewUrl} alt="Preview" key={previewUrl} className="preview_img" />
+                                </div>
+                            )}
+                            <form>
+                                <label htmlFor="userImg" className="info_text"></label>
+                                <input
+                                    type="file"
+                                    id="userImg"
+                                    className="pb-7 file-input"
+                                    onChange={(e) => handleFileInputChange(e.target.files?.[0] || null)}
+                                    accept="image/*"
+                                    required
+                                    style={{ display: 'none' }}
+                                />
+                                <label htmlFor="userImg" className="rbtn rbtn-outline" style={{ borderRadius: '5px', paddingInline: '40px' }}>
+                                    {selectedFile ? "Change Image" : "Upload an Image"} <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                                </label>
+                                {selectedFile && !isUpload && !finalUrl && (
+                                    <button
+                                        type="button"
+                                        onClick={handleFileUpload}
+                                        className="rbtn"
+                                        style={{ borderRadius: '5px' }}
+                                    >
+                                        Remove Background
+                                    </button>
+                                )}
+                                {isUpload && (
+                                    <button
+                                        type="button"
+                                        className="rbtn"
+                                        disabled={true}
+                                        style={{ borderRadius: '5px' }}
+                                    >
+                                        Processing...
+                                    </button>
+                                )}
+                            </form>
+                        </div>
+                        <div className="flex: 1">
+                            {finalUrl && (
+                                <div className="final_img_area w-fit grid place-items-center mb-2">
+                                    <img src={finalUrl} alt="final_img" className="final_img" />
+                                </div>
+                            )}
+                            {finalUrl && (
+                                <>
+                                    <a href={finalUrl} download="Removed Background.png">
+                                        <button className="rbtn" style={{ borderRadius: '5px' }}>
+                                            Download Image <FaFileDownload />
+                                        </button>
+                                    </a>
+                                    <button onClick={whitenBackground} className="rbtn" style={{ borderRadius: '5px' }}>
+                                        {whitened ? <><FontAwesomeIcon icon={faUndo} /></> : "Whiten Background"}
+                                    </button>
+
+                                </>
+                            )}
+                        </div>
+                    </div>
                 </div>
-                <div className='row mt-5 align-items-center'>
-                  <div className='col-auto'>
-                    <input style={{ width: 30, height: 40 }} type="checkbox" checked={enhancePhoto} onChange={() => setEnhancePhoto(!enhancePhoto)} />
-                  </div>
-                  <div className='col'>
-                    <h4>Enhance Photo</h4>
-                  </div>
-                </div>
-              </div>
+                <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
             </div>
-            <div className='row'>
-              <button style={{ paddingInline: 50, marginBottom: 45 }}>Download</button>
-            </div>
-          </div>
-          </div>
         </div>
-      <Footer/>
-    </div>
-  )
+    );
+};
 
-}
-
-export default Enhancer
+export default Remover;
