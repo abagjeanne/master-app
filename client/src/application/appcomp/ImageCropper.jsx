@@ -89,7 +89,7 @@ const ImageCropper = ({ image, onCropCancel, onCropDone }) => {
   };
 
   return (
-    <div className="r-container justify-content-center">
+    <div className="r-container justify-content-center" style={{margin:'0px'}}>
       <div className="justify-content-center row" style={{margin:'0px'}}>
         <div
           className="cropper justify-content-center"

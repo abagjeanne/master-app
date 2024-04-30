@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"; // Import Link from React Router
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faFileImage, faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 
+
 const FileInput = ({ onImageSelected }) => {
   const inputRef = useRef();
 
@@ -54,7 +55,6 @@ const FileInput = ({ onImageSelected }) => {
           borderRadius: "5px",
           textAlign: "center",
           cursor: "pointer",
-          marginBottom: "10px", // Adjusted spacing
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Added box-shadow
         }}
       >
