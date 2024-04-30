@@ -280,11 +280,12 @@ button:focus-visible {
 }
 
 .r-container{
-  height: 100vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  margin: 0%;
 }
 
 .cropper{
@@ -301,6 +302,19 @@ button:focus-visible {
 input[type='radio']{
   accent-color:#000000
 }
+
+.rbtn:hover {
+  /* background-color: #333333; */
+  border-color: #333333; 
+  filter: drop-shadow(0px 10px 10px gray);  
+}
+
+.rbtn-outline:hover {
+  color: black;
+  border-color: #333333; 
+  filter: drop-shadow(0px 10px 10px gray);  
+}
+
 .rbtn{
   font-size: 1rem;
   font-weight: 500;

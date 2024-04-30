@@ -4,6 +4,9 @@ import FileInput from "./appcomp/FileInput";
 import ImageCropper from "./appcomp/ImageCropper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesomeIcon
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import GDSLogo from '../assets/GDS Travel.png';
+
+
 
 function Resizer() {
   const [image, setImage] = useState("");
@@ -60,17 +63,29 @@ function Resizer() {
 
   return (
     <div className="">
-    <div className="r-container ">
-      {currentPage === "choose-img" ? (
-        <FileInput onImageSelected={onImageSelected} />
-      ) : currentPage === "crop-img" ? (
-        <ImageCropper
-          image={image}
-          onCropDone={onCropDone}
-          onCropCancel={onCropCancel}
-        />
-      ) : (
-        <div>
+      <div className='container text-center mt-5'>
+        <div className='row'>
+          <div className='col'>
+            <img src={GDSLogo} style={{width: 400, height: 100 }} alt="GDS Logo" />
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col mt-3'>
+            <h5>GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED</h5>
+          </div>
+        </div>
+      </div>
+      <div className="r-container ">
+        {currentPage === "choose-img" ? (
+          <FileInput onImageSelected={onImageSelected} />
+        ) : currentPage === "crop-img" ? (
+          <ImageCropper
+            image={image}
+            onCropDone={onCropDone}
+            onCropCancel={onCropCancel}
+          />
+        ) : (
+          <div>
             <div className="cropped-img-container">
               <img
                 src={imgAfterCrop}
@@ -79,7 +94,7 @@ function Resizer() {
               />
             </div>
             <Link to="#" className="rbtn rbtn-outline mb-3" onClick={() => window.history.back()}>
-            <FontAwesomeIcon icon={faArrowLeft} className="mr-2" /> Back
+              <FontAwesomeIcon icon={faArrowLeft} className="mr-2" /> Back to Home
             </Link>
             <button onClick={() => setCurrentPage("crop-img")} className="rbtn">
               Choose Different Size
@@ -97,8 +112,8 @@ function Resizer() {
               Download Cropped Image
             </button>
           </div>
-      )}
-    </div>
+        )}
+      </div>
     </div>
   );
 }
