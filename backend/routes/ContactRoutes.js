@@ -11,10 +11,10 @@ const {
 } = require("../controllers/ContactController.js");
 
 // Routes for Service
+router.post("/create", CreateContact);
+router.use(authToken);
 router.get("/", GetAllContactWithAuth);
 router.get("/:id", GetSpecificContactWithAuth);
-router.use(authToken);
-router.post("/create", CreateContact);
 router.patch("/edit/:id", EditInfoWithAuth);
 router.delete("/delete/:id", DeleteInfoWithAuth);
 

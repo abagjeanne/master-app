@@ -4,9 +4,10 @@ const cors = require('cors');
 const ConnectDB = require("./config/Database");
 
 const AdminRoutes = require("./routes/AdminRoutes");
-const Validate = require("./routes/ValidateRoutes")
-const Blog = require("./routes/BlogRoutes")
-const Info = require("./routes/InformationRoutes")
+const Validate = require("./routes/ValidateRoutes");
+const Blog = require("./routes/BlogRoutes");
+const Info = require("./routes/InformationRoutes");
+const Contact = require("./routes/ContactRoutes");
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use('/api/admin', AdminRoutes)
 app.use('/api/auth', Validate)
 app.use('/api/blog', Blog)
 app.use('/api/info', Info)
+app.use('/api/contact', Contact)
 
 app.listen(process.env.PORT, () =>
   console.log(`Server started on port ${process.env.PORT}`)
