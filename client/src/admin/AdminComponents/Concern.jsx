@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { formatDistanceToNow } from "date-fns";
 
 const Concern = ({ id }) => {
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [concernData, setConcernData] = useState();
+  const [concernData, setConcernData] = useState(null);
   const [formData, setFormData] = useState({
     sender: "",
     company: "",
@@ -15,9 +11,12 @@ const Concern = ({ id }) => {
     cContent: "",
     dateCreated: "",
   });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   useEffect(() => {
-    const fetchInfoData = async () => {
+    const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
         const headers = {
@@ -32,22 +31,23 @@ const Concern = ({ id }) => {
           setConcernData(response.data);
           setFormData({
             sender: response.data.sender,
-            company: response.data.company,
+            company: response.data.company, // Set company field
             cTitle: response.data.cTitle,
             cContent: response.data.cContent,
             dateCreated: response.data.dateCreated,
           });
         }
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        setError("Error fetching user data");
+        setLoading(false);
       }
     };
 
-    fetchInfoData();
+    fetchData();
   }, [id]);
 
-
-  const deleteUser = async () => {
+  const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
       const headers = {
@@ -59,115 +59,27 @@ const Concern = ({ id }) => {
         { headers }
       );
       if (response.status === 200) {
-        console.log("FAQ deleted successfully");
-        setShowConfirmationModal(false); // Close modal after deletion
+        setShowConfirmationModal(false);
       }
     } catch (error) {
-      console.error("Error deleting FAQ:", error);
+      setError("Error deleting FAQ");
     }
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
-    <div className={`card mb-3 `}>
-
-        <div className="card-header">
-          <div className="d-flex justify-content-between align-items-center">
-            {concernData && (
-              <>
-                <input
-                  type="text"
-                  name="question"
-                  id="question"
-                  className={`mb-0 form-control`}
-                  value={formData.cTitle}
-                  disabled
-                />
-              </>
-            )}
-          </div>
-        </div>
-        <div className="card-body">
-          {concernData && (
-            <>
-              <textarea
-                name="answer"
-                id="answer"
-                value={formData.cContent}
-                className={`form-control`}
-                disabled
-              />
-            </>
-          )}
-        </div>
-        <div className="card-body">
-          {concernData && (
-            <>
-              <textarea
-                name="answer"
-                id="answer"
-                value={formData.sender}
-                className={`form-control`}
-                disabled
-              />
-            </>
-          )}
-        </div>
-        <div className="card-body">
-          {concernData && (
-            <>
-              <textarea
-                name="answer"
-                id="answer"
-                value={new Date(formData.dateCreated).toLocaleString()}
-                className={`form-control`}
-              disabled
-              />
-            </>
-          )}
-        </div>
-        <div className="card-footer d-flex justify-content-between">
-          <button type="submit" className="btn btn-primary">
-            Save
-          </button>
-          <button type="button" className="btn btn-secondary">
-            Cancel
-          </button>
-        </div>
-
-      <div className="card-body">
-        {concernData && (
-          <div className="d-flex justify-content-between">
-            <div>
-              <h5 className="card-title">{concernData.question}</h5>
-              <p className="card-text">{concernData.answer}</p>
-            </div>
-            <div>
-              <button className="btn btn-primary m-1">
-                <FontAwesomeIcon icon={faPenToSquare} /> Edit
-              </button>
-              <button
-                className="btn btn-danger m-1"
-                onClick={() => setShowConfirmationModal(true)}
-              >
-                <FontAwesomeIcon icon={faTrash} /> Delete
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-
+    <div>
+      {/* Modal rendered conditionally */}
       {showConfirmationModal && (
-        <div className="confirmation-modal">
-          <h2>Are you sure you want to delete this FAQ?</h2>
+        <div className="confirmation-modal card-body">
+          <h2>Are you sure you want to delete this concern?</h2>
           <div className="button-container">
             <button
               type="button"
               className="mx-2 btn btn-danger"
-              onClick={deleteUser}
+              onClick={handleDelete}
             >
               Yes, Delete
             </button>
@@ -181,6 +93,29 @@ const Concern = ({ id }) => {
           </div>
         </div>
       )}
+
+      <div className="card p-3">
+        {concernData && (
+          <div className="d-flex justify-content-between">
+            <div>
+              <p>
+                <strong className="text-capitalize">{formData.sender}</strong> from {formData.company}:
+              </p>
+              <h5 className="card-title">{formData.cTitle}</h5>
+
+              <p className="card-text">{formData.cContent}</p>
+
+              <p>{formatDistanceToNow(new Date(formData.dateCreated))} ago</p>
+            </div>
+            <button
+              className="btn btn-danger"
+              onClick={() => setShowConfirmationModal(true)}
+            >
+              Delete
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

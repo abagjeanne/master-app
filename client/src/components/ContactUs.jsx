@@ -59,9 +59,7 @@ const Contact = () => {
       <ToastContainer />
       <div className="row justify-content-center">
         <div className="col-md-8 text-center">
-          <h2 className="mb-3" style={{ fontSize: "27px" }}>
-            Got Problems/Concerns?
-          </h2>
+          <h2 className="display-6" style={{fontWeight:'bold'}}>Got Problems/Concerns?</h2>
           <p className="mb-4" style={{ fontSize: "15px" }}>
             Please contact our IT Team with their given contact numbers and/or
             Social Media QR Codes presented here.
