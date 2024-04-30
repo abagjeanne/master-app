@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import WithoutAuth from '../../auth/WithoutAuth';
 
 const LoginPage = () => {
   const [userName, setUsername] = useState('');
@@ -24,7 +25,7 @@ const LoginPage = () => {
         setError('Invalid username or password');
       }
     } catch (error) {
-      setError('An error occurred. Please try again.');
+      setError('Invalid username or password. Please try again.');
     }
   };
 
@@ -53,4 +54,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default WithoutAuth(LoginPage);
