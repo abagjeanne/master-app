@@ -147,7 +147,7 @@ const Remover = () => {
                                         disabled={true}
                                         style={{ borderRadius: '5px' }}
                                     >
-                                        Removing...
+                                        Processing...
                                     </button>
                                 )}
                             </form>
