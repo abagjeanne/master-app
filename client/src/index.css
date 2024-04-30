@@ -362,3 +362,20 @@ input[type='radio']{
   font-weight: 500;
   flex-direction: column;
 }
+.msg{
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.705); /* Adjust box-shadow for a more pronounced effect */
+}
+
+.img-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease; 
+  object-fit: contain; /* Corrected */
+  width: 100px; /* Corrected */
+  height: 100px; /* Corrected */
+}
+
+.img-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.705); 
+  width: 150px;
+  height: 150px;
+}

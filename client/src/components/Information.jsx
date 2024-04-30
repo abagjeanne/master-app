@@ -5,8 +5,7 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 const FAQCard = () => {
   const [infoData, setInfo] = useState([]);
-  const [comment, setComment] = useState('');
-  const [comments, setComments] = useState([]);
+
 
   useEffect(() => {
     const fetchFAQs = async () => {
@@ -38,21 +37,7 @@ const FAQCard = () => {
     });
   };
 
-  const handleSubmitComment = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(`http://localhost:8008/api/blog/comment/${id}`, { comment });
-      if (response.status === 200) {
-        const updatedComments = await axios.get(`http://localhost:8008/api/blog/comments/${id}`);
-        setComments(updatedComments.data);
-        setComment('');
-      } else {
-        console.error("Failed to submit comment", response.status);
-      }
-    } catch (error) {
-      console.error("Error submitting comment:", error);
-    }
-  };
+
 
   return (
     <div>
@@ -81,22 +66,20 @@ const FAQCard = () => {
             </div>
           ))}
         </div>
-        <div className="mt-5 card shadow-lg p-3">
-        <h3 className="mb-3">Leave a Comment</h3>
-        <form onSubmit={handleSubmitComment}>
+        {/* <div className="mt-5 card shadow-lg p-3">
+        <h3 className="mb-3">Have concerns?</h3>
+        <form>
           <div className="form-group">
             <textarea
               className="form-control"
               rows="3"
               placeholder="Write your comment here"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
               required
             ></textarea>
           </div>
           <button type="submit" className="mt-3 btn btn-primary">Submit</button>
         </form>
-      </div>
+      </div> */}
       </div>
 
     </div>
