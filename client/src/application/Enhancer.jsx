@@ -2,9 +2,10 @@ import React, { useState, useRef } from "react";
 import axios from 'axios';
 import { FaFileDownload } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpFromBracket, faFileImage } from "@fortawesome/free-solid-svg-icons";
 import { faUndo } from "@fortawesome/free-solid-svg-icons";
 import GDSLogo from '../assets/GDS Travel.png';
+import Upload from '../assets/dfs.png';
 import { faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 
@@ -128,9 +129,13 @@ const Remover = () => {
          <button className="rbtn-outline" style={{ position: 'absolute', top: '10px', left: '10px'}} onClick={() => window.history.back()}>
             <FontAwesomeIcon icon={faArrowLeft} />
          </button>
-         <label>
-            Select an Image to Remove the Background
-         </label>
+          {!selectedFile && (
+          <div className="row justify-content-center">
+            <FontAwesomeIcon style={{fontSize:'50', padding:'20'}}icon={faFileImage} />
+            <label>Select an Image to Remove the Background</label>        
+         </div>
+          )}      
+
          <div className="container justify-content-center lg-shadow" style={{ display: "flex", flexDirection: "row"}}>   
             <div className="flex: 1"> 
               {previewUrl && (
@@ -150,7 +155,8 @@ const Remover = () => {
                             style={{ display: 'none' }}
                             />
                       <label htmlFor="userImg" className="rbtn rbtn-outline" style={{ borderRadius: '5px', paddingInline: '40px' }}>
-                        {selectedFile ? "Change Image" : "Upload a File"} <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                        <FontAwesomeIcon icon={faArrowUpFromBracket}/> {selectedFile ? " Change Image" : " Upload a File" } 
+
                       </label>
                         {selectedFile && !isUpload && !finalUrl && (
                           <button
