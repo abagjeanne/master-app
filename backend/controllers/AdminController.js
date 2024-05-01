@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const AdminModel = require("../models/AdminModel");
+const requireAuth = require('../utils/authToken');
 
 const GetAllAdmin = async (req, res) => {
   try {
