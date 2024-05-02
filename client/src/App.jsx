@@ -153,7 +153,9 @@ function App() {
           path="/gds"
           element={
             <>
-              <GDS />
+            <Header/>
+            <GDS />
+            <Footer/>
             </>
           }
         />

@@ -20,10 +20,10 @@ const Main = () => {
           </div>
         </div>
         <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+          <CompanyCard companyName="GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED" imgSrc={TravelLogo} imgLink='/gdsintl' />
           <CompanyCard companyName="GDS CAPITAL INCORPORATED" imgSrc={GDSLogo} imgLink='/gds' />
           <CompanyCard companyName="PHILIPPINE DRAGON MEDIA NETWORK CORPORATION" imgSrc={PDMNLogo} imgLink='/pdmn' />
           <CompanyCard companyName="SUPERNOVA INNOVATION INCORPORATED" imgSrc={SupernovaLogo} imgLink='/supernova' />
-          <CompanyCard companyName="GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED" imgSrc={TravelLogo} imgLink='/gdsintl' />
           <CompanyCard companyName="VOLTION MOTORS PHILIPPINES" imgSrc={VoltionLogo} imgLink='/voltion' />
           <CompanyCard companyName="STARLIGHT BUSINESS CONSULTING SERVICES INCORPORATED" imgSrc={StarlightLogo} imgLink='/starlight' />
           <CompanyCard companyName="FEILONG LEGAL" imgSrc={FeilongLogo} imgLink='/feilong'/>
