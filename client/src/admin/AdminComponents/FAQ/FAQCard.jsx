@@ -139,10 +139,10 @@ const FAQCard = ({ id }) => {
             ) : (
                 <div className="card-body">
                     {infoData && (
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex">
                             <div>
-                                <h5 className="card-title">{infoData.question}</h5>
-                                <p className="card-text">{infoData.answer}</p>
+                                <h5 className="card-title mx-3">{infoData.question}</h5>
+                                <p className="card-text mx-3" style={{ textAlign: 'justify' }}>{infoData.answer}</p>
                             </div>
                             <div>
                                 <button className="btn btn-primary m-1" onClick={toggleEdit}>

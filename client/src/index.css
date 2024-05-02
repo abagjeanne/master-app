@@ -507,8 +507,9 @@ input[type='radio']{
  .submit {
   font-family: inherit;
   font-size: 15px;
-  background: royalblue;
+  background: #F45164;
   color: white;
+  font-weight: bold;
   padding: 0.7em 1em;
   padding-left: 0.9em;
   display: flex;
@@ -566,4 +567,90 @@ input[type='radio']{
   cursor: pointer;
   font-weight:500
   
+}
+/* .active {
+  background-color: #74747485;
+  border-radius: 10px; 
+} */
+
+.signout {
+  --main-focus: #2d8cf0;
+  --font-color: #dedede;
+  --bg-color-sub: #F77E61;
+  --bg-color: #F45164;
+  --main-color: #dedede;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: background-color 0.3s ease; 
+  text-align: center;
+  /* Improved transition */
+}
+
+.signout,
+.signout__icon,
+.signout__text {
+  transition: transform 0.15s ease, color 0.3s ease; /* Adjust timing function and duration */
+}
+
+.signout .button__text {
+  transform: translateX(-5px);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.signout .button__icon {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signout .button__icon i {
+  font-size: 20px; 
+}
+
+.signout:hover {
+  background: var(--bg-color);
+  box-shadow: 6px 6px var(--main-color); /* Adjusted box-shadow on hover */
+}
+
+.signout:hover .button__text {
+  color: transparent;
+}
+
+.signout:hover .button__icon {
+  width: 100%;
+  transform: translateX(0);
+}
+
+.signout:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
+}
+.ql-toolbar .ql-stroke {
+  fill: none;
+  stroke: #efefef;
+}
+
+.ql-toolbar .ql-fill {
+  fill: #EFEFEF;
+  stroke: none;
+}
+
+.ql-toolbar .ql-picker {
+  color: #fff;
 }
