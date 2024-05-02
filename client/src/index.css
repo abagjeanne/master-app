@@ -557,3 +557,13 @@ input[type='radio']{
     transform: translateY(-0.1em);
   }
 }
+
+.enhance_box{
+  width: 500px;
+  background-color: #EFECEC;
+  border-radius: 20px;
+  box-shadow: 0 0.4rem #dfd9d9;
+  cursor: pointer;
+  font-weight:500
+  
+}
