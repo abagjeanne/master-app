@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import GDSLogo from '../assets/GDS Travel.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrop, faWandMagicSparkles, faUserXmark } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +8,6 @@ import {Link} from 'react-router-dom';
 const GDS = () => {
   return (
     <div>
-      <Header />
       <div className='container text-center mt-4'>
         <div className='row'>
           <div className='col'>
@@ -48,10 +45,8 @@ const GDS = () => {
               <div style={{margin:'auto',textAlign: 'center'}}>IMAGE ENHANCER</div>
             </div>
           </Link>
-        <div className='gds_int_child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -1,13 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import PDMNLogo from '../assets/PDMN.png';
 import { Link } from 'react-router-dom';
 
 const PDMN = () =>{
   return(
     <div>
-      <Header/>
       <div className='cons_pflex m-5'>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -24,7 +21,6 @@ const PDMN = () =>{
         <button className='rbtn' style={{paddingInline: 60, marginBottom: 50}}>Return To Home</button>
         </Link>
       </div>
-      <Footer/>
     </div>
   );
 };
