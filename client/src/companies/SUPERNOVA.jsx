@@ -1,13 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Supernovalogo from '../assets/Supernova.png';
 import { Link } from 'react-router-dom';
 
 const SUPERNOVA = () =>{
   return(
     <div>
-      <Header/>
       <div className='cons_pflex' style={{margin:33}}>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -24,7 +21,6 @@ const SUPERNOVA = () =>{
         <button className='rbtn' style={{paddingInline: 60, marginBottom: 50}}>Return To Home</button>
         </Link>
       </div>
-      <Footer/>
     </div>
   );
 };

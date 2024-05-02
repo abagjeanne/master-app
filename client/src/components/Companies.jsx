@@ -7,6 +7,8 @@ import PDMNLogo from '../assets/PDMN.png';
 import SupernovaLogo from '../assets/Supernova.png';
 import TravelLogo from '../assets/GDS Travel.png';
 import VoltionLogo from '../assets/Voltion.png';
+import FeilongLogo from '../assets/Feilong.png';
+
 
 const Main = () => {
   return (
@@ -24,6 +26,7 @@ const Main = () => {
           <CompanyCard companyName="GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED" imgSrc={TravelLogo} imgLink='/gdsintl' />
           <CompanyCard companyName="VOLTION MOTORS PHILIPPINES" imgSrc={VoltionLogo} imgLink='/voltion' />
           <CompanyCard companyName="STARLIGHT BUSINESS CONSULTING SERVICES INCORPORATED" imgSrc={StarlightLogo} imgLink='/starlight' />
+          <CompanyCard companyName="FEILONG LEGAL" imgSrc={FeilongLogo} imgLink='/feilong'/>
         </div>
       </div>
     </div>

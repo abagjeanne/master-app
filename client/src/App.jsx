@@ -17,6 +17,8 @@ import PDMN from "./companies/PDMN.jsx";
 import STARLIGHT from "./companies/STRLGT.jsx";
 import SUPERNOVA from "./companies/SUPERNOVA.jsx";
 import VOLTION from "./companies/VLTN.jsx";
+import FEILONG from "./companies/FEILONG.jsx"
+
 import Resize from "./application/Resizer.jsx";
 import Remover from "./application/Bg_Remover.jsx";
 import Enhancer from "./application/Enhancer.jsx"
@@ -160,7 +162,9 @@ function App() {
           path="/gdsintl"
           element={
             <>
-              <GDSInternational />
+            <Header />
+            <GDSInternational />
+            <Footer/>
             </>
           }
         />
@@ -169,7 +173,9 @@ function App() {
           path="/pdmn"
           element={
             <>
-              <PDMN />
+            <Header/>
+            <PDMN />
+            <Footer/>
             </>
           }
         />
@@ -178,7 +184,9 @@ function App() {
           path="/starlight"
           element={
             <>
-              <STARLIGHT />
+            <Header />
+            <STARLIGHT />
+            <Footer />
             </>
           }
         />
@@ -187,7 +195,9 @@ function App() {
           path="/supernova"
           element={
             <>
-              <SUPERNOVA />
+            <Header/>
+            <SUPERNOVA />
+            <Footer/>
             </>
           }
         />
@@ -196,7 +206,20 @@ function App() {
           path="/voltion"
           element={
             <>
-              <VOLTION />
+            <Header />
+            <VOLTION />
+            <Footer/>
+            </>
+          }
+        />
+        <Route
+          exact
+          path="/feilong"
+          element={
+            <>
+            <Header />
+            <FEILONG />
+            <Footer/>
             </>
           }
         />
