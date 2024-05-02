@@ -11,7 +11,7 @@ const GDS = () => {
       <div className='container text-center mt-4'>
         <div className='row'>
           <div className='col'>
-            <img src={GDSLogo} style={{width: 400, height: 100 }} alt="GDS Logo" />
+            <img src={GDSLogo} style={{width: 400, height: 100 }} alt="GDS-Intl Logo" />
           </div>
         </div>
         <div className='row'>

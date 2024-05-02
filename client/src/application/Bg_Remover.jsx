@@ -47,7 +47,7 @@ const Remover = () => {
       const formData = new FormData();
       formData.append("image_file", selectedFile);
       const api_key = "zuyHvhRZ4RxjHpnm8Uh5NsBn";
-
+        
       try {
         const response = await axios.post("https://api.remove.bg/v1.0/removebg", formData, {
           headers: {

@@ -8,7 +8,7 @@ const PDMN = () =>{
       <div className='cons_pflex m-5'>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={PDMNLogo} style={{ width: 380 , height: 'auto' }} alt="Supernova Logo" />
+            <img src={PDMNLogo} style={{ width: 380 , height: 'auto' }} alt="PDMN Logo" />
           </div>
           <h5 style={{ textAlign: 'center', marginTop:30 }}>PHILLIPINE DRAGON MEDIA NETWORK CORPORATION</h5>
         </div>

@@ -8,7 +8,7 @@ const GDS = () =>{
       <div className='cons_pflex m-5'>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={GDSLogo} style={{ width: 480 , height: 'auto' }} alt="Supernova Logo" />
+            <img src={GDSLogo} style={{ width: 480 , height: 'auto' }} alt="GDS Capital Incorporated Logo" />
           </div>
           <h5 style={{ textAlign: 'center', marginTop:20 }}>GDS CAPITAL INCORPORATED</h5>
         </div>

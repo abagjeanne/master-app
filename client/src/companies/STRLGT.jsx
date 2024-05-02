@@ -8,7 +8,7 @@ const STARLIGHT = () =>{
       <div className='cons_pflex' style={{margin:34}}>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={Starlight} style={{ width: 400 , height: 'auto' }} alt="Supernova Logo" />
+            <img src={Starlight} style={{ width: 400 , height: 'auto' }} alt="Starlight Logo" />
           </div>
           <h5 style={{ textAlign: 'center', marginTop:30 }}>STARLIGHT BUSINESS CONSULTING <br/> SERVICES INCORPORATED</h5>
         </div>

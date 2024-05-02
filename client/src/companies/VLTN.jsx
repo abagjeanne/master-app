@@ -8,7 +8,7 @@ const VOLTION = () =>{
       <div className='cons_pflex' style={{margin:78}}>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={Voltion} style={{ width: 400 , height: 'auto' }} alt="Supernova Logo" />
+            <img src={Voltion} style={{ width: 400 , height: 'auto' }} alt="Voltion Logo" />
           </div>
           <h5 style={{ textAlign: 'center', marginTop:30 }}>VOLTION MOTORS PHILIPPINES</h5>
         </div>
