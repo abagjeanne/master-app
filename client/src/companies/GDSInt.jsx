@@ -29,20 +29,24 @@ const GDS = () => {
         <h3 style = {{marginLeft: 50, paddingTop: 20}}>Select an Application:</h3>
         <div className='parent_container'>
           <Link to = '/gdsintl-Resizer'>
-            <div className='child_containers'>
+            <div className='gdsint_child_containers'>
             <img src = {Resize} style={{margin: 'auto', height:50}}></img>
             <div style={{textAlign: 'center'}}>IMAGE CROPPING <br/>AND RESIZING</div>
             </div>
           </Link>
-          <Link to = '/gdsintl-Enhancer'>
-            <div className='child_containers'>
+          <Link to = '/gdsintl-Remover'>
+            <div className='gdsint_child_containers'>
               <img src = {Enhance} style={{marginRight: 3, height:50}}></img>
               <div style={{textAlign: 'center'}}>IMAGE BACKGROUND REMOVER</div>
             </div>
           </Link>
-        <div className='child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
-        <div className='child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
-        
+          <Link to = '/gdsintl-Enhancer'>
+            <div className='gdsint_child_containers'>
+              <img src = {Enhance} style={{marginRight: 10, height:50}}></img>
+              <div style={{textAlign: 'center'}}>IMAGE ENHANCER</div>
+            </div>
+          </Link>
+        <div className='gdsint_child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
         </div>
       </div>
       <Footer />
