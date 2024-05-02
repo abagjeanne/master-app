@@ -59,7 +59,7 @@ const FAQCard = () => {
               </div>
             </div>
           ) : (
-            <div className="accordion-solid-header card mb-3">
+            <div className="card mb-3">
               {infoData.map((faq, index) => (
                 <div key={index}>
                   <div className="card-header" style={{backgroundColor:""}} onClick={() => toggleAnswer(index)}>

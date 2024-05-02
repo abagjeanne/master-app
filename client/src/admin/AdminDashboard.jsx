@@ -113,7 +113,7 @@ const Dashboard = () => {
   return (
     <div
       className="row bg p-0 m-0"
-      style={{ height: "100vh", backgroundColor: "#222840" }}
+      style={{ height: "100vh", backgroundColor: "#DAD7E2" }}
     >
       <nav
         className="col-md-2 shadow-lg d-flex flex-column px-3"

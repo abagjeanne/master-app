@@ -99,7 +99,7 @@ const Contact = () => {
                 Position="IT Specialist - Intern"
                 Number="0966 481 0660"
                 profile={Profile}
-                telegramQR={QR}
+                // telegramQR={QR}
                 wechatQR={JinWC}
                 viberQR={JinViber}
                 altText="Jeanne Mari S. Abag"
@@ -111,7 +111,7 @@ const Contact = () => {
                 Position="IT Specialist - Intern"
                 Number="0991 902 9017"
                 profile={Profile}
-                telegramQR={QR}
+                // telegramQR={QR}
                 wechatQR={LaneWC}
                 viberQR={LaneViber}
                 altText=""
@@ -123,7 +123,7 @@ const Contact = () => {
                 Position="IT Specialist - Intern"
                 Number="0966 235 5141"
                 profile={Profile}
-                telegramQR={QR}
+                // telegramQR={QR}
                 wechatQR={JamesWC}
                 viberQR={JamesViber}
                 altText="James Leonard M. Desena"

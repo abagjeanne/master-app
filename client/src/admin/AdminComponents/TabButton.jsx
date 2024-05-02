@@ -5,7 +5,7 @@ function TabButton({ label, icon, onClick, isActive }) {
   return (
     <li className="nav-item">
       <button 
-        className={`nav-link btn ${isActive ? 'active' : ''}`} 
+        className={`nav-link tab ${isActive ? 'active' : ''}`} 
         onClick={onClick}
       >
         {icon && (

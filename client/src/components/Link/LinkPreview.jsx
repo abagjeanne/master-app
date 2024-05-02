@@ -54,7 +54,7 @@ const Main = () => {
               {blogData.slice(0, 3).map(link => (
                 <div key={link._id} className="col-md-4">
                   <Link to={`/blog/${link._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <div className="card h-100 border-0 shadow hover-effect">
+                    <div className="card h-100 shadow hover-effect">
                       <img src={link.thumbnail.link} className="card-img-top" alt="Blog Post" style={{ objectFit: 'cover', height: '200px' }} />
                       <div className="card-body">
                         <h5 className="card-title text-capitalize"><strong>{link.title}</strong></h5>

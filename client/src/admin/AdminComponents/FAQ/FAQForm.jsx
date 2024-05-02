@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane as faPaperPlaneTop } from '@fortawesome/free-solid-svg-icons';
 
 const NewFAQForm = () => {
 
@@ -89,7 +91,13 @@ const NewFAQForm = () => {
                 ></textarea>
                 <div className="invalid-feedback">Please provide an answer.</div>
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button className="submit">
+            <div className="fa-wrapper">
+                <FontAwesomeIcon icon={faPaperPlaneTop} />
+            </div>
+            <span>Submit</span>
+            </button>
+
         </form>
   );
 };

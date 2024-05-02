@@ -2,7 +2,9 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+import 'react-quill/dist/quill.snow.css'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane as faPaperPlaneTop } from '@fortawesome/free-solid-svg-icons';
 
 const NewLinkForm = () => {
     const formRef = useRef(null);
@@ -178,7 +180,12 @@ const NewLinkForm = () => {
                 />
             </div>
 
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button className="submit">
+            <div className="fa-wrapper">
+                <FontAwesomeIcon icon={faPaperPlaneTop} />
+            </div>
+            <span>Submit</span>
+            </button>
         </form>
     );
 };

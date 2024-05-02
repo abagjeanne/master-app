@@ -4,7 +4,7 @@ import logo from '../assets/logo.png';
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-md bg-dark py-3" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-md py-3">
       <div className="container-fluid">
         <Link to={"/"} className='navbar-brand d-flex align-items-center'>
           <img src={logo} alt="Logo" className="me-2" style={{ height: '60px' }} /> {/* Include your logo image here */}
@@ -21,7 +21,7 @@ const Header = () => {
             <NavItem to="/information" text="Information" />
             <NavItem to="/about-us" text="About Us" />
           </ul>
-          <Link to="/contact-us" className="btn btn-primary ms-md-2" role="button">Contact Us</Link>
+          <Link to="/contact-us" className="btn  ms-md-2" role="button">Contact Us</Link>
         </div>
       </div>
     </nav>
