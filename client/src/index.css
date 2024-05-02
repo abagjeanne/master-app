@@ -568,10 +568,10 @@ input[type='radio']{
   font-weight:500
   
 }
-.active {
-  background-color: #74747485; /* Set background color for active state */
-  border-radius: 10px; /* Add border radius for rounded corners */
-}
+/* .active {
+  background-color: #74747485;
+  border-radius: 10px; 
+} */
 
 .signout {
   --main-focus: #2d8cf0;

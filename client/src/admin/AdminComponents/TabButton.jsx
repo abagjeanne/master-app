@@ -19,6 +19,8 @@ function TabButton({ label, icon, onClick, isActive }) {
           // Apply right border when active
           borderRight: isActive ? "10px solid #F45164" : "none",
           fontWeight: isActive ? "bold" : "none",
+          backgroundColor:  isActive ? "#74747485" : "none",
+          borderRadius:  isActive ? "10px" : "none",
         }}
         // Add hover effect
         onMouseEnter={(e) => e.target.style.backgroundColor = "#333"}
