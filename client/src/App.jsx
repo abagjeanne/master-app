@@ -18,7 +18,8 @@ import STARLIGHT from "./companies/STRLGT.jsx";
 import SUPERNOVA from "./companies/SUPERNOVA.jsx";
 import VOLTION from "./companies/VLTN.jsx";
 import Resize from "./application/Resizer.jsx";
-import Enhance from "./application/Enhancer.jsx";
+import Remover from "./application/Bg_Remover.jsx";
+import Enhancer from "./application/Enhancer.jsx"
 import LinkPost from "./components/Link/LinkPost.jsx";
 
 import AdminLogin from "./admin/AdminLogin.jsx";
@@ -222,15 +223,26 @@ function App() {
         />
         <Route
           exact
-          path="/gdsintl-Enhancer"
+          path="/gdsintl-Remover"
           element={
             <>
               <Header/>
-              <Enhance />
+              <Remover />
               <Footer />
             </>
           }
         />
+        <Route
+          exact
+          path="gdsintl-Enhancer"
+          element={
+            <>
+              <Header/>
+              <Enhancer />
+              <Footer />
+            </>
+          }
+          />
       </Routes>
     </div>
   );

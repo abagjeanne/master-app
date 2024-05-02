@@ -2,8 +2,8 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import GDSLogo from '../assets/GDS Travel.png';
-import Resize from '../assets/resize.png';
-import Enhance from '../assets/enhance.png';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCrop, faWandMagicSparkles, faUserXmark } from "@fortawesome/free-solid-svg-icons";
 import {Link} from 'react-router-dom';
 
 
@@ -11,7 +11,7 @@ const GDS = () => {
   return (
     <div>
       <Header />
-      <div className='container text-center mt-5'>
+      <div className='container text-center mt-4'>
         <div className='row'>
           <div className='col'>
             <img src={GDSLogo} style={{width: 400, height: 100 }} alt="GDS Logo" />
@@ -19,30 +19,36 @@ const GDS = () => {
         </div>
         <div className='row'>
           <div className='col mt-3 mb-5'>
-            <h5>GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED</h5>
+            <h5 style={{fontWeight:'bold'}}>GDS INTERNATIONAL TRAVEL AGENCY INCORPORATED</h5>
           </div>
         </div>
       </div>
 
       {/*Content */}
-      <div className='container-fluid ' style = {{paddingBottom:35 ,backgroundColor: '#D9D9D9'}}>
-        <h3 style = {{marginLeft: 50, paddingTop: 20}}>Select an Application:</h3>
+      <div className='container-xxl innerbox' style = {{marginBottom:35}}>
+        <h4 style = {{padding:'20px',paddingTop:'50px',textAlign:'center', fontWeight: 'bold'}}>Choose an Application to Get Started:</h4>
         <div className='parent_container'>
           <Link to = '/gdsintl-Resizer'>
-            <div className='child_containers'>
-            <img src = {Resize} style={{margin: 'auto', height:50}}></img>
-            <div style={{textAlign: 'center'}}>IMAGE CROPPING <br/>AND RESIZING</div>
+            <div className='gds_int_child_containers'>
+              <FontAwesomeIcon icon={faCrop} style={{margin:'auto',width:'70', height:'auto'}} />
+                <div style={{margin:'auto',textAlign: 'center'}}>
+                  IMAGE CROPPING <br/>AND RESIZING
+                </div>
+            </div>
+          </Link>
+          <Link to = '/gdsintl-Remover'>
+            <div className='gds_int_child_containers'>
+            <FontAwesomeIcon icon={faUserXmark} style={{margin:'auto',width:'70', height:'auto'}} />
+              <div style={{margin:'auto',textAlign: 'center'}}>IMAGE BACKGROUND REMOVER</div>
             </div>
           </Link>
           <Link to = '/gdsintl-Enhancer'>
-            <div className='child_containers'>
-              <img src = {Enhance} style={{marginRight: 3, height:50}}></img>
-              <div style={{textAlign: 'center'}}>IMAGE BACKGROUND REMOVER</div>
+            <div className='gds_int_child_containers'>
+            <FontAwesomeIcon icon={faWandMagicSparkles} style={{margin:'auto',width:'70', height:'auto'}} />
+              <div style={{margin:'auto',textAlign: 'center'}}>IMAGE ENHANCER</div>
             </div>
           </Link>
-        <div className='child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
-        <div className='child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
-        
+        <div className='gds_int_child_containers' style={{ backgroundColor:'#EFECEC' }}></div>
         </div>
       </div>
       <Footer />
