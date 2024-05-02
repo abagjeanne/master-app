@@ -37,6 +37,7 @@ const CreateContact = async (req, res) => {
       sender: contact.sender,
       cTitle: contact.cTitle,
       cContent: contact.cContent,
+      dateCreated: new Date(),
     });
     res.status(201).json(result);
   } catch (err) {
@@ -51,8 +52,6 @@ const EditContact = async (req, res) => {
 
     let update = {
       $set: {
-        company: contact.company,
-        sender: contact.sender,
         cTitle: contact.cTitle,
         cContent: contact.cContent,
       },

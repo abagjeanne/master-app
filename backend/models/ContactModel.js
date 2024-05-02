@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ContactSchema = new Schema({
-  company: {
+  sender: {
     type: String,
     default: "",
     required: true
   },
-  sender: {
+  company: {
     type: String,
     default: "",
     required: true
@@ -22,7 +22,11 @@ const ContactSchema = new Schema({
     type: String,
     default: "",
     required: true
-  }
+  },
+  dateCreated:{
+    type: Date,
+    default: Date.now
+  },
 });
 
 module.exports = mongoose.model("contact", ContactSchema);

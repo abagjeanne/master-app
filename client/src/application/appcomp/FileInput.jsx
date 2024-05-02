@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom"; // Import Link from React Router
+import { Link } from "react-router-dom"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faFileImage, faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 
@@ -36,7 +36,7 @@ const FileInput = ({ onImageSelected }) => {
   };
 
   return (
-    <div className="container justify-content-center lg-shadow"> {/* Added lg-shadow class */}
+    <div className="container justify-content-center lg-shadow">
       <input
         type="file"
         accept="image/*"
@@ -55,7 +55,7 @@ const FileInput = ({ onImageSelected }) => {
           borderRadius: "5px",
           textAlign: "center",
           cursor: "pointer",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Added box-shadow
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       >
         <br />

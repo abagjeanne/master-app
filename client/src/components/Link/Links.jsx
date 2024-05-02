@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const Main = () => {
@@ -23,7 +22,7 @@ const Main = () => {
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false); // Set loading to false after fetching data
+        setLoading(false); 
       }
     };
     fetchLink();

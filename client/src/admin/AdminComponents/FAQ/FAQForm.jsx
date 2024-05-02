@@ -63,7 +63,7 @@ const NewFAQForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+        <form onSubmit={handleSubmit} ref={formRef} className="needs-validation" noValidate>
             <div className="mb-3">
                 <label htmlFor="question" className="form-label">Question:</label>
                 <input

@@ -1,37 +1,38 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-md bg-dark py-3" data-bs-theme="dark">
       <div className="container-fluid">
-          <Link to={"/"} className='navbar-brand d-flex align-items-center'>GDS Group - Work From Home Site</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcol-1">
-          <span className="visually-hidden">Toggle navigation</span>
+        <Link to={"/"} className='navbar-brand d-flex align-items-center'>
+          <img src={logo} alt="Logo" className="me-2" style={{ height: '60px' }} /> {/* Include your logo image here */}
+          GDS Group - Work From Home Site
+        </Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse justify-content-end" id="navcol-1">
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item" style={{ fontSize: "18px" }}>
-              <NavLink to={"/"} className='nav-link'>Home</NavLink>
-            </li>
-            <li className="nav-item" style={{ fontSize: "18px" }}>
-              <NavLink to={"/companies"} className='nav-link'>Company</NavLink>
-            </li>
-            <li className="nav-item" style={{ fontSize: "18px" }}>
-              <NavLink to={"/links"} className='nav-link'>Links</NavLink>
-            </li>
-            <li className="nav-item" style={{ fontSize: "18px" }}>
-              <NavLink to={"/information"} className='nav-link'>Information</NavLink>
-            </li>
-            <li className="nav-item" style={{ fontSize: "18px" }}>
-              <NavLink to={"/about-us"} className='nav-link'>About Us</NavLink>
-            </li>
+            <NavItem to="/" text="Home" />
+            <NavItem to="/companies" text="Company" />
+            <NavItem to="/links" text="Links" />
+            <NavItem to="/information" text="Information" />
+            <NavItem to="/about-us" text="About Us" />
           </ul>
-          <Link to={"/contact-us"} className='btn btn-primary ms-md-2' role="button" style={{ fontSize: "18px" }}>Contact Us</Link>
+          <Link to="/contact-us" className="btn btn-primary ms-md-2" role="button">Contact Us</Link>
         </div>
       </div>
     </nav>
+  );
+};
+
+const NavItem = ({ to, text }) => {
+  return (
+    <li className="nav-item">
+      <NavLink to={to} className="nav-link" activeClassName="active">{text}</NavLink>
+    </li>
   );
 };
 
