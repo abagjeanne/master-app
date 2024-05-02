@@ -41,7 +41,7 @@ const Dashboard = () => {
   const fetchFAQs = async () => {
     try {
       const response = await axios.get("http://localhost:8008/api/info");
-      setFaqPosts(...faqPosts, response.data);
+      setFaqPosts(response.data);
     } catch (error) {
       console.error("Error fetching FAQs:", error);
     }
@@ -57,9 +57,9 @@ const Dashboard = () => {
       const response = await axios.get("http://localhost:8008/api/contact", {
         headers,
       });
-      setConcerns(...concerns, response.data);
+      setConcerns(response.data);
     } catch (error) {
-      console.error("Error fetching FAQs:", error);
+      console.error("Error fetching Concerns:", error);
     }
   };
 
@@ -82,12 +82,12 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    fetchConcern(); // Fetch FAQs initially
+    fetchConcern(); // Fetch Concerns initially
 
-    // Fetch FAQs every 5 minutes
-    const faqInterval = setInterval(fetchFAQs, 5 * 60 * 1000);
+    // Fetch Concerns every 5 minutes
+    const concernInterval = setInterval(fetchConcern, 5 * 60 * 1000);
 
-    return () => clearInterval(faqInterval);
+    return () => clearInterval(concernInterval);
   }, []);
 
   const renderHeader = () => {
@@ -100,10 +100,13 @@ const Dashboard = () => {
         return "Add New Link";
       case "Add New FAQs":
         return "Add New FAQ";
+      case "Concerns":
+        return "Concerns";
       default:
         return "";
     }
   };
+
   const handleSignOut = () => {
     // Handle sign out action
     localStorage.removeItem("token");
@@ -113,13 +116,13 @@ const Dashboard = () => {
   return (
     <div
       className="row bg p-0 m-0"
-      style={{ height: "100vh", backgroundColor: "#DAD7E2" }}
+      style={{ height: "100vh", backgroundColor: "#4E596F" }}
     >
       <nav
         className="col-md-2 shadow-lg d-flex flex-column px-3"
         style={{
           paddingTop: "20px",
-          backgroundColor: "#131633",
+          backgroundColor: "#242A38",
           borderRight: "1px solid #313452",
           position: "sticky",
           margin: "0",
@@ -170,28 +173,31 @@ const Dashboard = () => {
           />
         </div>
         <div className="d-flex justify-content-center flex-column mt-auto mb-3">
-          <button className="btn btn-danger w-100" onClick={handleSignOut}>
-            <FontAwesomeIcon icon={faSignOutAlt} /> Sign Out
-          </button>
+        <button className="signout" onClick={handleSignOut}>
+        <span className="button__text">Sign Out</span>
+        <span className="button__icon">
+            <FontAwesomeIcon icon={faSignOutAlt} />
+        </span>
+        </button>
         </div>
       </nav>
 
       <main
         role="main"
         className="col-md-10 ml-sm-auto col-lg-10 px-4"
-        style={{ overflowY: "auto", maxHeight: "100vh" }}
+        style={{ overflowY: "auto", maxHeight: "100vh", color: "#EFEFEF"}}
       >
         <header className="text-center mb-4">
           <h1
             className="dashboard-title"
-            style={{ color: "white", paddingTop: "20px" }}
+            style={{ color: "#EFEFEF", paddingTop: "20px" }}
           >
             {renderHeader()}
           </h1>
         </header>
         <section
-          className="p-4 rounded shadow-sm mt-4 text-white"
-          style={{ border: "1px solid #313452", backgroundColor: "#131633" }}
+          className="p-4 rounded shadow mt-4"
+          style={{ border: "2px solid #394254", backgroundColor: "#394254", height:'auto' }}
         >
           {activeTab === "Links" && (
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
@@ -253,16 +259,6 @@ const Dashboard = () => {
           )}
         </section>
       </main>
-
-      <style>{`
-                .sidebar {
-                    transition: width 0.3s ease;
-                }
-
-                ::-webkit-scrollbar {
-                    display: none;
-                }
-            `}</style>
     </div>
   );
 };
