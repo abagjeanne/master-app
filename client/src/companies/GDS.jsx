@@ -11,7 +11,7 @@ const GDS = () =>{
       <div className='cons_pflex m-5'>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={GDSLogo} style={{ width: 350 , height: 110 }} alt="Supernova Logo" />
+            <img src={GDSLogo} style={{ width: 480 , height: 'auto' }} alt="Supernova Logo" />
           </div>
           <h5 style={{ textAlign: 'center', marginTop:20 }}>GDS CAPITAL INCORPORATED</h5>
         </div>
@@ -21,7 +21,7 @@ const GDS = () =>{
       </div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Link to = '/'>
-        <button style={{paddingInline: 60, marginBottom: 50}}>Return To Home</button>
+        <button className='rbtn' style={{paddingInline: 60, marginBottom: 50}}>Return To Home</button>
         </Link>
       </div>
       <Footer/>

@@ -11,9 +11,9 @@ const PDMN = () =>{
       <div className='cons_pflex m-5'>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={PDMNLogo} style={{ width: 350, height: 110 }} alt="Supernova Logo" />
+            <img src={PDMNLogo} style={{ width: 380 , height: 'auto' }} alt="Supernova Logo" />
           </div>
-          <h5 style={{ textAlign: 'center', marginTop:20 }}>PHILLIPINE DRAGON MEDIA NETWORK<br/> CORPORATION</h5>
+          <h5 style={{ textAlign: 'center', marginTop:30 }}>PHILLIPINE DRAGON MEDIA NETWORK CORPORATION</h5>
         </div>
       <div className='cons_cflex'>
         <h1 style = {{textAlign: 'center'}}>ON PROGRESS...</h1>
@@ -21,11 +21,9 @@ const PDMN = () =>{
       </div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Link to = '/'>
-        <button style={{paddingInline: 60, marginBottom: 50}}>Return To Home</button>
+        <button className='rbtn' style={{paddingInline: 60, marginBottom: 50}}>Return To Home</button>
         </Link>
       </div>
-
-        
       <Footer/>
     </div>
   );
