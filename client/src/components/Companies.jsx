@@ -25,8 +25,8 @@ const Main = () => {
           <CompanyCard companyName="PHILIPPINE DRAGON MEDIA NETWORK CORPORATION" imgSrc={PDMNLogo} imgLink='/pdmn' />
           <CompanyCard companyName="SUPERNOVA INNOVATION INCORPORATED" imgSrc={SupernovaLogo} imgLink='/supernova' />
           <CompanyCard companyName="VOLTION MOTORS PHILIPPINES" imgSrc={VoltionLogo} imgLink='/voltion' />
-          <CompanyCard companyName="STARLIGHT BUSINESS CONSULTING SERVICES INCORPORATED" imgSrc={StarlightLogo} imgLink='/starlight' />
           <CompanyCard companyName="FEILONG LEGAL" imgSrc={FeilongLogo} imgLink='/feilong'/>
+          <CompanyCard companyName="STARLIGHT BUSINESS CONSULTING SERVICES INCORPORATED" imgSrc={StarlightLogo} imgLink='/starlight' />
         </div>
       </div>
     </div>

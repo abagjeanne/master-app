@@ -74,14 +74,14 @@ const Concern = ({ id }) => {
       {/* Modal rendered conditionally */}
       {showConfirmationModal && (
         <div className="confirmation-modal card-body">
-          <h2>Are you sure you want to delete this concern?</h2>
+          <h2>Is the concern resolved?</h2>
           <div className="button-container">
             <button
               type="button"
               className="mx-2 btn btn-danger"
               onClick={handleDelete}
             >
-              Yes, Delete
+              Yes, Resolved
             </button>
             <button
               type="button"
@@ -111,7 +111,7 @@ const Concern = ({ id }) => {
               className="btn btn-danger"
               onClick={() => setShowConfirmationModal(true)}
             >
-              Delete
+              Resolved
             </button>
           </div>
         )}

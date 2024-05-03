@@ -22,11 +22,11 @@ const GDS = () => {
       </div>
 
       {/*Content */}
-      <div className='container-xxl innerbox' style = {{marginBottom:35}}>
+      <div className='container-xxl gdsint_innerbox' style = {{marginBottom:35}}>
         <h4 style = {{padding:'20px',paddingTop:'50px',textAlign:'center', fontWeight: 'bold'}}>Choose an Application to Get Started:</h4>
         <div className='parent_container'>
           <Link to = '/gdsintl-Resizer'>
-            <div className='gds_int_child_containers'>
+            <div className='gdsint_child_containers'>
               <FontAwesomeIcon icon={faCrop} style={{margin:'auto',width:'70', height:'auto'}} />
                 <div style={{margin:'auto',textAlign: 'center'}}>
                   IMAGE CROPPING <br/>AND RESIZING
@@ -34,13 +34,13 @@ const GDS = () => {
             </div>
           </Link>
           <Link to = '/gdsintl-Remover'>
-            <div className='gds_int_child_containers'>
+            <div className='gdsint_child_containers'>
             <FontAwesomeIcon icon={faUserXmark} style={{margin:'auto',width:'70', height:'auto'}} />
               <div style={{margin:'auto',textAlign: 'center'}}>IMAGE BACKGROUND REMOVER</div>
             </div>
           </Link>
           <Link to = '/gdsintl-Enhancer'>
-            <div className='gds_int_child_containers'>
+            <div className='gdsint_child_containers'>
             <FontAwesomeIcon icon={faWandMagicSparkles} style={{margin:'auto',width:'70', height:'auto'}} />
               <div style={{margin:'auto',textAlign: 'center'}}>IMAGE ENHANCER</div>
             </div>
