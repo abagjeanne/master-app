@@ -13,7 +13,9 @@ const Concern = ({ id }) => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] = useState(false);
+  const [showArchiveConfirmationModal, setShowArchiveConfirmationModal] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +33,7 @@ const Concern = ({ id }) => {
           setConcernData(response.data);
           setFormData({
             sender: response.data.sender,
-            company: response.data.company, // Set company field
+            company: response.data.company,
             cTitle: response.data.cTitle,
             cContent: response.data.cContent,
             dateCreated: response.data.dateCreated,
@@ -59,11 +61,17 @@ const Concern = ({ id }) => {
         { headers }
       );
       if (response.status === 200) {
-        setShowConfirmationModal(false);
+        setShowDeleteConfirmationModal(false);
       }
     } catch (error) {
       setError("Error deleting FAQ");
     }
+  };
+
+  const handleArchive = async () => {
+    // Logic to archive the concern
+    setShowArchiveConfirmationModal(false);
+    setShowSuccessMessage(true); // Show success message after archiving
   };
 
   if (loading) return <div>Loading...</div>;
@@ -71,8 +79,8 @@ const Concern = ({ id }) => {
 
   return (
     <div>
-      {/* Modal rendered conditionally */}
-      {showConfirmationModal && (
+      {/* Delete confirmation modal */}
+      {showDeleteConfirmationModal && (
         <div className="confirmation-modal card-body">
           <h2>Are you sure you want to delete this concern?</h2>
           <div className="button-container">
@@ -86,11 +94,41 @@ const Concern = ({ id }) => {
             <button
               type="button"
               className="mx-2 btn btn-secondary"
-              onClick={() => setShowConfirmationModal(false)}
+              onClick={() => setShowDeleteConfirmationModal(false)}
             >
               Cancel
             </button>
           </div>
+        </div>
+      )}
+
+      {/* Archive confirmation modal */}
+      {showArchiveConfirmationModal && (
+        <div className="confirmation-modal card-body">
+          <h2>Were you able to address this concern?</h2>
+          <div className="button-container">
+            <button
+              type="button"
+              className="mx-2 btn btn-success"
+              onClick={handleArchive}
+            >
+              Yes, Archive
+            </button>
+            <button
+              type="button"
+              className="mx-2 btn btn-secondary"
+              onClick={() => setShowArchiveConfirmationModal(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Success message */}
+      {showSuccessMessage && (
+        <div className="success-message">
+          <p>Concern archived successfully!</p>
         </div>
       )}
 
@@ -107,12 +145,20 @@ const Concern = ({ id }) => {
 
               <p>{formatDistanceToNow(new Date(formData.dateCreated))} ago</p>
             </div>
-            <button
-              className="btn btn-danger"
-              onClick={() => setShowConfirmationModal(true)}
-            >
-              Delete
-            </button>
+            <div>
+              <button
+                className="btn btn-danger"
+                onClick={() => setShowDeleteConfirmationModal(true)}
+              >
+                Delete
+              </button>
+              <button
+                className="btn btn-primary ml-2"
+                onClick={() => setShowArchiveConfirmationModal(true)}
+              >
+                Archive
+              </button>
+            </div>
           </div>
         )}
       </div>
