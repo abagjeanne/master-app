@@ -34,8 +34,10 @@ const VOLTION = () =>{
           </div>
         </div>
       </div>
-      <div className='container-xxl feilong_innerbox' style = {{marginBottom:35, }}>
-        <h4 style = {{padding:'20px',paddingTop:'50px',textAlign:'center', fontWeight: 'bold', color:'white'}}>Choose an Application to Get Started:</h4>
+      <div className='container-xxl feilong_innerbox' style = {{position:'relative', marginBottom:35, }}>
+      <h4 style = {{padding:'20px',paddingTop:'50px',textAlign:'center', fontWeight: 'bold', color: 'white'}}>
+        <FontAwesomeIcon icon={faArrowLeft} style={{position:'absolute', top: '20px', left:'20px'}} onClick={() => window.history.back()}/>
+          Choose an Application to Get Started:</h4>
         <div className='parent_container'>
           <Link to = 'http://202.175.224.156:4040' target='_blank'>
             <div className='feilong_child_containers'>

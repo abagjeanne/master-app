@@ -1,7 +1,7 @@
 import React from 'react';
 import GDSLogo from '../assets/GDS Travel.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCrop, faWandMagicSparkles, faUserXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCrop, faWandMagicSparkles, faUserXmark,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import {Link} from 'react-router-dom';
 
 
@@ -22,8 +22,10 @@ const GDS = () => {
       </div>
 
       {/*Content */}
-      <div className='container-xxl gdsint_innerbox' style = {{marginBottom:35}}>
-        <h4 style = {{padding:'20px',paddingTop:'50px',textAlign:'center', fontWeight: 'bold'}}>Choose an Application to Get Started:</h4>
+      <div className='container-xxl gdsint_innerbox' style = {{position:'relative',marginBottom:35}}>
+        <h4 style = {{padding:'20px',paddingTop:'50px',textAlign:'center', fontWeight: 'bold'}}>
+        <FontAwesomeIcon icon={faArrowLeft} style={{position:'absolute', top: '20px', left:'20px'}} onClick={() => window.history.back()}/>
+        Choose an Application to Get Started:</h4>
         <div className='parent_container'>
           <Link to = '/gdsintl-Resizer'>
             <div className='gdsint_child_containers'>
