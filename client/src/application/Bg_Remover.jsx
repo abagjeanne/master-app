@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpFromBracket, faFileImage,FaFileDownload, faUndo,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpFromBracket, faFileImage,faFileDownload, faUndo,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import GDSLogo from '../assets/GDS Travel.png';
 
 const Remover = () => {
@@ -184,7 +184,7 @@ const Remover = () => {
                               <>
                                 <a href={finalUrl} download="Removed Background.png">
                                   <button className="rbtn" style={{ borderRadius: '5px' }}>
-                                    Download Image <FaFileDownload />
+                                    Download Image <faFileDownload />
                                   </button>
                                 </a>
                                   <button onClick={whitenBackground} className="rbtn" style={{ borderRadius: '5px' }}>

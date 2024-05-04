@@ -90,9 +90,18 @@ h1 {
   box-shadow: inset 0 1px 7px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
 }
 
-.voltion_innerbox, .feilong_innerbox{
+.voltion_innerbox{
   border-radius: 20px;
   background-color: gray;
+  border: 1px solid transparent;
+  border-top: none;
+  border-bottom: 1px solid #DDD;
+  box-shadow: inset 0 1px 7px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+}
+
+.feilong_innerbox{
+  border-radius: 20px;
+  background-color: #FFE801;
   border: 1px solid transparent;
   border-top: none;
   border-bottom: 1px solid #DDD;
@@ -148,13 +157,8 @@ h1 {
   color: white;
   text-shadow: 0 1px gray;
 }
-.voltion_child_containers:hover:not(:disabled){
+.voltion_child_containers:hover:not(:disabled), .feilong_child_containers:hover:not(:disabled){
   background: black;
-  color: white;
-  text-shadow: 0 1px gray;
-}
-.feilong_child_containers:hover:not(:disabled){
-  background: #B59830;
   color: white;
   text-shadow: 0 1px gray;
 }

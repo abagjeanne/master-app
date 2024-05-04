@@ -32,12 +32,12 @@ UNCOMMENT WHEN THERE ARE NEW APPS */}
         </div>
         <div className='row'>
           <div className='col mb-5'>
-            <h5 style={{fontWeight:'bold'}}>FEILONG LEGAL</h5>
+            <h5 style={{fontWeight:'bold'}}>STARLIGHT BUSINESS CONSULTING <br/> SERVICES INCORPORATED</h5>
           </div>
         </div>
       </div>
       <div className='container-xxl feilong_innerbox' style = {{position:'relative', marginBottom:35, }}>
-      <h4 style = {{padding:'20px',paddingTop:'50px',textAlign:'center', fontWeight: 'bold', color: 'white'}}>
+      <h4 style = {{padding:'20px',paddingTop:'50px',textAlign:'center', fontWeight: 'bold'}}>
         <FontAwesomeIcon icon={faArrowLeft} style={{position:'absolute', top: '20px', left:'20px'}} onClick={() => window.history.back()}/>
           Choose an Application to Get Started:</h4>
         <div className='parent_container'>
