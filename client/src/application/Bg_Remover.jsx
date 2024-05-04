@@ -1,13 +1,8 @@
 import React, { useState, useRef } from "react";
 import axios from 'axios';
-import { FaFileDownload } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpFromBracket, faFileImage } from "@fortawesome/free-solid-svg-icons";
-import { faUndo } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpFromBracket, faFileImage,FaFileDownload, faUndo,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import GDSLogo from '../assets/GDS Travel.png';
-import { faArrowLeft} from "@fortawesome/free-solid-svg-icons";
-
-
 
 const Remover = () => {
     const [selectedFile, setSelectedFile] = useState(null);
