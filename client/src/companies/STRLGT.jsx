@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const STARLIGHT = () =>{
   return(
     <div>
-          {/* <div className='cons_pflex' style={{margin:34}}>
+ <div className='cons_pflex' style={{margin:34}}>
         <div className='cons_cflex' style={{padding: 50}}> 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img src={Starlight} style={{ width: 400 , height: 'auto' }} alt="Starlight Logo" />
@@ -23,7 +23,7 @@ const STARLIGHT = () =>{
         <button className='rbtn' style={{paddingInline: 60, marginBottom: 50}}>Return To Home</button>
         </Link>
       </div>
-UNCOMMENT WHEN THERE ARE NEW APPS */}
+          {/*UNCOMMENT WHEN THERE ARE NEW APPS
       <div className='container text-center mt-4'>
         <div className='row'>
           <div className='col'>
@@ -46,8 +46,8 @@ UNCOMMENT WHEN THERE ARE NEW APPS */}
               Lorem Ipsum
             </div>
           </Link>
-        </div>
-      </div>
+        </div> 
+      </div>*/}
     </div>
   );
 };
