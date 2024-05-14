@@ -15,12 +15,10 @@ function TabButton({ label, icon, onClick, isActive }) {
           padding: "10px 20px", // Add padding for better spacing
           outline: "none", // Remove outline on focus
           transition: "background-color 0.3s", // Add smooth transition for hover effect
-          borderRadius: "10px",
-          // Apply right border when active
-          borderRight: isActive ? "10px solid #F45164" : "none",
+          borderRadius: isActive ? "10px" : "none", // Apply borderRadius conditionally
+          borderRight: isActive ? "10px solid #F45164" : "none", // Apply right border when active
           fontWeight: isActive ? "bold" : "none",
-          backgroundColor:  isActive ? "#74747485" : "none",
-          borderRadius:  isActive ? "10px" : "none",
+           backgroundColor: isActive ? "#74747485" : "none"
         }}
         // Add hover effect
         onMouseEnter={(e) => e.target.style.backgroundColor = "#333"}
