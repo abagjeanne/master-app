@@ -45,7 +45,7 @@ const NewFAQForm = () => {
                 "Content-Type": "application/json"
             }
             const response = await axios.post(
-                'http://localhost:8008/api/info/create', 
+                'https://master-app-lckm.onrender.com/api/info/create', 
                 formData, {headers}
             );
             if (response && response.data) {

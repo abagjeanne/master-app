@@ -26,7 +26,7 @@ const Concern = ({ id }) => {
           "Content-Type": "application/json",
         };
         const response = await axios.get(
-          `http://localhost:8008/api/contact/${id}`,
+          `https://master-app-lckm.onrender.com/api/contact/${id}`,
           { headers }
         );
         if (response.status === 200) {
@@ -57,7 +57,7 @@ const Concern = ({ id }) => {
         "Content-Type": "application/json",
       };
       const response = await axios.delete(
-        `http://localhost:8008/api/contact/delete/${id}`,
+        `https://master-app-lckm.onrender.com/api/contact/delete/${id}`,
         { headers }
       );
       if (response.status === 200) {

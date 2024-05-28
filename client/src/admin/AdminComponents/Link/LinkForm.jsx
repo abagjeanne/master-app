@@ -82,7 +82,7 @@ const NewLinkForm = () => {
             formObject.append('blog', JSON.stringify(formData));
             formObject.append('dateUpdated', null)
 
-            const response = await axios.post('http://localhost:8008/api/blog/create', formObject, {
+            const response = await axios.post('https://master-app-lckm.onrender.com/api/blog/create', formObject, {
                 headers
             });
             // console.log(response.data);

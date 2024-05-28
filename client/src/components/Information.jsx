@@ -10,7 +10,7 @@ const FAQCard = () => {
   useEffect(() => {
     const fetchFAQs = async () => {
       try {
-        const response = await axios.get('http://localhost:8008/api/info/');
+        const response = await axios.get('https://master-app-lckm.onrender.com/api/info/');
         if (response.status === 200) {
           const faqs = response.data.reverse().map(faq => ({ ...faq, showAnswer: false }));
           setInfo(faqs);

@@ -36,7 +36,7 @@ const UpdateLinkForm = () => {
     const fetchViewLink = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8008/api/blog/${id}`
+          `https://master-app-lckm.onrender.com/api/blog/${id}`
         );
         if (response.status === 200) {
           setViewLink(response.data);
@@ -125,7 +125,7 @@ const UpdateLinkForm = () => {
       formObject.append("file", thumbnail);
 
       const response = await axios.patch(
-        `http://localhost:8008/api/blog/edit/${id}`,
+        `https://master-app-lckm.onrender.com/api/blog/edit/${id}`,
         formObject, { headers }
       );
 

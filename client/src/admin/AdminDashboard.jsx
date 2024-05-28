@@ -31,7 +31,7 @@ const Dashboard = () => {
 
   const fetchBlogPosts = async () => {
     try {
-      const response = await axios.get("http://localhost:8008/api/blog");
+      const response = await axios.get("https://master-app-lckm.onrender.com/api/blog");
       setBlogPosts(response.data); // Update the entire blogPosts state with the fetched data
     } catch (error) {
       console.error("Error fetching blog data:", error);
@@ -40,7 +40,7 @@ const Dashboard = () => {
 
   const fetchFAQs = async () => {
     try {
-      const response = await axios.get("http://localhost:8008/api/info");
+      const response = await axios.get("https://master-app-lckm.onrender.com/api/info");
       setFaqPosts(response.data);
     } catch (error) {
       console.error("Error fetching FAQs:", error);
@@ -54,7 +54,7 @@ const Dashboard = () => {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       };
-      const response = await axios.get("http://localhost:8008/api/contact", {
+      const response = await axios.get("https://master-app-lckm.onrender.com/api/contact", {
         headers,
       });
       setConcerns(response.data);

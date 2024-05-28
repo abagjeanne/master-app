@@ -26,7 +26,7 @@ const ViewLink = () => {
           "Content-Type": "multipart/form-data",
         };
         const response = await axios.get(
-          `http://localhost:8008/api/blog/${id}`,
+          `https://master-app-lckm.onrender.com/api/blog/${id}`,
           { headers }
         );
         if (response.status === 200) {
@@ -53,7 +53,7 @@ const ViewLink = () => {
         "Content-Type": "multipart/form-data",
       };
       const response = await axios.delete(
-        `http://localhost:8008/api/blog/delete/${id}`,
+        `https://master-app-lckm.onrender.com/api/blog/delete/${id}`,
         { headers }
       );
       if (response.status === 200) {

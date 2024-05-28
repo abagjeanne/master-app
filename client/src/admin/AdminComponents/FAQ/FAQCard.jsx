@@ -17,7 +17,7 @@ const FAQCard = ({ id }) => {
     useEffect(() => {
         const fetchInfoData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8008/api/info/${id}`);
+                const response = await axios.get(`https://master-app-lckm.onrender.com/api/info/${id}`);
                 if (response.status === 200) {
                     setInfoData(response.data);
                     setFormData({
@@ -40,7 +40,7 @@ const FAQCard = ({ id }) => {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
             }
-            const response = await axios.delete(`http://localhost:8008/api/info/delete/${id}`, {headers});
+            const response = await axios.delete(`https://master-app-lckm.onrender.com/api/info/delete/${id}`, {headers});
             if (response.status === 200) {
                 console.log("FAQ deleted successfully");
                 setShowConfirmationModal(false); // Close modal after deletion
@@ -72,7 +72,7 @@ const FAQCard = ({ id }) => {
 
         try {
             const response = await axios.patch(
-                `http://localhost:8008/api/info/edit/${id}`,
+                `https://master-app-lckm.onrender.com/api/info/edit/${id}`,
                 formData
             );
 

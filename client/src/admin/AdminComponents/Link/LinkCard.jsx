@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 const LinkCard = ({ id, title, content, image, author, dateTimeCreated }) => {
     const deleteUser = async () => {
         try {
-            const response = await axios.delete(`http://localhost:8008/api/blog/delete/${id}`);
+            const response = await axios.delete(`https://master-app-lckm.onrender.com/api/blog/delete/${id}`);
             if (response.status === 200) {
                 console.log("User deleted successfully");
             }

@@ -33,7 +33,7 @@ const Contact = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8008/api/contact/create",
+        "https://master-app-lckm.onrender.com/api/contact/create",
         formData
       );
       if (response && response.data) {

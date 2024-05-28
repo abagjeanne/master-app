@@ -10,7 +10,7 @@ const Main = () => {
   useEffect(() => {
     const fetchLink = async () => {
       try {
-        const response = await axios.get("http://localhost:8008/api/blog/");
+        const response = await axios.get("https://master-app-lckm.onrender.com/api/blog/");
 
         if (response.status === 200) {
           setBlog(response.data.reverse());

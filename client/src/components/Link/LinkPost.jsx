@@ -13,7 +13,7 @@ const BlogPost = () => {
   useEffect(() => {
     const fetchBlogPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:8008/api/blog/${id}`);
+        const response = await axios.get(`https://master-app-lckm.onrender.com/api/blog/${id}`);
         if (response.status === 200) {
           setBlogPost(response.data);
         } else {

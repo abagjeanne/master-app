@@ -13,7 +13,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8008/api/auth/login', {
+      const response = await axios.post('https://master-app-lckm.onrender.com/api/auth/login', {
         userName,
         passWord,
       });    
